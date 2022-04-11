@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClothesWebNET.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +9,12 @@ namespace ClothesWebNET.Controllers
 {
     public class HomeController : Controller
     {
+        private CLOTHESEntities db = new CLOTHESEntities();
+
         // GET: Home
         public ActionResult Index()
         {
-            return View();
+             return View();
         }
     }
 }
