@@ -6,10 +6,14 @@ using System.Web.Mvc;
 
 namespace ClothesWebNET.Controllers
 {
-    public class HomeController : Controller
+    public class ProductController : Controller
     {
-        // GET: Home
+        // GET: Product
         public ActionResult Index()
+        {
+            return View();
+        }
+        public ActionResult Detail()
         {
             return View();
         }
