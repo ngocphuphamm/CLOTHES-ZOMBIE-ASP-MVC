@@ -134,44 +134,130 @@ namespace ClothesWebNET.Controllers
         public ActionResult ao(string id)
         {
             id = "T01";
-            var listProduct = (from s in db.Products
+            ProductDTO productDTO = new ProductDTO();
+            var productList = (from s in db.Products
                                where s.idType == id
                                select s);
 
-            return View(listProduct);
+            var imageList = (from s in db.ImageProducts
+                             select s);
+
+            var query = from s in productList
+                        join image in db.ImageProducts on s.idProduct equals image.idProduct
+                        select new ProductDTO()
+                        {
+                            nameProduct = s.nameProduct,
+                            price = s.price,
+                            URLImage = image.URLImage,
+
+                        };
+
+            ViewBag.list = query.ToList();
+            return View(query.ToList());
+        
 
         }
+        public ActionResult test(string id)
+        {
+            id = "T01";
 
+            ProductDTO productDTO = new ProductDTO();
+            var productList = (from s in db.Products
+                               where s.idType == id
+                               select s);
+
+            var imageList = (from s in db.ImageProducts
+                             select s);
+
+            var query = from s in productList
+                        join image in db.ImageProducts on s.idProduct equals image.idProduct
+                        select new ProductDTO()
+                        {
+                            nameProduct = s.nameProduct,
+                            price = s.price,
+                            URLImage = image.URLImage,
+
+                        };
+
+            ViewBag.list= query.ToList();
+            return View(query.ToList());
+        }
         // collections/aothun
         public ActionResult aothun(string id)
         {
             id = "T02";
-            var listProduct = (from s in db.Products
+            ProductDTO productDTO = new ProductDTO();
+            var productList = (from s in db.Products
                                where s.idType == id
                                select s);
-            return View(listProduct);
+
+            var imageList = (from s in db.ImageProducts
+                             select s);
+
+            var query = from s in productList
+                        join image in db.ImageProducts on s.idProduct equals image.idProduct
+                        select new ProductDTO()
+                        {
+                            nameProduct = s.nameProduct,
+                            price = s.price,
+                            URLImage = image.URLImage,
+
+                        };
+
+            ViewBag.list = query.ToList();
+            return View(query.ToList());
         }
 
         // collections/sweater
         public ActionResult sweater(string id)
         {
             id = "T03";
-            var listProduct = (from s in db.Products
+            ProductDTO productDTO = new ProductDTO();
+            var productList = (from s in db.Products
                                where s.idType == id
                                select s);
-            return View(listProduct);
 
+            var imageList = (from s in db.ImageProducts
+                             select s);
+
+            var query = from s in productList
+                        join image in db.ImageProducts on s.idProduct equals image.idProduct
+                        select new ProductDTO()
+                        {
+                            nameProduct = s.nameProduct,
+                            price = s.price,
+                            URLImage = image.URLImage,
+
+                        };
+
+            ViewBag.list = query.ToList();
+            return View(query.ToList());
         }
 
         // collections/quan
         public ActionResult quan(string id)
         {
             id = "T05";
-            var listProduct = (from s in db.Products
+            ProductDTO productDTO = new ProductDTO();
+            var productList = (from s in db.Products
                                where s.idType == id
                                select s);
-            return View(listProduct);
 
+            var imageList = (from s in db.ImageProducts
+                             select s);
+
+            var query = from s in productList
+                        join image in db.ImageProducts on s.idProduct equals image.idProduct
+                        select new ProductDTO()
+                        {
+                            nameProduct = s.nameProduct,
+                            price = s.price,
+                            URLImage = image.URLImage,
+
+                        };
+
+            ViewBag.list = query.ToList();
+            return View(query.ToList());
         }
 
 
@@ -179,11 +265,26 @@ namespace ClothesWebNET.Controllers
         public ActionResult quandai(string id)
         {
             id = "T06";
-            var listProduct = (from s in db.Products
+            ProductDTO productDTO = new ProductDTO();
+            var productList = (from s in db.Products
                                where s.idType == id
                                select s);
-            return View(listProduct);
 
+            var imageList = (from s in db.ImageProducts
+                             select s);
+
+            var query = from s in productList
+                        join image in db.ImageProducts on s.idProduct equals image.idProduct
+                        select new ProductDTO()
+                        {
+                            nameProduct = s.nameProduct,
+                            price = s.price,
+                            URLImage = image.URLImage,
+
+                        };
+
+            ViewBag.list = query.ToList();
+            return View(query.ToList());
         }
 
 
@@ -191,10 +292,26 @@ namespace ClothesWebNET.Controllers
         public ActionResult quanngan(string id)
         {
             id = "T07";
-            var listProduct = (from s in db.Products
+            ProductDTO productDTO = new ProductDTO();
+            var productList = (from s in db.Products
                                where s.idType == id
                                select s);
-            return View(listProduct);
+
+            var imageList = (from s in db.ImageProducts
+                             select s);
+
+            var query = from s in productList
+                        join image in db.ImageProducts on s.idProduct equals image.idProduct
+                        select new ProductDTO()
+                        {
+                            nameProduct = s.nameProduct,
+                            price = s.price,
+                            URLImage = image.URLImage,
+
+                        };
+
+            ViewBag.list = query.ToList();
+            return View(query.ToList());
 
         }
 
@@ -203,10 +320,26 @@ namespace ClothesWebNET.Controllers
         public ActionResult phukien(string id)
         {
             id = "T08";
-            var listProduct = (from s in db.Products
+            ProductDTO productDTO = new ProductDTO();
+            var productList = (from s in db.Products
                                where s.idType == id
                                select s);
-            return View(listProduct);
+
+            var imageList = (from s in db.ImageProducts
+                             select s);
+
+            var query = from s in productList
+                        join image in db.ImageProducts on s.idProduct equals image.idProduct
+                        select new ProductDTO()
+                        {
+                            nameProduct = s.nameProduct,
+                            price = s.price,
+                            URLImage = image.URLImage,
+
+                        };
+
+            ViewBag.list = query.ToList();
+            return View(query.ToList());
 
         }
 
@@ -214,11 +347,26 @@ namespace ClothesWebNET.Controllers
         public ActionResult walletchain(string id)
         {
             id = "T09";
-            var listProduct = (from s in db.Products
+            ProductDTO productDTO = new ProductDTO();
+            var productList = (from s in db.Products
                                where s.idType == id
                                select s);
-            return View(listProduct);
 
+            var imageList = (from s in db.ImageProducts
+                             select s);
+
+            var query = from s in productList
+                        join image in db.ImageProducts on s.idProduct equals image.idProduct
+                        select new ProductDTO()
+                        {
+                            nameProduct = s.nameProduct,
+                            price = s.price,
+                            URLImage = image.URLImage,
+
+                        };
+
+            ViewBag.list = query.ToList();
+            return View(query.ToList());
         }
 
 
@@ -226,11 +374,26 @@ namespace ClothesWebNET.Controllers
         public ActionResult kinh(string id)
         {
             id = "T10";
-            var listProduct = (from s in db.Products
+            ProductDTO productDTO = new ProductDTO();
+            var productList = (from s in db.Products
                                where s.idType == id
                                select s);
-            return View(listProduct);
 
+            var imageList = (from s in db.ImageProducts
+                             select s);
+
+            var query = from s in productList
+                        join image in db.ImageProducts on s.idProduct equals image.idProduct
+                        select new ProductDTO()
+                        {
+                            nameProduct = s.nameProduct,
+                            price = s.price,
+                            URLImage = image.URLImage,
+
+                        };
+
+            ViewBag.list = query.ToList();
+            return View(query.ToList());
         }
 
 
@@ -239,22 +402,52 @@ namespace ClothesWebNET.Controllers
         public ActionResult non(string id)
         {
             id = "T11";
-            var listProduct = (from s in db.Products
+            ProductDTO productDTO = new ProductDTO();
+            var productList = (from s in db.Products
                                where s.idType == id
                                select s);
-            return View(listProduct);
 
+            var imageList = (from s in db.ImageProducts
+                             select s);
+
+            var query = from s in productList
+                        join image in db.ImageProducts on s.idProduct equals image.idProduct
+                        select new ProductDTO()
+                        {
+                            nameProduct = s.nameProduct,
+                            price = s.price,
+                            URLImage = image.URLImage,
+
+                        };
+
+            ViewBag.list = query.ToList();
+            return View(query.ToList());
         }
 
         // collections/nhan
         public ActionResult nhan(string id)
         {
             id = "T12";
-            var listProduct = (from s in db.Products
+            ProductDTO productDTO = new ProductDTO();
+            var productList = (from s in db.Products
                                where s.idType == id
                                select s);
-            return View(listProduct);
 
+            var imageList = (from s in db.ImageProducts
+                             select s);
+
+            var query = from s in productList
+                        join image in db.ImageProducts on s.idProduct equals image.idProduct
+                        select new ProductDTO()
+                        {
+                            nameProduct = s.nameProduct,
+                            price = s.price,
+                            URLImage = image.URLImage,
+
+                        };
+
+            ViewBag.list = query.ToList();
+            return View(query.ToList());
         }
 
     }
