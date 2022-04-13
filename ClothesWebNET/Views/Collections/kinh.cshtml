@@ -1,70 +1,61 @@
-﻿@model IEnumerable<ClothesWebNET.Models.Product>
+﻿
 
 @{
-    ViewBag.Title = "kinh";
+    ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@Styles.Render("~/Content/main")
+@Styles.Render("~/Content/product")
 
-<h2>kinh</h2>
+<div class="container">
+    <div class="breadcrumb">
+        <div class="grid">
+            <a href="/">Trang chủ / </a>
+            <a href="/collections">Danh mục / </a>
+            <a class="br-main" href="/collections">Tất cả sản phẩm </a>
+        </div>
+    </div>
+    <div class="products">
+        <div class="product-heading">Tất cả sản phẩm</div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.nameProduct)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.sizeM)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.sizeL)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.sizeXL)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.price)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Type.nameType)
-        </th>
-        <th></th>
-    </tr>
+        <div class="grid">
+            <div class="grid__row">
+                @foreach (var item in Model)
+                {
+                    <div class="grid__col-3">
+                        <div class="product">
+                            <img src="@item.URLImage"
+                                 alt=""
+                                 class="product-img product-show" />
+                            <img src="@item.URLImage"
+                                 alt=""
+                                 class="product-img product-img-hover" />
+                        </div>
+                        <div class="product-info">
+                            <div class="product-title">
+                                @item.nameProduct
+                            </div>
+                            <div class="product-price">@item.price,000₫</div>
+                        </div>
+                    </div>
+                }
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.nameProduct)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.sizeM)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.sizeL)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.sizeXL)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.price)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Type.nameType)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.idProduct }) |
-            @Html.ActionLink("Details", "Details", new { id=item.idProduct }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.idProduct })
-        </td>
-    </tr>
-}
+            </div>
 
-</table>
+        </div>
+    </div>
+    <div class="pagination">
+        <a class="prev" href=""><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 31 10" style="enable-background:new 0 0 31 10; width: 31px; height: 10px;" xml:space="preserve"><polygon points="31,5 25,0 25,4 0,4 0,6 25,6 25,10 "></polygon></svg></a>
+        <a href="#">1</a>
+        <a class="active" href="#">2</a>
+        <a href="#">3</a>
+        <a href="#">4</a>
+        <a href="#">5</a>
+        <a href="#">6</a>
+        <a class="next" href="#"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 31 10" style="enable-background:new 0 0 31 10; width: 31px; height: 10px;" xml:space="preserve"><polygon points="31,5 25,0 25,4 0,4 0,6 25,6 25,10 "></polygon></svg></a>
+    </div>
+    <!-- Product end -->
+
+</div>
+@Scripts.Render("~/bundles/product")
+

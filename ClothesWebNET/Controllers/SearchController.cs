@@ -12,7 +12,7 @@ namespace ClothesWebNET.Controllers
 {
     public class SearchController : Controller
     {
-        private CLOTHESEntities db = new CLOTHESEntities();
+        private CLOTHESEntities1 db = new CLOTHESEntities1();
 
         // GET:  http://localhost:46418/search/index?=tin
         public ActionResult Index(string q)
