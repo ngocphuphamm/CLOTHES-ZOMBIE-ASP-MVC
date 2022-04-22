@@ -21,11 +21,13 @@ namespace ClothesWebNET.Models
         public int sizeXL { get; set; }
 
     }
+    //helo
     public class ProductDTO
     {
         public string nameProduct { get; set; }
         public double price { get; set; }
         public string URLImage { get; set; }
+        public string idTypes { get; set; }
     }
     public partial class Product
     {

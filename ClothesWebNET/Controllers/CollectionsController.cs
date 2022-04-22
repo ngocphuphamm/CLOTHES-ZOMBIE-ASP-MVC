@@ -22,26 +22,32 @@ namespace ClothesWebNET.Controllers
                           select s ;
             var listProduct = from s in db.ImageProduct
                               join p in product on s.idProduct equals p.idProduct
-                              select new ProductDTO {
+                               select new ProductDTO {
                                 nameProduct = p.nameProduct,
                                 price = p.price,
-                                URLImage = s.URLImage
-                              };
+                                URLImage = s.URLImage,
+                                idTypes = p.idType
+                               };
             return View(listProduct.ToList());
         }
 
         // GET: Collections/Details/5
-        public ActionResult Details(string id)
+        public ActionResult Details(string id,string type)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Product product = db.Product.Find(id);
+            ImageProduct imageProduct = db.ImageProduct.Find(product.idProduct);
+           
             if (product == null)
             {
                 return HttpNotFound();
             }
+
+            ViewBag.listImage = imageProduct;
+
             return View(product);
         }
 
