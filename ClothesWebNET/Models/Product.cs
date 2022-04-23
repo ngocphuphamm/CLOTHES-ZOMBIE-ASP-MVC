@@ -11,29 +11,34 @@ namespace ClothesWebNET.Models
 {
     using System;
     using System.Collections.Generic;
-    public class ProductDTO
-    {
-        public string nameProduct { get; set; }
-        public double price { get; set; }
-        public string URLImage { get; set; }
-    }
     public class ProductDTODetail
     {
         public string nameProduct { get; set; }
         public double price { get; set; }
+
+
         public string URLImage { get; set; }
         public int sizeM { get; set; }
         public int sizeL { get; set; }
         public int sizeXL { get; set; }
 
     }
+    //helo
+    public class ProductDTO
+    {
+        public string idProduct { get; set; }   
+        public string nameProduct { get; set; }
+        public double price { get; set; }
+        public string URLImage { get; set; }
+        public string idTypes { get; set; }
+    }
     public partial class Product
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Product()
         {
-            this.DetailBIll = new HashSet<DetailBIll>();
-            this.ImageProduct = new HashSet<ImageProduct>();
+            this.DetailBIlls = new HashSet<DetailBIll>();
+            this.ImageProducts = new HashSet<ImageProduct>();
         }
     
         public string nameProduct { get; set; }
@@ -46,9 +51,9 @@ namespace ClothesWebNET.Models
         public string idType { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DetailBIll> DetailBIll { get; set; }
+        public virtual ICollection<DetailBIll> DetailBIlls { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ImageProduct> ImageProduct { get; set; }
-        public virtual Types Types { get; set; }
+        public virtual ICollection<ImageProduct> ImageProducts { get; set; }
+        public virtual Type Type { get; set; }
     }
 }

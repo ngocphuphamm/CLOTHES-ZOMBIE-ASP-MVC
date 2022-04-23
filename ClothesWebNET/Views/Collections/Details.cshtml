@@ -66,7 +66,12 @@
         <dd>
             @Html.DisplayFor(model => model.Type.nameType)
         </dd>
-
+        <dd>
+            @Html.DisplayFor(model => model.ImageProducts.First().URLImage)
+        </dd>
+        <dd>
+            @Html.DisplayFor(model => model.ImageProducts.Last().URLImage)
+        </dd>
     </dl>
 </div>
 <p>
