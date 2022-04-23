@@ -17,20 +17,34 @@ namespace ClothesWebNET.Controllers
         // GET:  http://localhost:46418/search/indexq?=tin
         public ActionResult Index(string q)
         {
-           // queryparamater = "glasses";
+            // queryparamater = "glasses";
+            ProductDTODetail productDTO = new ProductDTODetail();
+
             var product = from el in db.Product
                           select el;
-            System.Diagnostics.Debug.WriteLine("vao");
-            if (!String.IsNullOrEmpty(q))
+
+            q = q.ToLower();
+            product = product.Where(s => s.nameProduct.ToLower().Contains(q));
+
+            var listProduct = from p in product
+                              join image in db.ImageProduct on p.idProduct equals image.idProduct
+                              select new ProductDTODetail()
+                              {
+                                  nameProduct = p.nameProduct,
+                                  price = p.price,
+                                  URLImage = image.URLImage,
+                                  sizeL = p.sizeL,
+                                  sizeM = p.sizeM,
+                                  sizeXL = p.sizeXL,
+                              };
+            ViewBag.List=listProduct;
+
+            return View(listProduct.ToList());
+           /* if (!String.IsNullOrEmpty(q))
             {
-                q = q.ToLower();
-                product = product.Where(s => s.nameProduct.ToLower().Contains(q));
-               foreach(var item in product)
-                {
-                    System.Diagnostics.Debug.WriteLine(item);
-                }
+          
             }
-            return View(product.ToList());
+            return View();*/
         }
 
         // GET: Search/Details/5

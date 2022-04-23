@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ClothesWebNET.Models.Product>
+﻿@model IEnumerable<ClothesWebNET.Models.ProductDTODetail>
 
 @{
     ViewBag.Title = "Index";
@@ -10,60 +10,7 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.nameProduct)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.sizeM)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.sizeL)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.sizeXL)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.price)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ImageProduct)
-        </th>
-
-
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.nameProduct)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.sizeM)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.sizeL)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.sizeXL)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.price)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.ImageProduct)
-    </td>
-
-    <td>
-    </td>
-    <td>
-        @Html.ActionLink("Edit", "Edit", new { id = item.idProduct }) |
-        @Html.ActionLink("Details", "Details", new { id = item.idProduct }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.idProduct })
-    </td>
-</tr>
-}
-
-</table>
+@foreach(var item in ViewBag.List)
+            {
+                <h1>@item.sizeXL</h1>
+            }

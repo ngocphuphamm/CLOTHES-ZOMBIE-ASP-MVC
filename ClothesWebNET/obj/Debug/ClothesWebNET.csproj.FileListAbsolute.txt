@@ -326,10 +326,6 @@ G:\Desktop\Clothes\clothes\ClothesWebNET\obj\Debug\ClothesWebNET.csproj.CoreComp
 G:\Desktop\Clothes\clothes\ClothesWebNET\obj\Debug\ClothesWebNET.csproj.CopyComplete
 G:\Desktop\Clothes\clothes\ClothesWebNET\obj\Debug\ClothesWebNET.dll
 G:\Desktop\Clothes\clothes\ClothesWebNET\obj\Debug\ClothesWebNET.pdb
-G:\Desktop\ASP-Clothes\clothes\ClothesWebNET\obj\Debug\ClothesWebNET.csproj.AssemblyReference.cache
-G:\Desktop\ASP-Clothes\clothes\ClothesWebNET\obj\Debug\ClothesWebNET.csproj.CoreCompileInputs.cache
-G:\Desktop\ASP-Clothes\clothes\ClothesWebNET\obj\Debug\ClothesWebNET.dll
-G:\Desktop\ASP-Clothes\clothes\ClothesWebNET\obj\Debug\ClothesWebNET.pdb
 G:\Desktop\ASP-Clothes\clothes\ClothesWebNET\bin\ClothesWebNET.dll.config
 G:\Desktop\ASP-Clothes\clothes\ClothesWebNET\bin\ClothesWebNET.dll
 G:\Desktop\ASP-Clothes\clothes\ClothesWebNET\bin\ClothesWebNET.pdb
@@ -408,4 +404,8 @@ G:\Desktop\ASP-Clothes\clothes\ClothesWebNET\bin\System.Web.WebPages.Razor.xml
 G:\Desktop\ASP-Clothes\clothes\ClothesWebNET\bin\Newtonsoft.Json.xml
 G:\Desktop\ASP-Clothes\clothes\ClothesWebNET\bin\Antlr3.Runtime.pdb
 G:\Desktop\ASP-Clothes\clothes\ClothesWebNET\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+G:\Desktop\ASP-Clothes\clothes\ClothesWebNET\obj\Debug\ClothesWebNET.csproj.AssemblyReference.cache
+G:\Desktop\ASP-Clothes\clothes\ClothesWebNET\obj\Debug\ClothesWebNET.csproj.CoreCompileInputs.cache
 G:\Desktop\ASP-Clothes\clothes\ClothesWebNET\obj\Debug\ClothesWebNET.csproj.CopyComplete
+G:\Desktop\ASP-Clothes\clothes\ClothesWebNET\obj\Debug\ClothesWebNET.dll
+G:\Desktop\ASP-Clothes\clothes\ClothesWebNET\obj\Debug\ClothesWebNET.pdb
