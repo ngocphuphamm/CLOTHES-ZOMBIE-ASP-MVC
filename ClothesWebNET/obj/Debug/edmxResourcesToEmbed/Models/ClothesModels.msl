@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="CLOTHESModelStoreContainer" CdmEntityContainer="CLOTHESEntities">
-    <EntitySetMapping Name="Bill">
+    <EntitySetMapping Name="Bills">
       <EntityTypeMapping TypeName="CLOTHESModel.Bill">
         <MappingFragment StoreEntitySet="Bill">
           <ScalarProperty Name="idBill" ColumnName="idBill" />
@@ -16,7 +16,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Customer">
+    <EntitySetMapping Name="Customers">
       <EntityTypeMapping TypeName="CLOTHESModel.Customer">
         <MappingFragment StoreEntitySet="Customer">
           <ScalarProperty Name="idCustomer" ColumnName="idCustomer" />
@@ -27,7 +27,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="DetailBIll">
+    <EntitySetMapping Name="DetailBIlls">
       <EntityTypeMapping TypeName="CLOTHESModel.DetailBIll">
         <MappingFragment StoreEntitySet="DetailBIll">
           <ScalarProperty Name="idDetailBill" ColumnName="idDetailBill" />
@@ -38,7 +38,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="ImageProduct">
+    <EntitySetMapping Name="ImageProducts">
       <EntityTypeMapping TypeName="CLOTHESModel.ImageProduct">
         <MappingFragment StoreEntitySet="ImageProduct">
           <ScalarProperty Name="idImage" ColumnName="idImage" />
@@ -47,7 +47,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Permission">
+    <EntitySetMapping Name="Permissions">
       <EntityTypeMapping TypeName="CLOTHESModel.Permission">
         <MappingFragment StoreEntitySet="Permission">
           <ScalarProperty Name="idPermission" ColumnName="idPermission" />
@@ -56,7 +56,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Product">
+    <EntitySetMapping Name="Products">
       <EntityTypeMapping TypeName="CLOTHESModel.Product">
         <MappingFragment StoreEntitySet="Product">
           <ScalarProperty Name="nameProduct" ColumnName="nameProduct" />
@@ -71,14 +71,14 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Types">
-      <EntityTypeMapping TypeName="CLOTHESModel.Types">
+      <EntityTypeMapping TypeName="CLOTHESModel.Type">
         <MappingFragment StoreEntitySet="Types">
           <ScalarProperty Name="idType" ColumnName="idType" />
           <ScalarProperty Name="nameType" ColumnName="nameType" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="User">
+    <EntitySetMapping Name="Users">
       <EntityTypeMapping TypeName="CLOTHESModel.User">
         <MappingFragment StoreEntitySet="User">
           <ScalarProperty Name="idUser" ColumnName="idUser" />
@@ -94,7 +94,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Voucher">
+    <EntitySetMapping Name="Vouchers">
       <EntityTypeMapping TypeName="CLOTHESModel.Voucher">
         <MappingFragment StoreEntitySet="Voucher">
           <ScalarProperty Name="idVoucher" ColumnName="idVoucher" />
