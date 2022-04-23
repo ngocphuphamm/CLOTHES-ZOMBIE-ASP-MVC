@@ -12,20 +12,23 @@ namespace ClothesWebNET.Controllers
 {
     public class SearchController : Controller
     {
-        private CLOTHESEntities db = new CLOTHESEntities();
+        private CLOTHESEntities1 db = new CLOTHESEntities1();
 
-        // GET:  http://localhost:46418/search/index?=tin
+        // GET:  http://localhost:46418/search/indexq?=tin
         public ActionResult Index(string q)
         {
            // queryparamater = "glasses";
             var product = from el in db.Products
                           select el;
-         
+            System.Diagnostics.Debug.WriteLine("vao");
             if (!String.IsNullOrEmpty(q))
             {
                 q = q.ToLower();
                 product = product.Where(s => s.nameProduct.ToLower().Contains(q));
-               
+               foreach(var item in product)
+                {
+                    System.Diagnostics.Debug.WriteLine(item);
+                }
             }
             return View(product.ToList());
         }

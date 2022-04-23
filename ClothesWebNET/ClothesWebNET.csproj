@@ -138,46 +138,46 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Bill.cs">
-      <DependentUpon>ClothesModel.tt</DependentUpon>
+      <DependentUpon>ClothesModels.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ClothesModel.Context.cs">
+    <Compile Include="Models\ClothesModels.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ClothesModel.Context.tt</DependentUpon>
+      <DependentUpon>ClothesModels.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ClothesModel.cs">
+    <Compile Include="Models\ClothesModels.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ClothesModel.tt</DependentUpon>
+      <DependentUpon>ClothesModels.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ClothesModel.Designer.cs">
+    <Compile Include="Models\ClothesModels.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ClothesModel.edmx</DependentUpon>
+      <DependentUpon>ClothesModels.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Customer.cs">
-      <DependentUpon>ClothesModel.tt</DependentUpon>
+      <DependentUpon>ClothesModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DetailBIll.cs">
-      <DependentUpon>ClothesModel.tt</DependentUpon>
+      <DependentUpon>ClothesModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ImageProduct.cs">
-      <DependentUpon>ClothesModel.tt</DependentUpon>
+      <DependentUpon>ClothesModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Permission.cs">
-      <DependentUpon>ClothesModel.tt</DependentUpon>
+      <DependentUpon>ClothesModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Product.cs">
-      <DependentUpon>ClothesModel.tt</DependentUpon>
+      <DependentUpon>ClothesModels.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Type.cs">
-      <DependentUpon>ClothesModel.tt</DependentUpon>
+    <Compile Include="Models\Types.cs">
+      <DependentUpon>ClothesModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs">
-      <DependentUpon>ClothesModel.tt</DependentUpon>
+      <DependentUpon>ClothesModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Voucher.cs">
-      <DependentUpon>ClothesModel.tt</DependentUpon>
+      <DependentUpon>ClothesModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -198,26 +198,31 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\ClothesModel.Context.tt">
+    <Content Include="Models\ClothesModels.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ClothesModel.Context.cs</LastGenOutput>
-      <DependentUpon>ClothesModel.edmx</DependentUpon>
+      <DependentUpon>ClothesModels.edmx</DependentUpon>
+      <LastGenOutput>ClothesModels.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\ClothesModel.tt">
+    <Content Include="Models\ClothesModels.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ClothesModel.edmx</DependentUpon>
-      <LastGenOutput>ClothesModel.cs</LastGenOutput>
+      <DependentUpon>ClothesModels.edmx</DependentUpon>
+      <LastGenOutput>ClothesModels.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\ClothesModel.edmx">
+    <EntityDeploy Include="Models\ClothesModels.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ClothesModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>ClothesModels.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\ClothesModel.edmx.diagram">
-      <DependentUpon>ClothesModel.edmx</DependentUpon>
+    <Content Include="Models\ClothesModels.edmx.diagram">
+      <DependentUpon>ClothesModels.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\calculate.js" />
+    <Content Include="Scripts\cart.js" />
+    <Content Include="Scripts\checkout.js" />
+    <Content Include="Scripts\detail.js" />
+    <Content Include="Scripts\index.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -228,6 +233,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\product.js" />
+    <Content Include="Scripts\validation.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

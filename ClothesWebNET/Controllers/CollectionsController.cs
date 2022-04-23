@@ -7,18 +7,27 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ClothesWebNET.Models;
+using static ClothesWebNET.Models.Product;
 
 namespace ClothesWebNET.Controllers
 {
     public class CollectionsController : Controller
     {
-        private CLOTHESEntities db = new CLOTHESEntities();
+        private CLOTHESEntities1 db = new CLOTHESEntities1();
 
         // GET: Collections
         public ActionResult Index()
         {
-            var products = db.Products.Include(p => p.Type);
-            return View(products.ToList());
+            var product = from s in db.Products
+                          select s ;
+            var listProduct = from s in db.ImageProducts
+                              join p in product on s.idProduct equals p.idProduct
+                              select new ProductDTO {
+                                nameProduct = p.nameProduct,
+                                price = p.price,
+                                URLImage = s.URLImage
+                              };
+            return View(listProduct.ToList());
         }
 
         // GET: Collections/Details/5
@@ -134,7 +143,9 @@ namespace ClothesWebNET.Controllers
         public ActionResult ao(string id)
         {
             id = "T01";
+
             ProductDTO productDTO = new ProductDTO();
+            
             var productList = (from s in db.Products
                                where s.idType == id
                                select s);

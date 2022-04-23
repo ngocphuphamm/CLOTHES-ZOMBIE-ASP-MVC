@@ -62,8 +62,9 @@
 }
 
 .grid__row {
-  justify-content: space-evenly;
-  align-items: center;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
 }
 .grid__col-3 {
   margin-top: 10px;
