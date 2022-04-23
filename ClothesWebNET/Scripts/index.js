@@ -41,12 +41,12 @@ btnBackLogin.addEventListener('click', (e) => {
 //chuyển hướng vào giỏ hàng &thanh toán
 let btnViewCart = document.querySelector('.box-view-cart');
 btnViewCart.addEventListener('click', (e) => {
-  window.location = 'http://localhost:5501/cart.html';
+  window.location = '/cart';
 });
 
 let btnViewCheckout = document.querySelector('.box-make-payment');
 btnViewCheckout.addEventListener('click', (e) => {
-  window.location = 'http://localhost:5501/checkout.html';
+  window.location = '/cart/checkout';
 });
 
 //validation form đăng nhập header
@@ -74,3 +74,11 @@ register.addEventListener('click', (e) => {
 modalOverplay.addEventListener('click', (e) => {
   modal.style.display = 'none';
 });
+
+
+let btnSearch = document.querySelector('.btn-search');
+let inputSearch = document.querySelector('.input-search-box');
+btnSearch.addEventListener('click', e => {
+    let valueSearch = inputSearch.value.trim();
+    alert(inputSearch)
+})
