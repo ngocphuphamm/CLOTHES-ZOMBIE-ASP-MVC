@@ -193,7 +193,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="CLOTHESEntities1" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="CLOTHESEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Bill" EntityType="Self.Bill" />
     <EntitySet Name="Customer" EntityType="Self.Customer" />
     <EntitySet Name="DetailBIll" EntityType="Self.DetailBIll" />

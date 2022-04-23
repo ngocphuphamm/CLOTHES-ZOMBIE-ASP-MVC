@@ -12,13 +12,13 @@ namespace ClothesWebNET.Controllers
 {
     public class SearchController : Controller
     {
-        private CLOTHESEntities1 db = new CLOTHESEntities1();
+        private CLOTHESEntities db = new CLOTHESEntities();
 
         // GET:  http://localhost:46418/search/indexq?=tin
         public ActionResult Index(string q)
         {
            // queryparamater = "glasses";
-            var product = from el in db.Products
+            var product = from el in db.Product
                           select el;
             System.Diagnostics.Debug.WriteLine("vao");
             if (!String.IsNullOrEmpty(q))
@@ -40,7 +40,7 @@ namespace ClothesWebNET.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = db.Products.Find(id);
+            Product product = db.Product.Find(id);
             if (product == null)
             {
                 return HttpNotFound();
@@ -64,7 +64,7 @@ namespace ClothesWebNET.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Products.Add(product);
+                db.Product.Add(product);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -80,7 +80,7 @@ namespace ClothesWebNET.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = db.Products.Find(id);
+            Product product = db.Product.Find(id);
             if (product == null)
             {
                 return HttpNotFound();
@@ -113,7 +113,7 @@ namespace ClothesWebNET.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = db.Products.Find(id);
+            Product product = db.Product.Find(id);
             if (product == null)
             {
                 return HttpNotFound();
@@ -126,8 +126,8 @@ namespace ClothesWebNET.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            Product product = db.Products.Find(id);
-            db.Products.Remove(product);
+            Product product = db.Product.Find(id);
+            db.Product.Remove(product);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
