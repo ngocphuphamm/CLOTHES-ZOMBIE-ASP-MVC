@@ -17,7 +17,7 @@ namespace ClothesWebNET.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Permission()
         {
-            this.Users = new HashSet<User>();
+            this.User = new HashSet<User>();
         }
     
         public string idPermission { get; set; }
@@ -25,6 +25,6 @@ namespace ClothesWebNET.Models
         public int level { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<User> Users { get; set; }
+        public virtual ICollection<User> User { get; set; }
     }
 }

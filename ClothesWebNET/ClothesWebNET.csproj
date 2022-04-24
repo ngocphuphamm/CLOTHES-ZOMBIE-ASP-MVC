@@ -170,7 +170,7 @@
     <Compile Include="Models\Product.cs">
       <DependentUpon>ClothesModels.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Type.cs">
+    <Compile Include="Models\Types.cs">
       <DependentUpon>ClothesModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs">

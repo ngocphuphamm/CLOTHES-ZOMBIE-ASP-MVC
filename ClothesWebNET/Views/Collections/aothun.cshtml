@@ -1,5 +1,5 @@
 ﻿
-
+@model IEnumerable<ClothesWebNET.Models.Product>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -12,7 +12,7 @@
         <div class="grid">
             <a href="/">Trang chủ / </a>
             <a href="/collections">Danh mục / </a>
-            <a class="br-main" href="/collections">Tất cả sản phẩm </a>
+            <a class="br-main" href="/Collections/aothun">Áo thun </a>
         </div>
     </div>
     <div class="products">
@@ -22,22 +22,23 @@
             <div class="grid__row">
                 @foreach (var item in Model)
                 {
-                    <div class="grid__col-3">
-                        <div class="product">
-                            <img src="@item.URLImage"
-                                 alt=""
-                                 class="product-img product-show" />
-                            <img src="@item.URLImage"
-                                 alt=""
-                                 class="product-img product-img-hover" />
-                        </div>
-                        <div class="product-info">
-                            <div class="product-title">
-                                @item.nameProduct
-                            </div>
-                            <div class="product-price">@item.price,000₫</div>
-                        </div>
+                <div class="grid__col-3">
+                    <h1 style="display:none" id="idProduct">@item.idProduct</h1>
+                    <div class="product">
+                        <img src="@item.ImageProduct.First().URLImage"
+                             alt=""
+                             class="product-img product-show" />
+                        <img src="@item.ImageProduct.Last().URLImage"
+                             alt=""
+                             class="product-img product-img-hover" />
                     </div>
+                    <div class="product-info">
+                        <div class="product-title">
+                            @item.nameProduct
+                        </div>
+                        <div class="product-price">@item.price,000₫</div>
+                    </div>
+                </div>
                 }
 
             </div>
@@ -57,5 +58,8 @@
     <!-- Product end -->
 
 </div>
+
+
+
 @Scripts.Render("~/bundles/product")
 

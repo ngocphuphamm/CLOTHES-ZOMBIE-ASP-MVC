@@ -76,9 +76,19 @@ modalOverplay.addEventListener('click', (e) => {
 });
 
 
-let btnSearch = document.querySelector('.btn-search');
-let inputSearch = document.querySelector('.input-search-box');
-btnSearch.addEventListener('click', e => {
-    let valueSearch = inputSearch.value.trim();
-    alert(inputSearch)
+let ips = document.querySelector('.input-search-box');
+let btnS = document.querySelector('.btn-search');
+ips.addEventListener('keypress', e => {
+    if (e.keyCode == 13)
+        btnS.click();
+})
+
+btnS.addEventListener('click', e => {
+
+    let vl = ips.value.trim();
+    if (vl != "") {
+        let url = `/search/index?q=${vl}`
+        window.location = url;
+    }
+
 })
