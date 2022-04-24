@@ -190,6 +190,18 @@ namespace ClothesWebNET.Controllers
             return View(query.ToList());
 
         }
+        public ActionResult hoodie(string id)
+        {
+            id = "T04";
+            var productList = (from s in db.Product
+                               where s.idType == id
+                               select s);
+
+            var query = productList.Include(p => p.ImageProduct);
+            ViewBag.list = query.ToList();
+            return View(query.ToList());
+
+        }
 
         // collections/quan
         public ActionResult quan(string id)
