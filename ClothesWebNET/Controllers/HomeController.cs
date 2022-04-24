@@ -9,7 +9,7 @@ namespace ClothesWebNET.Controllers
 {
     public class HomeController : Controller
     {
-        private CLOTHESEntities1 db = new CLOTHESEntities1();
+        private CLOTHESEntities db = new CLOTHESEntities();
 
         // GET: Home
         public ActionResult Index()

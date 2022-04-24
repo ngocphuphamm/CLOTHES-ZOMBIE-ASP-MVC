@@ -12,40 +12,81 @@ namespace ClothesWebNET.Controllers
 {
     public class SearchController : Controller
     {
-        private CLOTHESEntities1 db = new CLOTHESEntities1();
+        private CLOTHESEntities db = new CLOTHESEntities();
 
         // GET:  http://localhost:46418/search/indexq?=tin
         public ActionResult Index(string q)
         {
-           // queryparamater = "glasses";
-            var product = from el in db.Products
+            // queryparamater = "glasses";
+            ProductDTODetail productDTO = new ProductDTODetail();
+
+            var product = from el in db.Product
                           select el;
-            System.Diagnostics.Debug.WriteLine("vao");
-            if (!String.IsNullOrEmpty(q))
-            {
-                q = q.ToLower();
-                product = product.Where(s => s.nameProduct.ToLower().Contains(q));
-               foreach(var item in product)
-                {
-                    System.Diagnostics.Debug.WriteLine(item);
-                }
-            }
-            return View(product.ToList());
+
+            q = q.ToLower();
+            product = product.Where(s => s.nameProduct.ToLower().Contains(q));
+
+            var listProduct = from p in product
+                              join image in db.ImageProduct on p.idProduct equals image.idProduct
+                              select new ProductDTODetail()
+                              {
+                                  idProduct = p.idProduct,
+                                  nameProduct = p.nameProduct,
+                                  price = p.price,
+                                  URLImage = image.URLImage,
+                                  sizeL = p.sizeL,
+                                  sizeM = p.sizeM,
+                                  sizeXL = p.sizeXL,
+                              };
+            ViewBag.List = listProduct;
+
+            return View(listProduct.ToList());
+            /* if (!String.IsNullOrEmpty(q))
+             {
+
+             }
+             return View();*/
         }
 
         // GET: Search/Details/5
         public ActionResult Details(string id)
         {
+            ProductDTODetail productDTO = new ProductDTODetail();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = db.Products.Find(id);
+            var product = from el in db.Product
+                          where el.idProduct == id
+                          select el;
+
+
+
             if (product == null)
             {
                 return HttpNotFound();
             }
-            return View(product);
+            else
+            {
+                var listProduct = from p in product
+                                  join image in db.ImageProduct on p.idProduct equals image.idProduct
+                                  join type in db.Types on p.idType equals type.idType
+                                  select new ProductDTODetail()
+                                  {
+                                      idProduct = p.idProduct,
+                                      type = type.nameType,
+                                      nameProduct = p.nameProduct,
+                                      price = p.price,
+                                      URLImage = image.URLImage,
+                                      sizeL = p.sizeL,
+                                      sizeM = p.sizeM,
+                                      sizeXL = p.sizeXL,
+                                  };
+
+                ViewBag.List = listProduct;
+                return View(listProduct.ToList());
+            }
+
         }
 
         // GET: Search/Create
@@ -64,7 +105,7 @@ namespace ClothesWebNET.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Products.Add(product);
+                db.Product.Add(product);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -80,7 +121,7 @@ namespace ClothesWebNET.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = db.Products.Find(id);
+            Product product = db.Product.Find(id);
             if (product == null)
             {
                 return HttpNotFound();
@@ -113,7 +154,7 @@ namespace ClothesWebNET.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = db.Products.Find(id);
+            Product product = db.Product.Find(id);
             if (product == null)
             {
                 return HttpNotFound();
@@ -126,8 +167,8 @@ namespace ClothesWebNET.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            Product product = db.Products.Find(id);
-            db.Products.Remove(product);
+            Product product = db.Product.Find(id);
+            db.Product.Remove(product);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -66,7 +66,7 @@
   position: absolute;
   width: 400px;
   outline: none;
-  transform-origin: 10 right top;
+  transform-origin: 10px right top;
   animation: SearchBoxAnimation ease-out 0.3s;
   border-radius: 3px;
   color: #677279;
@@ -189,7 +189,7 @@ header-top-search-box .heading::after {
 .result-link:hover .item-info-name {
   color: #f3ab70;
   transition: all 0.2s ease-in-out;
-  scale: 0.9;
+transform: scale(0.9);
 }
 .search-result-item {
   width: 100%;
