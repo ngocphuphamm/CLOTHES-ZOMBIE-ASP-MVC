@@ -54,6 +54,10 @@ namespace ClothesWebNET
             bundles.Add(new StyleBundle("~/Content/checkout").Include(
                          "~/Content/checkout.css"));
 
+            //payment
+            bundles.Add(new StyleBundle("~/Content/payment").Include(
+                     "~/Content/payment.css"));
+
             //detail (main+detail) js (product, calculate, detail)
             bundles.Add(new StyleBundle("~/Content/detail").Include(
                    "~/Content/detail.css"));
@@ -72,6 +76,7 @@ namespace ClothesWebNET
             bundles.Add(new ScriptBundle("~/bundles/cart").Include("~/Scripts/cart.js"));
             bundles.Add(new ScriptBundle("~/bundles/calculate").Include("~/Scripts/calculate.js"));
             bundles.Add(new ScriptBundle("~/bundles/checkout").Include("~/Scripts/checkout.js"));
+            bundles.Add(new ScriptBundle("~/bundles/payment").Include("~/Scripts/payment.js"));
             bundles.Add(new ScriptBundle("~/bundles/detail").Include("~/Scripts/detail.js"));
         }
     }

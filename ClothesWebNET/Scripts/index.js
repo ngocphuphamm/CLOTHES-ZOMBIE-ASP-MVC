@@ -61,18 +61,33 @@ formLogin.addEventListener('submit', function (e) {
   if (checkEmpty && checkEmailInvalid) alert('oke bro');
 });
 
-//validation form quên mật khẩu
+
+//ẩn hiện form register
 
 let register = document.getElementById('modal-register');
 let modal = document.querySelector('.modal');
 let modalOverplay = document.querySelector('.modal__overplay');
 register.addEventListener('click', (e) => {
-  removeAllClassShowModal(modals);
-  modal.style.display = 'flex';
+    removeAllClassShowModal(modals);
+    modal.style.display = 'flex';
 });
 
 modalOverplay.addEventListener('click', (e) => {
-  modal.style.display = 'none';
+    modal.style.display = 'none';
+});
+
+let iconCloseModalRegister = document.querySelector('.icon-close');
+
+iconCloseModalRegister.addEventListener('click', (e) => {
+    modalOverplay.click();
+});
+
+let iconClick = document.querySelectorAll('.box-triangle');
+
+iconClick.forEach((i) => {
+    i.addEventListener('click', (e) => {
+        removeAllClassShowModal(modals);
+    });
 });
 
 

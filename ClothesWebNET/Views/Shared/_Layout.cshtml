@@ -27,6 +27,7 @@
           rel="stylesheet" />
     <!-- Style -->
     @Styles.Render("~/Content/layout")
+    @Styles.Render("~/Content/main")
     <style>
         #app {
             position: relative;
@@ -376,11 +377,11 @@
                                     Áo tay dài | Sweater
                                 </a>
                             </li>
-                           @* <li class="subnav-item">
-                                <a href="/collections/hoodie" class="nav-list-link nav-list-sublink">
-                                    Áo trùm đầu | Hoodie
-                                </a>
-                            </li>*@
+                            @* <li class="subnav-item">
+                                    <a href="/collections/hoodie" class="nav-list-link nav-list-sublink">
+                                        Áo trùm đầu | Hoodie
+                                    </a>
+                                </li>*@
                             <li class="subnav-item">
                                 <a href="/collections/quan" class="nav-list-link nav-list-sublink">
                                     QUẦN | PANTS
@@ -485,8 +486,42 @@
         <div class="modal__overplay"></div>
         <div class="modal__body">
             <div class="modal__inner">
-                <!-- Login/register -->
-                đăng ký
+                <div class="icon-close">
+                    <i class="fa-solid fa-xmark"></i>
+                </div>
+                <form class="form-register" action="">
+                    <div class="register-box">
+                        <p class="heading">đăng ký tài khoản</p>
+                        <div class="heading-register-with">Đăng ký thành viên Zombieclothingstore</div>
+                        <div class="register">
+                            <div class="form-control err ">
+                                <input type="text" id="reg-fullname" placeholder="Họ và tên" class="modal-form-input">
+                                <small></small>
+                            </div>
+                            <div class="form-control err ">
+                                <input type="text" id="reg-email" placeholder="Email" class="modal-form-input">
+                                <small></small>
+                            </div>
+                            <div class="form-control err ">
+                                <input type="text" id="reg-phone" placeholder="Số điện thoại" class="modal-form-input">
+                                <small></small>
+                            </div>
+                            <div class="form-control err">
+                                <input type="password" id="reg-password" placeholder="Mật khẩu" class="modal-form-input">
+                                <small></small>
+                            </div>
+                            <div class="form-control err">
+                                <input type="password" id="enter-password" placeholder="Nhập lại mật khẩu" class="modal-form-input">
+                                <small></small>
+                            </div>
+
+
+                            <button type="submit" class="button-register button-hover">ĐĂNG KÝ</button>
+                            <div class="modal-help">Đã có tài khoản? <div style="display: inline; cursor: pointer;" id="modal-login" class="modal-link">Đăng nhập</div></div>
+
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -498,6 +533,6 @@
     @Scripts.RenderFormat("<script src='{0}' type='module'></script>", "~/bundles/index")
     @RenderSection("scripts", required: false)
 
- 
+
 </body>
 </html>

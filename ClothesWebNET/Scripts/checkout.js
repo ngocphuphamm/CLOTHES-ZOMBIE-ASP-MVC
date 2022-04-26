@@ -8,7 +8,7 @@ const city = document.getElementById('province');
 const district = document.getElementById('district');
 const ward = document.getElementById('village');
 
-fetch('/data.json')
+fetch('./data.json')
     .then((response) => response.json())
     .then((data) => renderCity(data));
 
