@@ -18,7 +18,7 @@ namespace ClothesWebNET.Controllers
         // GET: Collections
         public ActionResult Index()
         {
-            var query = db.Product.Include(p => p.ImageProducts);
+            var query = db.Product.Include(p => p.ImageProduct);
             ViewBag.list = query.ToList();
             return View(query.ToList());
         }
@@ -144,7 +144,7 @@ namespace ClothesWebNET.Controllers
                                where s.idType == id
                                select s);
 
-            var query = productList.Include(p => p.ImageProducts);
+            var query = productList.Include(p => p.ImageProduct);
             ViewBag.list = query.ToList();
             return View(query.ToList());
         
@@ -158,7 +158,7 @@ namespace ClothesWebNET.Controllers
                                where s.idType == id
                                select s);
 
-            var query = productList.Include(p => p.ImageProducts);
+            var query = productList.Include(p => p.ImageProduct);
             ViewBag.list = query.ToList();
             return View(query.ToList());
 
@@ -172,7 +172,7 @@ namespace ClothesWebNET.Controllers
                                where s.idType == id
                                select s);
 
-            var query = productList.Include(p => p.ImageProducts);
+            var query = productList.Include(p => p.ImageProduct);
             ViewBag.list = query.ToList();
             return View(query.ToList());
         }
@@ -185,7 +185,19 @@ namespace ClothesWebNET.Controllers
                                where s.idType == id
                                select s);
 
-            var query = productList.Include(p => p.ImageProducts);
+            var query = productList.Include(p => p.ImageProduct);
+            ViewBag.list = query.ToList();
+            return View(query.ToList());
+
+        }
+        public ActionResult hoodie(string id)
+        {
+            id = "T04";
+            var productList = (from s in db.Product
+                               where s.idType == id
+                               select s);
+
+            var query = productList.Include(p => p.ImageProduct);
             ViewBag.list = query.ToList();
             return View(query.ToList());
 
@@ -199,7 +211,7 @@ namespace ClothesWebNET.Controllers
                                where s.idType == id
                                select s);
 
-            var query = productList.Include(p => p.ImageProducts);
+            var query = productList.Include(p => p.ImageProduct);
             ViewBag.list = query.ToList();
             return View(query.ToList());
         }
@@ -213,7 +225,7 @@ namespace ClothesWebNET.Controllers
                                where s.idType == id
                                select s);
 
-            var query = productList.Include(p => p.ImageProducts);
+            var query = productList.Include(p => p.ImageProduct);
             ViewBag.list = query.ToList();
             return View(query.ToList());
         }
@@ -227,7 +239,7 @@ namespace ClothesWebNET.Controllers
                                where s.idType == id
                                select s);
 
-            var query = productList.Include(p => p.ImageProducts);
+            var query = productList.Include(p => p.ImageProduct);
             ViewBag.list = query.ToList();
             return View(query.ToList());
 
@@ -242,7 +254,7 @@ namespace ClothesWebNET.Controllers
                                where s.idType == id
                                select s);
 
-            var query = productList.Include(p => p.ImageProducts);
+            var query = productList.Include(p => p.ImageProduct);
             ViewBag.list = query.ToList();
             return View(query.ToList());
 
@@ -256,7 +268,7 @@ namespace ClothesWebNET.Controllers
                                where s.idType == id
                                select s);
 
-            var query = productList.Include(p => p.ImageProducts);
+            var query = productList.Include(p => p.ImageProduct);
             ViewBag.list = query.ToList();
             return View(query.ToList());
         }
@@ -270,7 +282,7 @@ namespace ClothesWebNET.Controllers
                                where s.idType == id
                                select s);
 
-            var query = productList.Include(p => p.ImageProducts);
+            var query = productList.Include(p => p.ImageProduct);
             ViewBag.list = query.ToList();
             return View(query.ToList());
         }
@@ -285,7 +297,7 @@ namespace ClothesWebNET.Controllers
                                where s.idType == id
                                select s);
 
-            var query = productList.Include(p => p.ImageProducts);
+            var query = productList.Include(p => p.ImageProduct);
             ViewBag.list = query.ToList();
             return View(query.ToList());
         }
@@ -298,7 +310,7 @@ namespace ClothesWebNET.Controllers
                                where s.idType == id
                                select s);
 
-            var query = productList.Include(p => p.ImageProducts);
+            var query = productList.Include(p => p.ImageProduct);
             ViewBag.list = query.ToList();
             return View(query.ToList());
         }

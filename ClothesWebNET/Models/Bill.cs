@@ -17,7 +17,7 @@ namespace ClothesWebNET.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Bill()
         {
-            this.DetailBIlls = new HashSet<DetailBIll>();
+            this.DetailBIll = new HashSet<DetailBIll>();
         }
     
         public string idBill { get; set; }
@@ -33,6 +33,6 @@ namespace ClothesWebNET.Models
         public virtual Customer Customer { get; set; }
         public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DetailBIll> DetailBIlls { get; set; }
+        public virtual ICollection<DetailBIll> DetailBIll { get; set; }
     }
 }

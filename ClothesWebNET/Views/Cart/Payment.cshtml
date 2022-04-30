@@ -31,6 +31,7 @@
     <title>ZOMBIE® OFFICIAL STORE - Thanh toán đơn hàng</title>
     @Styles.Render("~/Content/base")
     @Styles.Render("~/Content/checkout")
+    @Styles.Render("~/Content/payment")
     @Styles.Render("~/Content/footer")
 
 </head>
@@ -52,64 +53,80 @@
                             <i class="icon-link bx bx-chevron-right"></i>
                         </li>
                         <li class="breadcrumb-item">
-                            <span class="text-link">Thông tin giao hàng</span>
+                            <a href="" class="cart text-link"> Thông tin giao hàng </a>
                             <i class="icon-link bx bx-chevron-right"></i>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="" class="cart text-link"> Phương thức thanh toán </a>
+                            <span class="text-link"> Phương thức thanh toán</span>
                         </li>
                     </ul>
-                    <div class="checkout-text checkout-item">Thông tin giao hàng</div>
-                    <div class="back-login checkout-item">
-                        Bạn đã có tài khoản? <a href="/login" class="login">Đăng nhập</a>
+                    <div class="checkout-text checkout-item">
+                        Phương thức vận chuyển
+                    </div>
+                    <div class="checkout-item payment-cus">
+                        <input type="radio" checked="checked" name="freeship" />
+                        <div class="payment-cus-box">
+                            <div class="payment-cus-text">Freeship</div>
+                            <div class="payment-cus-text">0đ</div>
+                        </div>
+                    </div>
+                    <div class="checkout-text checkout-item">
+                        Phương thức thanh toán
                     </div>
                     <form action="" class="form-info checkout-item">
-                        <div class="form-control form-item">
-                            <input placeholder="Họ và tên" id="fullname" type="text" />
-                            <small></small>
+                        <div class="form-item">
+                            <div class="payment-cus payment-cus-1">
+                                <input type="radio" checked name="pm1" />
+                                <div class="payment-cus-box">
+                                    <div class="box-payment-cus">
+                                        <img src="https://hstatic.net/0/0/global/design/seller/image/payment/cod.svg?v=1"
+                                             alt="" />
+                                        <div class="payment-cus-text">
+                                            Thanh toán khi nhận hàng (COD)
+                                        </div>
+                                    </div>
+
+                                    <div class="payment-cus-text"></div>
+                                </div>
+                            </div>
+                            <div style="display: block" class="payment-cus-content">
+                                Là phương thức khách hàng nhận hàng mới trả tiền. Áp dụng với
+                                tất cả các đơn hàng trên toàn quốc
+                            </div>
                         </div>
-                        <div class="form-inline form-item">
-                            <div class="form-control w-2">
-                                <input placeholder="Email" id="email" type="text" />
-                                <small></small>
+
+                        <div class="form-item">
+                            <div class="payment-cus payment-cus-1">
+                                <input type="radio" name="pm1" />
+                                <div class="payment-cus-box">
+                                    <div class="box-payment-cus">
+                                        <img src="https://hstatic.net/0/0/global/design/seller/image/payment/other.svg?v=1"
+                                             alt="" />
+                                        <div class="payment-cus-text">
+                                            Chuyển khoản qua ngân hàng
+                                        </div>
+                                    </div>
+
+                                    <div class="payment-cus-text"></div>
+                                </div>
                             </div>
-                            <div class="form-control w-1">
-                                <input placeholder="Số điện thoại" id="phone" />
-                                <small></small>
-                            </div>
-                        </div>
-                        <div class="form-control form-item">
-                            <input placeholder="Địa chỉ" id="address" type="text" />
-                            <small></small>
-                        </div>
-                        <div class="form-inline form-item">
-                            <div class="form-control w-1">
-                                <select placeholder="Tỉnh/Thành phố"
-                                        id="province"
-                                        type="text">
-                                    <option value="none" selected>Tỉnh/Thành phố</option>
-                                </select>
-                                <small></small>
-                            </div>
-                            <div class="form-control w-1">
-                                <select placeholder="Quận/Huyện" id="district" type="text">
-                                    <option value="none" selected>Quận/Huyện</option>
-                                </select>
-                                <small></small>
-                            </div>
-                            <div class="form-control w-1">
-                                <select placeholder="Phường/Xã" id="village" type="text">
-                                    <option value="none" selected>Phường/Xã</option>
-                                </select>
-                                <small></small>
+                            <div class="payment-cus-content">
+                                <ul>
+                                    <li>Ngân hàng BIDV</li>
+                                    <li>Chủ tài khoản: NGUYỄN DUY KHANG</li>
+                                    <li>STK: 6861000179121</li>
+                                    <li>Nội dung: "Tên và số điện thoại"</li>
+                                    <li>
+                                        Bên mình sẽ gọi điện cho bạn về việc xác nhận đơn hàng
+                                        cũng như kiểm tra lại các thông tin cần thiết
+                                    </li>
+                                </ul>
                             </div>
                         </div>
 
                         <div class="pay form-item">
-                            <a href="/cart.html" class="cart">Giỏ hàng</a>
-                            <button type="submit" class="btnPay">
-                                Tiếp tục đến phương thức thanh toán
-                            </button>
+                            <a href="/cart.html" class="cart">Quay lại thông tin giao hàng</a>
+                            <button type="submit" class="btnPay">Hoàn tất đơn hàng</button>
                         </div>
                     </form>
                 </div>
@@ -284,6 +301,7 @@
             </div>
         </div>
     </div>
+
     <footer class="footer">
         <div class="footer-top">
             <div class="grid">
@@ -307,7 +325,7 @@
         <div class="footer-bot"></div>
     </footer>
 
-    @Scripts.RenderFormat("<script src='{0}' type='module'></script>", "~/bundles/checkout")
+    @Scripts.Render("~/bundles/payment")
 
 
 

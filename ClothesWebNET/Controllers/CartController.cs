@@ -17,5 +17,9 @@ namespace ClothesWebNET.Controllers
         {
             return View();
         }
+        public ActionResult Payment()
+        {
+            return View();
+        }
     }
 }
