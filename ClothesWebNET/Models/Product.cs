@@ -11,27 +11,7 @@ namespace ClothesWebNET.Models
 {
     using System;
     using System.Collections.Generic;
-    public class ProductDTODetail
-    {
-        public string nameProduct { get; set; }
-        public double price { get; set; }
-
-
-        public string URLImage { get; set; }
-        public int sizeM { get; set; }
-        public int sizeL { get; set; }
-        public int sizeXL { get; set; }
-
-    }
-    //helo
-    public class ProductDTO
-    {
-        public string idProduct { get; set; }   
-        public string nameProduct { get; set; }
-        public double price { get; set; }
-        public string URLImage { get; set; }
-        public string idTypes { get; set; }
-    }
+    
     public partial class Product
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]

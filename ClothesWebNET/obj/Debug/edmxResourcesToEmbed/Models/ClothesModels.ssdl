@@ -6,23 +6,12 @@
     </Key>
     <Property Name="idBill" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="idUser" Type="nvarchar" MaxLength="255" />
-    <Property Name="idCustomer" Type="nvarchar" MaxLength="255" />
-    <Property Name="Shipping" Type="float" Nullable="false" />
-    <Property Name="Total" Type="float" Nullable="false" />
+    <Property Name="Shipping" Type="int" Nullable="false" />
+    <Property Name="Total" Type="int" Nullable="false" />
     <Property Name="PTTT" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="status" Type="bit" Nullable="false" />
     <Property Name="createdAt" Type="datetime" Nullable="false" />
     <Property Name="totalQty" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Customer">
-    <Key>
-      <PropertyRef Name="idCustomer" />
-    </Key>
-    <Property Name="idCustomer" Type="nvarchar" MaxLength="255" Nullable="false" />
-    <Property Name="name" Type="nvarchar" MaxLength="255" Nullable="false" />
-    <Property Name="email" Type="nvarchar" MaxLength="255" Nullable="false" />
-    <Property Name="address" Type="nvarchar" MaxLength="255" Nullable="false" />
-    <Property Name="phone" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="DetailBIll">
     <Key>
@@ -33,7 +22,7 @@
     <Property Name="idProduct" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="idBill" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="qty" Type="int" Nullable="false" />
-    <Property Name="intoMoney" Type="float" Nullable="false" />
+    <Property Name="intoMoney" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="ImageProduct">
     <Key>
@@ -95,19 +84,7 @@
     <Property Name="dateStart" Type="datetime" Nullable="false" />
     <Property Name="dateEnd" Type="datetime" Nullable="false" />
   </EntityType>
-  <Association Name="FK__Bill__idCustomer__38996AB5">
-    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
-    <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Customer">
-        <PropertyRef Name="idCustomer" />
-      </Principal>
-      <Dependent Role="Bill">
-        <PropertyRef Name="idCustomer" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__Bill__idUser__36B12243">
+  <Association Name="FK__Bill__idUser__34C8D9D1">
     <End Role="User" Type="Self.User" Multiplicity="0..1" />
     <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
     <ReferentialConstraint>
@@ -119,7 +96,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__DetailBIl__idBil__398D8EEE">
+  <Association Name="FK__DetailBIl__idBil__36B12243">
     <End Role="Bill" Type="Self.Bill" Multiplicity="1" />
     <End Role="DetailBIll" Type="Self.DetailBIll" Multiplicity="*" />
     <ReferentialConstraint>
@@ -131,7 +108,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__DetailBIl__idPro__35BCFE0A">
+  <Association Name="FK__DetailBIl__idPro__33D4B598">
     <End Role="Product" Type="Self.Product" Multiplicity="1" />
     <End Role="DetailBIll" Type="Self.DetailBIll" Multiplicity="*" />
     <ReferentialConstraint>
@@ -143,7 +120,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__ImageProd__idPro__34C8D9D1">
+  <Association Name="FK__ImageProd__idPro__32E0915F">
     <End Role="Product" Type="Self.Product" Multiplicity="1" />
     <End Role="ImageProduct" Type="Self.ImageProduct" Multiplicity="*" />
     <ReferentialConstraint>
@@ -155,7 +132,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Product__idType__3A81B327">
+  <Association Name="FK__Product__idType__37A5467C">
     <End Role="Types" Type="Self.Types" Multiplicity="1" />
     <End Role="Product" Type="Self.Product" Multiplicity="*" />
     <ReferentialConstraint>
@@ -167,7 +144,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__User__idPermissi__37A5467C">
+  <Association Name="FK__User__idPermissi__35BCFE0A">
     <End Role="Permission" Type="Self.Permission" Multiplicity="1" />
     <End Role="User" Type="Self.User" Multiplicity="*" />
     <ReferentialConstraint>
@@ -181,7 +158,6 @@
   </Association>
   <EntityContainer Name="CLOTHESModelStoreContainer">
     <EntitySet Name="Bill" EntityType="Self.Bill" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DetailBIll" EntityType="Self.DetailBIll" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ImageProduct" EntityType="Self.ImageProduct" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Permission" EntityType="Self.Permission" Schema="dbo" store:Type="Tables" />
@@ -189,31 +165,27 @@
     <EntitySet Name="Types" EntityType="Self.Types" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Voucher" EntityType="Self.Voucher" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK__Bill__idCustomer__38996AB5" Association="Self.FK__Bill__idCustomer__38996AB5">
-      <End Role="Customer" EntitySet="Customer" />
-      <End Role="Bill" EntitySet="Bill" />
-    </AssociationSet>
-    <AssociationSet Name="FK__Bill__idUser__36B12243" Association="Self.FK__Bill__idUser__36B12243">
+    <AssociationSet Name="FK__Bill__idUser__34C8D9D1" Association="Self.FK__Bill__idUser__34C8D9D1">
       <End Role="User" EntitySet="User" />
       <End Role="Bill" EntitySet="Bill" />
     </AssociationSet>
-    <AssociationSet Name="FK__DetailBIl__idBil__398D8EEE" Association="Self.FK__DetailBIl__idBil__398D8EEE">
+    <AssociationSet Name="FK__DetailBIl__idBil__36B12243" Association="Self.FK__DetailBIl__idBil__36B12243">
       <End Role="Bill" EntitySet="Bill" />
       <End Role="DetailBIll" EntitySet="DetailBIll" />
     </AssociationSet>
-    <AssociationSet Name="FK__DetailBIl__idPro__35BCFE0A" Association="Self.FK__DetailBIl__idPro__35BCFE0A">
+    <AssociationSet Name="FK__DetailBIl__idPro__33D4B598" Association="Self.FK__DetailBIl__idPro__33D4B598">
       <End Role="Product" EntitySet="Product" />
       <End Role="DetailBIll" EntitySet="DetailBIll" />
     </AssociationSet>
-    <AssociationSet Name="FK__ImageProd__idPro__34C8D9D1" Association="Self.FK__ImageProd__idPro__34C8D9D1">
+    <AssociationSet Name="FK__ImageProd__idPro__32E0915F" Association="Self.FK__ImageProd__idPro__32E0915F">
       <End Role="Product" EntitySet="Product" />
       <End Role="ImageProduct" EntitySet="ImageProduct" />
     </AssociationSet>
-    <AssociationSet Name="FK__Product__idType__3A81B327" Association="Self.FK__Product__idType__3A81B327">
+    <AssociationSet Name="FK__Product__idType__37A5467C" Association="Self.FK__Product__idType__37A5467C">
       <End Role="Types" EntitySet="Types" />
       <End Role="Product" EntitySet="Product" />
     </AssociationSet>
-    <AssociationSet Name="FK__User__idPermissi__37A5467C" Association="Self.FK__User__idPermissi__37A5467C">
+    <AssociationSet Name="FK__User__idPermissi__35BCFE0A" Association="Self.FK__User__idPermissi__35BCFE0A">
       <End Role="Permission" EntitySet="Permission" />
       <End Role="User" EntitySet="User" />
     </AssociationSet>

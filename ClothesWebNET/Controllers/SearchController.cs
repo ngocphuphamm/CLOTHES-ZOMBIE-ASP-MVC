@@ -17,7 +17,8 @@ namespace ClothesWebNET.Controllers
         // GET:  http://localhost:46418/search/indexq?=tin
         public ActionResult Index(string q)
         {
-            // queryparamater = "glasses";
+            return View();
+           /* // queryparamater = "glasses";
             ProductDTODetail productDTO = new ProductDTODetail();
 
             var product = from el in db.Product
@@ -39,7 +40,7 @@ namespace ClothesWebNET.Controllers
                               };
             ViewBag.List=listProduct;
 
-            return View(listProduct.ToList());
+            return View(listProduct.ToList());*/
            /* if (!String.IsNullOrEmpty(q))
             {
           

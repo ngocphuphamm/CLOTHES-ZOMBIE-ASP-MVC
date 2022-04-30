@@ -6,24 +6,12 @@
         <MappingFragment StoreEntitySet="Bill">
           <ScalarProperty Name="idBill" ColumnName="idBill" />
           <ScalarProperty Name="idUser" ColumnName="idUser" />
-          <ScalarProperty Name="idCustomer" ColumnName="idCustomer" />
           <ScalarProperty Name="Shipping" ColumnName="Shipping" />
           <ScalarProperty Name="Total" ColumnName="Total" />
           <ScalarProperty Name="PTTT" ColumnName="PTTT" />
           <ScalarProperty Name="status" ColumnName="status" />
           <ScalarProperty Name="createdAt" ColumnName="createdAt" />
           <ScalarProperty Name="totalQty" ColumnName="totalQty" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Customers">
-      <EntityTypeMapping TypeName="CLOTHESModel.Customer">
-        <MappingFragment StoreEntitySet="Customer">
-          <ScalarProperty Name="idCustomer" ColumnName="idCustomer" />
-          <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="email" ColumnName="email" />
-          <ScalarProperty Name="address" ColumnName="address" />
-          <ScalarProperty Name="phone" ColumnName="phone" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

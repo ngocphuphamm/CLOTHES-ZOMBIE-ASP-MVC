@@ -22,15 +22,13 @@ namespace ClothesWebNET.Models
     
         public string idBill { get; set; }
         public string idUser { get; set; }
-        public string idCustomer { get; set; }
-        public double Shipping { get; set; }
-        public double Total { get; set; }
+        public int Shipping { get; set; }
+        public int Total { get; set; }
         public string PTTT { get; set; }
         public bool status { get; set; }
         public System.DateTime createdAt { get; set; }
         public int totalQty { get; set; }
     
-        public virtual Customer Customer { get; set; }
         public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DetailBIll> DetailBIlls { get; set; }
