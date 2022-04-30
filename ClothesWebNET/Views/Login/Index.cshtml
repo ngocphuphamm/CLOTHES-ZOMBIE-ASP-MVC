@@ -1,0 +1,34 @@
+﻿
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Styles.Render("~/Content/main")
+@Styles.Render("~/Content/product")
+
+<div class="container">
+    <div style="height:10px">
+        <form action="~/Login/kiemtradangnhap" method="post">
+            <div class="form-group">
+                <label>Tên đăng nhâp:</label>
+                <input type="Text" value="@ViewBag.username" class="form-control" required name="username" />
+            </div>
+            <div class="form-group">
+                <label>Mật khẩu:</label>
+                <input type="Text" value="@ViewBag.password" class="form-control" required name="password" />
+            </div>
+
+            <div class="form-group">
+                <input type="checkbox" name="ghinho" /> Ghi nhớ tài khoản <br />
+                <button type="submit" class="btn btn-primary">Đăng nhập</button>
+            </div>
+        </form>
+    </div>
+    <h2>Đăng nhập</h2>
+
+</div>
+@Scripts.Render("~/bundles/product")
+
+
+

@@ -71,6 +71,7 @@
         <MappingFragment StoreEntitySet="User">
           <ScalarProperty Name="idUser" ColumnName="idUser" />
           <ScalarProperty Name="idPermission" ColumnName="idPermission" />
+          <ScalarProperty Name="fullName" ColumnName="fullName" />
           <ScalarProperty Name="username" ColumnName="username" />
           <ScalarProperty Name="password" ColumnName="password" />
           <ScalarProperty Name="gender" ColumnName="gender" />

@@ -25,7 +25,7 @@ namespace ClothesWebNET.Models
     
         public string idUser { get; set; }
         public string idPermission { get; set; }
-
+        public string fullName { get; set; }
         [Required]
         [Index("ix_username", Order = 1, IsUnique = true)]
         public string username { get; set; }
@@ -40,8 +40,6 @@ namespace ClothesWebNET.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Bill> Bills { get; set; }
         public virtual Permission Permission { get; set; }
-
-
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             CLOTHESEntities db = new CLOTHESEntities();
@@ -56,5 +54,14 @@ namespace ClothesWebNET.Models
 
             return validationResult;
         }
+
+        [Serializable]
+        public class UserLogin
+        {
+            public string UserName { set; get; }
+            public string GroupID { set; get; }
+        }
+
+
     }
 }

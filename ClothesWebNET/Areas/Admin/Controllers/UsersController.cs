@@ -2,27 +2,26 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ClothesWebNET.Models;
 
-namespace ClothesWebNET.Controllers
+namespace ClothesWebNET.Areas.Admin.Controllers
 {
     public class UsersController : Controller
     {
         private CLOTHESEntities db = new CLOTHESEntities();
 
-        // GET: Users
+        // GET: Admin/Users
         public ActionResult Index()
         {
             var users = db.Users.Include(u => u.Permission);
             return View(users.ToList());
         }
 
-        // GET: Users/Details/5
+        // GET: Admin/Users/Details/5
         public ActionResult Details(string id)
         {
             if (id == null)
@@ -37,38 +36,37 @@ namespace ClothesWebNET.Controllers
             return View(user);
         }
 
-        // GET: Users/Create
-        public ActionResult Create(int id = 0 )
+        // GET: Admin/Users/Create
+        public ActionResult Create()
         {
-    
             ViewBag.idPermission = new SelectList(db.Permissions, "idPermission", "namePermission");
             return View();
         }
 
-        // POST: Users/Create
+        // POST: Admin/Users/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idUser,idPermission,username,password,gender,identityCard,address,email,URLAvatar,phone")] User user)
+        public ActionResult Create([Bind(Include = "idUser,idPermission,fullName,username,password,gender,identityCard,address,email,URLAvatar,phone")] User user)
         {
             if (ModelState.IsValid)
             {
-               int count = db.Users.Count() + 1 ;
-            
+                int count = db.Users.Count() + 1;
+
                 var id = 'U' + count.ToString();
                 user.idUser = id;
 
                 db.Users.Add(user);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index"); ;
             }
 
             ViewBag.idPermission = new SelectList(db.Permissions, "idPermission", "namePermission", user.idPermission);
             return View(user);
         }
 
-        // GET: Users/Edit/5
+        // GET: Admin/Users/Edit/5
         public ActionResult Edit(string id)
         {
             if (id == null)
@@ -84,12 +82,12 @@ namespace ClothesWebNET.Controllers
             return View(user);
         }
 
-        // POST: Users/Edit/5
+        // POST: Admin/Users/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "idUser,idPermission,username,password,gender,identityCard,address,email,URLAvatar,phone")] User user)
+        public ActionResult Edit([Bind(Include = "idUser,idPermission,fullName,username,password,gender,identityCard,address,email,URLAvatar,phone")] User user)
         {
             if (ModelState.IsValid)
             {
@@ -101,7 +99,7 @@ namespace ClothesWebNET.Controllers
             return View(user);
         }
 
-        // GET: Users/Delete/5
+        // GET: Admin/Users/Delete/5
         public ActionResult Delete(string id)
         {
             if (id == null)
@@ -116,7 +114,7 @@ namespace ClothesWebNET.Controllers
             return View(user);
         }
 
-        // POST: Users/Delete/5
+        // POST: Admin/Users/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
