@@ -14,20 +14,15 @@ namespace ClothesWebNET.Controllers
 
         public ActionResult Index()
         {
-           /* if (Request.Cookies["ASP.NET_SessionId"] != null)
+            if (Session["USER_SESSION"] != null)
             {
-                if (Session["SESSION_GROUP_ADMIN"] != null)
-                {
-                    return Redirect("~/Admin/Dashboard/Index");
-                }
-                else
-                {
+                
                     return Redirect("~/Home");
-                }
+                
                   
             }
             else
-            {*/
+            {
                 if (Request.Cookies["username"] != null && Request.Cookies["password"] != null)
                 {
 
@@ -36,7 +31,7 @@ namespace ClothesWebNET.Controllers
                 }
 
                 return View();
-     /*       }*/
+            }
           
                
          
