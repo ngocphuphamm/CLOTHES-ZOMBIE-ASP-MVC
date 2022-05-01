@@ -14,17 +14,34 @@ namespace ClothesWebNET.Controllers
 
         public ActionResult Index()
         {
-            System.Diagnostics.Debug.WriteLine("hello");
-/*            System.Diagnostics.Debug.WriteLine(Request.Cookies["username"]);*/
-
-            if (Request.Cookies["username"] != null && Request.Cookies["password"] != null)
+           /* if (Request.Cookies["ASP.NET_SessionId"] != null)
             {
-                
-                ViewBag.username = Request.Cookies["username"].Value;
-                ViewBag.password = Request.Cookies["password"].Value;
+                if (Session["SESSION_GROUP_ADMIN"] != null)
+                {
+                    return Redirect("~/Admin/Dashboard/Index");
+                }
+                else
+                {
+                    return Redirect("~/Home");
+                }
+                  
             }
-           
-            return View();
+            else
+            {*/
+                if (Request.Cookies["username"] != null && Request.Cookies["password"] != null)
+                {
+
+                    ViewBag.username = Request.Cookies["username"].Value;
+                    ViewBag.password = Request.Cookies["password"].Value;
+                }
+
+                return View();
+     /*       }*/
+          
+               
+         
+
+
         }
 
         public void ghinhotaikhoan(string username, string password)
@@ -151,19 +168,30 @@ namespace ClothesWebNET.Controllers
 
             Session["USER_SESSION"] = null;
             Session["SESSION_GROUP"] = null;
-
-
-            if (Request.Cookies["username"] != null && Request.Cookies["password"] != null)
+/*            Session.Abandon();
+            Response.Cookies.Add(new HttpCookie("ASP.NET_SessionId", ""));*/
+             if(Request.Cookies["ASP.NET_SessionId"]!=null)
             {
+                HttpCookie asp = Request.Cookies["ASP.NET_SessionId"];
+                asp.Expires = DateTime.Now.AddDays(-1);
+                Response.Cookies.Add(asp);
+            }
+            if (Request.Cookies["username"] != null && Request.Cookies["password"] != null )
+            {
+
+                Session.Clear();
                 HttpCookie us = Request.Cookies["username"];
                 HttpCookie ps = Request.Cookies["password"];
 
+                
                 ps.Expires = DateTime.Now.AddDays(-1);
                 us.Expires = DateTime.Now.AddDays(-1);
                 Response.Cookies.Add(us);
                 Response.Cookies.Add(ps);
+                
+           
             }
-
+            
             return Redirect("/Home");
         }
 
