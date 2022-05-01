@@ -52,10 +52,7 @@ namespace ClothesWebNET.Controllers
                 username = Request.Cookies["username"].Value;
                 password = Request.Cookies["password"].Value;
             }
-            if (username == "admin" && password == "1234")
-            {
-                return Redirect("~/Admin/Dashboard/Index");
-            }
+           
             if (checkpassword(username, password))
             {
 
@@ -77,18 +74,29 @@ namespace ClothesWebNET.Controllers
                 userSession.phone = phone;  
                 userSession.email = email;
 
+                var group = "";
                 var listGroups = GetListGroupID(username);//Có thể viết dòng lệnh lấy các GroupID từ CSDL, ví dụ gán ="ADMIN", dùng List<string>
-
-                // namePermission
-                Session.Add("SESSION_GROUP", listGroups);
-           
-                //username 
-                Session.Add("USER_SESSION", userSession);
-          
-
+             
                 if (ghinho == "on")//Ghi nhớ
                     ghinhotaikhoan(username, password);
-                return Redirect("~/Home");
+
+                for (var i = 0; i < listGroups.Count; i++)
+                {
+                    group = listGroups[i];
+                }
+                if (group == "Admin")
+                {
+                    // namePermission
+                    Session.Add("SESSION_GROUP_ADMIN", listGroups);
+                    Session.Add("USER_SESSION", userSession);
+                    return Redirect("~/Admin/Dashboard/Index");
+                }
+                else
+                {
+                    Session.Add("SESSION_GROUP", listGroups);
+                    Session.Add("USER_SESSION", userSession);
+                    return Redirect("~/Home");
+                }
 
             }
             return Redirect("~/Login");

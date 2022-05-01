@@ -11,7 +11,13 @@ namespace ClothesWebNET.Areas.Admin.Controllers
         // GET: Admin/Dashboard
         public ActionResult Index()
         {
-            return View();
+           
+
+            if (Session["SESSION_GROUP_ADMIN"] != null)
+            {
+                return View();
+            }
+            return Redirect("~/Home");
         }
     }
 }
