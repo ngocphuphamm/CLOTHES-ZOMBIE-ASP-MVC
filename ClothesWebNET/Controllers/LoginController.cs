@@ -14,8 +14,12 @@ namespace ClothesWebNET.Controllers
 
         public ActionResult Index()
         {
+            System.Diagnostics.Debug.WriteLine("hello");
+/*            System.Diagnostics.Debug.WriteLine(Request.Cookies["username"]);*/
+
             if (Request.Cookies["username"] != null && Request.Cookies["password"] != null)
             {
+                
                 ViewBag.username = Request.Cookies["username"].Value;
                 ViewBag.password = Request.Cookies["password"].Value;
             }
@@ -41,6 +45,8 @@ namespace ClothesWebNET.Controllers
         [HttpPost]
         public ActionResult kiemtradangnhap(string username, string password, string ghinho)
         {
+   
+
             if (Request.Cookies["username"] != null && Request.Cookies["username"] != null)
             {
                 username = Request.Cookies["username"].Value;
@@ -52,13 +58,33 @@ namespace ClothesWebNET.Controllers
             }
             if (checkpassword(username, password))
             {
+
+                var infoUser = getInfoUser(username);
+                var email= "";
+                var phone = 1;
+                var fullName = "";
+                for(var i = 0; i < infoUser.Count; i++)
+                {
+                    email = infoUser[i].email;
+                    phone = infoUser[i].phone;
+                    fullName = infoUser[i].fullName;    
+                }
+           
+
                 var userSession = new UserLogin();
                 userSession.UserName = username;
+                userSession.fullName = fullName;
+                userSession.phone = phone;  
+                userSession.email = email;
 
                 var listGroups = GetListGroupID(username);//Có thể viết dòng lệnh lấy các GroupID từ CSDL, ví dụ gán ="ADMIN", dùng List<string>
 
+                // namePermission
                 Session.Add("SESSION_GROUP", listGroups);
+           
+                //username 
                 Session.Add("USER_SESSION", userSession);
+          
 
                 if (ghinho == "on")//Ghi nhớ
                     ghinhotaikhoan(username, password);
@@ -66,6 +92,23 @@ namespace ClothesWebNET.Controllers
 
             }
             return Redirect("~/Login");
+        }
+
+        public List<getUserDTO> getInfoUser (string userName)
+        {
+            // var user = db.User.Single(x => x.UserName == userName);
+            getUserDTO getUserDTO = new getUserDTO();
+            var data = (from s in db.Users
+                        where s.username == userName
+                        select new getUserDTO
+                        {
+                            fullName = s.fullName , 
+                            email = s.email ,   
+                            phone = s.phone 
+                        });
+
+            return data.ToList();
+
         }
         public List<string> GetListGroupID(string userName)
         {

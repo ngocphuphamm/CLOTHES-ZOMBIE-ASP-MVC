@@ -60,8 +60,18 @@ namespace ClothesWebNET.Models
         {
             public string UserName { set; get; }
             public string GroupID { set; get; }
-        }
+            public string fullName { get; set; }
+            public string email { get; set; }
+            public int phone { get;set; }   
+            
 
+        }
+        public class getUserDTO
+        {
+             public string fullName { get; set; }
+            public string email { get; set; }
+            public int phone { get; set; }
+        }
 
     }
 }
