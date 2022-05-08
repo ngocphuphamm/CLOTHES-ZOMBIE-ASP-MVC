@@ -24,10 +24,10 @@
                 {
                     <div class="grid__col-3">
                         <div class="product">
-                            <img src="@item.URLImage"
+                            <img src="@item.ImageProducts.First().URLImage"
                                  alt=""
                                  class="product-img product-show" />
-                            <img src="@item.URLImage"
+                            <img src="@item.ImageProducts.Last().URLImage"
                                  alt=""
                                  class="product-img product-img-hover" />
                         </div>
@@ -39,6 +39,7 @@
                         </div>
                     </div>
                 }
+
 
             </div>
 

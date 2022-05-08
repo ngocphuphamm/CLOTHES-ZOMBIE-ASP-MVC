@@ -39,27 +39,11 @@ namespace ClothesWebNET.Controllers
             return View(product);
         }
 
-        // GET: Collections/Create
-        public ActionResult Create()
-        {
-            ViewBag.idType = new SelectList(db.Types, "idType", "nameType");
-            return View();
-        }
+       
 
 
 
-        // GET: Collections/Edit/5
-    
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
-        
+      
         // collections/ao
         public ActionResult ao(string id)
         {

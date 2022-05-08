@@ -151,6 +151,7 @@
     <Compile Include="Models\Bill.cs">
       <DependentUpon>ClothesModels.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\ClothesModels.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
