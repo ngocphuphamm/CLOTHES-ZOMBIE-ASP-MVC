@@ -18,6 +18,7 @@ namespace ClothesWebNET.Controllers
                 cart = new Cart();
                 Session["Cart"] = cart;
             }
+            //ngocphu
             return cart;
         }
         [HttpPost]
