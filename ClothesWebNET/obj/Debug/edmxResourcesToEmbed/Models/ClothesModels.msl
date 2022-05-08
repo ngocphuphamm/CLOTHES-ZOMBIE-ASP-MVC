@@ -6,7 +6,6 @@
         <MappingFragment StoreEntitySet="Bill">
           <ScalarProperty Name="idBill" ColumnName="idBill" />
           <ScalarProperty Name="idUser" ColumnName="idUser" />
-          <ScalarProperty Name="idCustomer" ColumnName="idCustomer" />
           <ScalarProperty Name="Shipping" ColumnName="Shipping" />
           <ScalarProperty Name="Total" ColumnName="Total" />
           <ScalarProperty Name="PTTT" ColumnName="PTTT" />
@@ -16,6 +15,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+<<<<<<< HEAD
     <EntitySetMapping Name="Customer">
       <EntityTypeMapping TypeName="CLOTHESModel.Customer">
         <MappingFragment StoreEntitySet="Customer">
@@ -28,6 +28,9 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="DetailBIll">
+=======
+    <EntitySetMapping Name="DetailBIlls">
+>>>>>>> phudev
       <EntityTypeMapping TypeName="CLOTHESModel.DetailBIll">
         <MappingFragment StoreEntitySet="DetailBIll">
           <ScalarProperty Name="idDetailBill" ColumnName="idDetailBill" />
@@ -83,6 +86,7 @@
         <MappingFragment StoreEntitySet="User">
           <ScalarProperty Name="idUser" ColumnName="idUser" />
           <ScalarProperty Name="idPermission" ColumnName="idPermission" />
+          <ScalarProperty Name="fullName" ColumnName="fullName" />
           <ScalarProperty Name="username" ColumnName="username" />
           <ScalarProperty Name="password" ColumnName="password" />
           <ScalarProperty Name="gender" ColumnName="gender" />

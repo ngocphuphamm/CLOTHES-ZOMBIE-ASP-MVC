@@ -11,6 +11,7 @@ namespace ClothesWebNET.Models
 {
     using System;
     using System.Collections.Generic;
+<<<<<<< HEAD
     public class ProductDTODetail
     {
         public string idProduct { get; set; }
@@ -23,6 +24,9 @@ namespace ClothesWebNET.Models
         public int sizeXL { get; set; }
 
     }
+=======
+    
+>>>>>>> phudev
     public partial class Product
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]

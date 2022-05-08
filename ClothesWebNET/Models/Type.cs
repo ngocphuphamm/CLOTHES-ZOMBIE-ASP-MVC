@@ -12,21 +12,26 @@ namespace ClothesWebNET.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Customer
+    public partial class Type
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Customer()
+        public Type()
         {
+<<<<<<< HEAD:ClothesWebNET/Models/Customer.cs
             this.Bill = new HashSet<Bill>();
+=======
+            this.Products = new HashSet<Product>();
+>>>>>>> phudev:ClothesWebNET/Models/Type.cs
         }
     
-        public string idCustomer { get; set; }
-        public string name { get; set; }
-        public string email { get; set; }
-        public string address { get; set; }
-        public int phone { get; set; }
+        public string idType { get; set; }
+        public string nameType { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+<<<<<<< HEAD:ClothesWebNET/Models/Customer.cs
         public virtual ICollection<Bill> Bill { get; set; }
+=======
+        public virtual ICollection<Product> Products { get; set; }
+>>>>>>> phudev:ClothesWebNET/Models/Type.cs
     }
 }
