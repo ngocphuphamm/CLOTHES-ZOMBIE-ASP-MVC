@@ -1,0 +1,61 @@
+﻿
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Styles.Render("~/Content/main")
+@Styles.Render("~/Content/product")
+
+<div class="container">
+    <div class="breadcrumb">
+        <div class="grid">
+            <a href="/">Trang chủ / </a>
+            <a href="/collections">Danh mục / </a>
+            <a class="br-main" href="/collections">Tất cả sản phẩm </a>
+        </div>
+    </div>
+    <div class="products">
+        <div class="product-heading">Tất cả sản phẩm</div>
+
+        <div class="grid">
+            <div class="grid__row">
+                @foreach (var item in Model)
+                {
+                    <div class="grid__col-3">
+                        <div class="product">
+                            <img src="@item.URLImage"
+                                 alt=""
+                                 class="product-img product-show" />
+                            <img src="@item.URLImage"
+                                 alt=""
+                                 class="product-img product-img-hover" />
+                        </div>
+                        <div class="product-info">
+                            <div class="product-title">
+                                @item.nameProduct
+                            </div>
+                            <div class="product-price">@item.price,000₫</div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+
+        </div>
+    </div>
+    <div class="pagination">
+        <a class="prev" href=""><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 31 10" style="enable-background:new 0 0 31 10; width: 31px; height: 10px;" xml:space="preserve"><polygon points="31,5 25,0 25,4 0,4 0,6 25,6 25,10 "></polygon></svg></a>
+        <a href="#">1</a>
+        <a class="active" href="#">2</a>
+        <a href="#">3</a>
+        <a href="#">4</a>
+        <a href="#">5</a>
+        <a href="#">6</a>
+        <a class="next" href="#"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 31 10" style="enable-background:new 0 0 31 10; width: 31px; height: 10px;" xml:space="preserve"><polygon points="31,5 25,0 25,4 0,4 0,6 25,6 25,10 "></polygon></svg></a>
+    </div>
+    <!-- Product end -->
+
+</div>
+@Scripts.Render("~/bundles/product")
+
