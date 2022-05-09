@@ -191,6 +191,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\admin\base.css" />
+    <Content Include="Content\admin\bootstrap.min.css" />
+    <Content Include="Content\admin\custom.css" />
+    <Content Include="Content\admin\index.css" />
+    <Content Include="Content\admin\style.css" />
     <Content Include="Content\base.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -201,12 +206,14 @@
     <Content Include="Content\detail.css" />
     <Content Include="Content\footer.css" />
     <Content Include="Content\header.css" />
+    <Content Include="Content\login.css" />
     <Content Include="Content\main.css" />
+    <Content Include="Content\payment.css" />
     <Content Include="Content\product.css" />
+    <Content Include="Content\Site.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
     <Content Include="Models\ClothesModels.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ClothesModels.edmx</DependentUpon>
@@ -217,8 +224,6 @@
       <DependentUpon>ClothesModels.edmx</DependentUpon>
       <LastGenOutput>ClothesModels.cs</LastGenOutput>
     </Content>
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\Error.cshtml" />
@@ -235,12 +240,21 @@
     <Content Include="Areas\Admin\Views\Users\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Users\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Dashboard\Index.cshtml" />
-    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\admin\allproduct.js" />
+    <Content Include="Scripts\admin\bootstrap.min.js" />
+    <Content Include="Scripts\admin\donhang.js" />
+    <Content Include="Scripts\admin\jquery.min.js" />
+    <Content Include="Scripts\admin\main.js" />
+    <Content Include="Scripts\admin\popper.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\calculate.js" />
     <Content Include="Scripts\cart.js" />
     <Content Include="Scripts\checkout.js" />
     <Content Include="Scripts\detail.js" />
     <Content Include="Scripts\index.js" />
+    <Content Include="data.json" />
+    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -250,7 +264,9 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\login.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\payment.js" />
     <Content Include="Scripts\product.js" />
     <Content Include="Scripts\validation.js" />
     <Content Include="Web.config" />
@@ -301,13 +317,13 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
     <None Include="packages.config" />
-    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

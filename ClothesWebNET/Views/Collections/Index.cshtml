@@ -1,5 +1,5 @@
 ﻿
-
+@model IEnumerable<ClothesWebNET.Models.Product>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -12,7 +12,7 @@
         <div class="grid">
             <a href="/">Trang chủ / </a>
             <a href="/collections">Danh mục / </a>
-            <a class="br-main" href="/collections">Tất cả sản phẩm </a>
+            <a class="br-main" href="/Collections/">Tất cả </a>
         </div>
     </div>
     <div class="products">
@@ -23,6 +23,7 @@
                 @foreach (var item in Model)
                 {
                     <div class="grid__col-3">
+                        <h1 style="display:none" id="idProduct">@item.idProduct</h1>
                         <div class="product">
                             <img src="@item.ImageProducts.First().URLImage"
                                  alt=""
@@ -39,7 +40,6 @@
                         </div>
                     </div>
                 }
-
 
             </div>
 
@@ -58,5 +58,8 @@
     <!-- Product end -->
 
 </div>
+
+
+
 @Scripts.Render("~/bundles/product")
 

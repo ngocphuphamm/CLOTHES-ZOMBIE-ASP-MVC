@@ -1,34 +1,71 @@
 ﻿
 
+
+
+
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@Styles.Render("~/Content/main")
-@Styles.Render("~/Content/product")
 
+@Styles.Render("~/Content/login")
 <div class="container">
-    <div style="height:10px">
-        <form action="~/Login/kiemtradangnhap" method="post">
-            <div class="form-group">
-                <label>Tên đăng nhâp:</label>
-                <input type="Text" value="@ViewBag.username" class="form-control" required name="username" />
-            </div>
-            <div class="form-group">
-                <label>Mật khẩu:</label>
-                <input type="Text" value="@ViewBag.password" class="form-control" required name="password" />
-            </div>
+    <form  action="~/Login/kiemtradangnhap" method="post" class="form-login form-login-cus" >
+        <div class="login-box-cus">
+            <p class="heading">đăng nhập tài khoản</p>
+            <div class="heading-login-with">Nhập tên đăng nhập và mật khẩu của bạn</div>
+            <div class="header-box login-box">
+                <div class="form-control err">
+                    <input type="text"
+                           value="@ViewBag.username"
+                           name="username"
+                           id="email-cus"
+                           placeholder="Username"
+                           class="modal-form-input" />
+                    <small></small>
+                </div>
+                <div class="form-control err">
+                    <input type="password"
+                           id="password-cus"
+                           placeholder="Password"
+                           name="password"
+                           value="@ViewBag.password"
+                           class="modal-form-input" />
+                    <small></small>
+                </div>
 
-            <div class="form-group">
+                <div class="recapcha">
+                    This site is protected by reCAPTCHA and the Google
+                    <a class="recapcha-link" href="">Privacy Policy</a> and
+                    <a class="recapcha-link" href="">Terms of Service</a> apply.
+                </div>
                 <input type="checkbox" name="ghinho" /> Ghi nhớ tài khoản <br />
-                <button type="submit" class="btn btn-primary">Đăng nhập</button>
+                <button type="submit" class="button-login  button-hover">
+                    ĐĂNG NHẬP
+                </button>
+                <div class="modal-help">
+                    Khách hàng mới?
+                    <div style="display: inline; cursor: pointer"
+                         id="modal-register"
+                         class="modal-link">
+                        Tạo tài khoản
+                    </div>
+                </div>
+                <div class="modal-help">
+                    Quên mật khẩu?
+                    <div style="display: inline; cursor: pointer"
+                         id="modal-reset-password"
+                         class="modal-link">
+                        Khôi phục mật khẩu
+                    </div>
+                </div>
             </div>
-        </form>
-    </div>
-    <h2>Đăng nhập</h2>đang 
-
+        </div>
+    </form>
 </div>
-@Scripts.Render("~/bundles/product")
 
+
+@Scripts.RenderFormat("<script src='{0}' type='module'></script>", "~/bundles/login")
 
 

@@ -21,6 +21,8 @@ namespace ClothesWebNET.Controllers
             var query = db.Product.Include(p => p.ImageProducts);
             ViewBag.list = query.ToList();
             return View(query.ToList());
+
+            
         }
 
         // GET: Collections/Details/5
@@ -37,6 +39,10 @@ namespace ClothesWebNET.Controllers
                 return HttpNotFound();
             }
             return View(product);
+
+
+
+
         }
 
        
