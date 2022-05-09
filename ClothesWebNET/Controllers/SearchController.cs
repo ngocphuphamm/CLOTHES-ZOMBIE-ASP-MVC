@@ -17,8 +17,7 @@ namespace ClothesWebNET.Controllers
         // GET:  http://localhost:46418/search/indexq?=tin
         public ActionResult Index(string q)
         {
-            return View();
-           /* // queryparamater = "glasses";
+            // queryparamater = "glasses";
             ProductDTODetail productDTO = new ProductDTODetail();
 
             var product = from el in db.Product
@@ -28,9 +27,10 @@ namespace ClothesWebNET.Controllers
             product = product.Where(s => s.nameProduct.ToLower().Contains(q));
 
             var listProduct = from p in product
-                              join image in db.ImageProduct on p.idProduct equals image.idProduct
+                              join image in db.ImageProducts on p.idProduct equals image.idProduct
                               select new ProductDTODetail()
                               {
+                                  idProduct = p.idProduct,
                                   nameProduct = p.nameProduct,
                                   price = p.price,
                                   URLImage = image.URLImage,
@@ -38,29 +38,49 @@ namespace ClothesWebNET.Controllers
                                   sizeM = p.sizeM,
                                   sizeXL = p.sizeXL,
                               };
-            ViewBag.List=listProduct;
+            ViewBag.List = listProduct;
 
-            return View(listProduct.ToList());*/
-           /* if (!String.IsNullOrEmpty(q))
-            {
-          
-            }
-            return View();*/
+            return View(listProduct.ToList());
+
         }
 
         // GET: Search/Details/5
         public ActionResult Details(string id)
         {
+            ProductDTODetail productDTO = new ProductDTODetail();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = db.Product.Find(id);
+            var product = from el in db.Product
+                          where el.idProduct == id
+                          select el;
+
             if (product == null)
             {
                 return HttpNotFound();
             }
-            return View(product);
+            else
+            {
+                var listProduct = from p in product
+                                  join image in db.ImageProducts on p.idProduct equals image.idProduct
+                                  join type in db.Types on p.idType equals type.idType
+                                  select new ProductDTODetail()
+                                  {
+                                      idProduct = p.idProduct,
+                                      type = type.nameType,
+                                      nameProduct = p.nameProduct,
+                                      price = p.price,
+                                      URLImage = image.URLImage,
+                                      sizeL = p.sizeL,
+                                      sizeM = p.sizeM,
+                                      sizeXL = p.sizeXL,
+                                  };
+
+                ViewBag.List = listProduct;
+                return View(listProduct.ToList());
+            }
+
         }
 
         // GET: Search/Create

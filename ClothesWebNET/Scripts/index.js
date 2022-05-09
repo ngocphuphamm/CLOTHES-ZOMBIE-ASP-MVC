@@ -61,24 +61,49 @@ formLogin.addEventListener('submit', function (e) {
   if (checkEmpty && checkEmailInvalid) alert('oke bro');
 });
 
-//validation form quên mật khẩu
+
+//ẩn hiện form register
 
 let register = document.getElementById('modal-register');
 let modal = document.querySelector('.modal');
 let modalOverplay = document.querySelector('.modal__overplay');
 register.addEventListener('click', (e) => {
-  removeAllClassShowModal(modals);
-  modal.style.display = 'flex';
+    removeAllClassShowModal(modals);
+    modal.style.display = 'flex';
 });
 
 modalOverplay.addEventListener('click', (e) => {
-  modal.style.display = 'none';
+    modal.style.display = 'none';
+});
+
+let iconCloseModalRegister = document.querySelector('.icon-close');
+
+iconCloseModalRegister.addEventListener('click', (e) => {
+    modalOverplay.click();
+});
+
+let iconClick = document.querySelectorAll('.box-triangle');
+
+iconClick.forEach((i) => {
+    i.addEventListener('click', (e) => {
+        removeAllClassShowModal(modals);
+    });
 });
 
 
-let btnSearch = document.querySelector('.btn-search');
-let inputSearch = document.querySelector('.input-search-box');
-btnSearch.addEventListener('click', e => {
-    let valueSearch = inputSearch.value.trim();
-    alert(inputSearch)
+let ips = document.querySelector('.input-search-box');
+let btnS = document.querySelector('.btn-search');
+ips.addEventListener('keypress', e => {
+    if (e.keyCode == 13)
+        btnS.click();
+})
+
+btnS.addEventListener('click', e => {
+
+    let vl = ips.value.trim();
+    if (vl != "") {
+        let url = `/search/index?q=${vl}`
+        window.location = url;
+    }
+
 })

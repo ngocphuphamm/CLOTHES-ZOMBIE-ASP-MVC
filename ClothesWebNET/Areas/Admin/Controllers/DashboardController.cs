@@ -13,11 +13,13 @@ namespace ClothesWebNET.Areas.Admin.Controllers
         {
            
 
-            if (Session["SESSION_GROUP_ADMIN"] != null)
+     /*       if (Session["SESSION_GROUP_ADMIN"] != null)
             {
                 return View();
             }
-            return Redirect("~/Home");
+            return Redirect("~/Home");*/
+
+            return View();
         }
     }
 }

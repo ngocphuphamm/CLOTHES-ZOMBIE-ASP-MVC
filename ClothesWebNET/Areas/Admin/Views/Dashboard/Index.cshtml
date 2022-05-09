@@ -4,5 +4,151 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+@Styles.Render("~/Content/admin/index")
+
+<div id="content" class="pl-4">
+    <div class="content-top">
+        <div class="header-left">
+            <h4>Xin chào Nguyễn Duy Khang</h4>
+            <p>Bây giờ là: 11h38 - 29/05/2022</p>
+        </div>
+        <div class="header-right">
+            <div class="icon-user">
+                <img src="https://yt3.ggpht.com/yti/APfAmoE--aKM88dHvdB2-a8lKhM-2pJ4Zyg2t7YFM45RTw=s88-c-k-c0x00ffffff-no-rj-mo"
+                     alt="" />
+                <ul>
+                    <li>Thông tin</li>
+                    <li>Đăng xuất</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="content-main">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">Trang chủ</li>
+                <li class="breadcrumb-item active" aria-current="page">
+                    Tổng quan
+                </li>
+            </ol>
+        </nav>
+        <div class="container-fluid mt-3">
+            <div class="row">
+                <div class="col-lg-4 col-sm-6">
+                    <div class="card gradient-1">
+                        <div class="card-body">
+                            <h3 class="card-title text-white">Tổng số sản phẩm</h3>
+                            <div class="d-inline-block">
+                                <h2 class="text-white">500</h2>
+                                <p class="text-white mb-0">18/04/2022</p>
+                            </div>
+                            <span class="float-right display-5 opacity-5">
+                                <i class="fa fa-shopping-cart"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="card gradient-2">
+                        <div class="card-body">
+                            <h3 class="card-title text-white">Số đơn tháng này</h3>
+                            <div class="d-inline-block">
+                                <h2 class="text-white">500</h2>
+                                <p class="text-white mb-0">Jan - March 2019</p>
+                            </div>
+                            <span class="float-right display-5 opacity-5">
+                                <i class="fa fa-money"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="card gradient-3">
+                        <div class="card-body">
+                            <h3 class="card-title text-white">Khách hàng</h3>
+                            <div class="d-inline-block">
+                                <h2 class="text-white">4565</h2>
+                                <p class="text-white mb-0">Jan - March 2019</p>
+                            </div>
+                            <span class="float-right display-5 opacity-5">
+                                <i class="fa fa-users"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row d-flex justify-content-end mt-4">
+                <div class="col-lg-2">
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected>Hôm nay</option>
+                        <option value="1">Hôm qua</option>
+                        <option value="2">Tuần này</option>
+                        <option value="3">Tháng này</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <!-- <h4 class="card-title">Đơn hàng</h4> -->
+                            <div class="table-responsive">
+                                <table class="table header-border table-hover verticle-middle">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Đơn hàng</th>
+                                            <th class="tbl-center" scope="col">Số lượng</th>
+                                            <th scope="col">Doanh thu</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Mới</td>
+                                            <td class="tbl-center">0</td>
+                                            <td class="tbl-center">0</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Đã gửi vận chuyển</td>
+                                            <td class="tbl-center">0</td>
+                                            <td class="tbl-center">0</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Thành công</td>
+                                            <td class="tbl-center">0</td>
+                                            <td class="tbl-center">0</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Thất bại</td>
+                                            <td class="tbl-center">0</td>
+                                            <td class="tbl-center">0</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Hủy</td>
+                                            <td class="tbl-center">0</td>
+                                            <td class="tbl-center">0</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Số đơn trong tuần</h4>
+                            <div id="chart-with-area"
+                                 class="ct-chart ct-golden-section"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    $('.tq').addClass('active');
+</script>
 

@@ -1,0 +1,52 @@
+.payment-cus {
+  display: flex;
+  height: 55px;
+  border: 2px solid #d9d9d9;
+  align-items: center;
+  text-align: center;
+  border-radius: 2px;
+  padding: 0 15px;
+  justify-content: space-between;
+  cursor: pointer;
+}
+.payment-cus input {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+.payment-cus > input:checked {
+  accent-color: #338dbc;
+}
+.payment-cus-box {
+  width: calc(100% - 40px);
+  display: flex;
+  justify-content: space-between;
+}
+.payment-cus-text {
+  color: #737373;
+  font-size: 14px;
+}
+.box-payment-cus {
+  display: flex;
+  align-items: center;
+}
+.box-payment-cus .payment-cus-text {
+  margin: 0 10px;
+}
+
+.payment-cus-content {
+  /* height: 100px; */
+  width: 100%;
+  border: 2px solid #d9d9d9;
+  border-top: none;
+  white-space: pre-line;
+  padding: 1.5em;
+  text-align: center;
+  display: none;
+  transition: 0.2s ease-out;
+  color: #737373;
+  font-size: 14px;
+  font-family: Helvetica Neue, sans-serif;
+  word-wrap: break-word;
+  word-break: break-word;
+}

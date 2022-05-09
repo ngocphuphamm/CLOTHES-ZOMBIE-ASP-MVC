@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace ClothesWebNET.Controllers
 {
+    // ngoc phu
     public class CartController : Controller
     {
         private CLOTHESEntities db = new CLOTHESEntities();
