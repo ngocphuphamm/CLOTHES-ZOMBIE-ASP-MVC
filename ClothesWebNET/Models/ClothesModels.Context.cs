@@ -29,7 +29,7 @@ namespace ClothesWebNET.Models
         public virtual DbSet<DetailBIll> DetailBIlls { get; set; }
         public virtual DbSet<ImageProduct> ImageProducts { get; set; }
         public virtual DbSet<Permission> Permissions { get; set; }
-        public virtual DbSet<Product> Product { get; set; }
+        public virtual DbSet<Product> Products{ get; set; }
         public virtual DbSet<Type> Types { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Voucher> Vouchers { get; set; }

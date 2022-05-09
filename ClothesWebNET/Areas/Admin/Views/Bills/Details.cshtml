@@ -1,0 +1,75 @@
+﻿@model ClothesWebNET.Models.Bill
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Bill</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Shipping)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Shipping)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Total)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Total)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PTTT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PTTT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.createdAt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.createdAt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.totalQty)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.totalQty)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User.idPermission)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.idPermission)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idBill }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

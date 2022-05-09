@@ -17,17 +17,12 @@ namespace ClothesWebNET.Controllers
         {
             string  id = "T01";
             string idPant = "T05";
-            var dataList = (from s in db.Product
+            var dataList = (from s in db.Products
                                where (s.idType == idPant || s.idType == id)
                              select s);
 
             var query = dataList.Include(p => p.ImageProducts);
-
-
-
-
-           
-            return View(query.ToList());
+             return View(query.ToList());
           
         }
     }

@@ -26,7 +26,7 @@ namespace ClothesWebNET.Controllers
         public ActionResult AddtoCart(String id, FormCollection form)
         {
             String size = form["Size"];
-            var pro = db.Product.SingleOrDefault(s => s.idProduct == id);
+            var pro = db.Products.SingleOrDefault(s => s.idProduct == id);
             if (pro != null)
             {
                 GetCart().AddCart(pro, size);
