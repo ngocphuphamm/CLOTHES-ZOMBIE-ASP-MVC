@@ -20,27 +20,18 @@ namespace ClothesWebNET.Controllers
             // queryparamater = "glasses";
             ProductDTODetail productDTO = new ProductDTODetail();
 
-            var product = from el in db.Products
-                          select el;
 
             q = q.ToLower();
-            product = product.Where(s => s.nameProduct.ToLower().Contains(q));
+         
+           var productList = (from s in db.Products
+                               where s.nameProduct.ToLower().Contains(q)
+                               select s);
 
-            var listProduct = from p in product
-                              join image in db.ImageProducts on p.idProduct equals image.idProduct
-                              select new ProductDTODetail()
-                              {
-                                  idProduct = p.idProduct,
-                                  nameProduct = p.nameProduct,
-                                  price = p.price,
-                                  URLImage = image.URLImage,
-                                  sizeL = p.sizeL,
-                                  sizeM = p.sizeM,
-                                  sizeXL = p.sizeXL,
-                              };
-            ViewBag.List = listProduct;
+            var query = productList.Include(p => p.ImageProducts);
+            ViewBag.list = query.ToList();
 
-            return View(listProduct.ToList());
+            return View(query.ToList());
+        
 
         }
 
