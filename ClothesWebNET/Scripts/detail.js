@@ -27,16 +27,16 @@ const getSize = () => {
   return selectSize;
 };
 
-let price = document.querySelector('.total-money').textContent;
 
 btnAddCart.addEventListener('click', (e) => {
     let size = getSize();
     if (size != null) {
         let img = document.querySelector('#imagebox').src;
-        let totalMoney = document.querySelector('.total-money').textContent;
+        let priceFake = document.querySelector('.total-money').textContent;
+        let price = Number(priceFake.slice(0, 3).trim())
         let title = document.querySelector('.detail-title').textContent;
         let amount = document.querySelector('.input-amout').value;
-        let data = { title, price, totalMoney, size, img, amount };
+        let data = { title, price, size, img, amount };
 
         var cart = window.localStorage.getItem('cart');
         if (cart === null) {
@@ -54,7 +54,7 @@ btnAddCart.addEventListener('click', (e) => {
                         const dataAmount = Number(data['amount'])
 
                         el['amount'] = listCartAmount + dataAmount;
-
+       
                     }
                     else {
            
@@ -67,7 +67,8 @@ btnAddCart.addEventListener('click', (e) => {
                           })
                           if (!cartFake) {
                               listCart.push(data)
-                          }
+                    }
+
                 }
             })
            
@@ -77,6 +78,7 @@ btnAddCart.addEventListener('click', (e) => {
             if (!dataSize) {
                console.log("da vao")
                 listCart.push(data);
+
             }
             window.localStorage.setItem('cart', JSON.stringify(listCart));
        
