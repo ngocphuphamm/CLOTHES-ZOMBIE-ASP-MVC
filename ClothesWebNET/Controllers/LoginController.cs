@@ -5,6 +5,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using static ClothesWebNET.Models.User;
+using System.Data.Entity;
+
 
 namespace ClothesWebNET.Controllers
 {

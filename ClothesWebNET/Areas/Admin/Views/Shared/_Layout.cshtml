@@ -41,7 +41,7 @@
                 <div class="pl-4 pr-4">
                     <ul class="list-unstyled components mb-5">
                         <li class="tq">
-                            <a href="/" class="">Tổng quan</a>
+                            <a href="/Admin/Dashboard/Index" class="">Tổng quan</a>
                         </li>
                         <li class="sp">
                             <a href="#SanPhamMenu"
@@ -50,10 +50,10 @@
                                class="dropdown-toggle">Sản phẩm</a>
                             <ul class="collapse list-unstyled" id="SanPhamMenu">
                                 <li class="allsp">
-                                    <a href="/">Tất cả sản phẩm</a>
+                                    <a href="/Admin/Products/Index">Tất cả sản phẩm</a>
                                 </li>
                                 <li class="addsp">
-                                    <a href="#">Thêm sản phẩm</a>
+                                    <a href="/Admin/Products/create">Thêm sản phẩm</a>
                                 </li>
                             </ul>
                         </li>
@@ -83,9 +83,24 @@
         </nav>
 
         <!-- Page Content  -->
-        @RenderBody()
-
     </div>
+    <div class="content-top">
+        <div class="header-left">
+            <h4>Xin chào Nguyễn Duy Khang</h4>
+            <p>Bây giờ là: 11h38 - 29/05/2022</p>
+        </div>
+        <div class="header-right">
+            <div class="icon-user">
+                <img src="https://yt3.ggpht.com/yti/APfAmoE--aKM88dHvdB2-a8lKhM-2pJ4Zyg2t7YFM45RTw=s88-c-k-c0x00ffffff-no-rj-mo"
+                     alt="" />
+                <ul>
+                    <li>Thông tin</li>
+                    <li>Đăng xuất</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    @RenderBody()
     @Scripts.Render("~/bundles/admin/jquery")
     @Scripts.Render("~/bundles/admin/popper")
     @Scripts.Render("~/bundles/admin/bstr")
@@ -98,7 +113,7 @@
 
     @Scripts.Render("~/bundles/admin/main")
 
- 
+
     @RenderSection("scripts", required: false)
 </body>
 </html>

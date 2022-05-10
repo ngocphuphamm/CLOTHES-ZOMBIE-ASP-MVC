@@ -4,67 +4,195 @@
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
+<!-- database jquery -->
+<link rel="stylesheet"
+      type="text/css"
+      href="https://cdn.datatables.net/v/bs5/jq-3.6.0/jszip-2.5.0/dt-1.11.5/b-2.2.2/b-html5-2.2.2/b-print-2.2.2/datatables.min.css" />
+<div id="content" class="">
 
-<h2>Index</h2>
+    <div class="content-main p-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">Sản phẩm</li>
+                <li class="breadcrumb-item active" aria-current="page">
+                    Tất cả sản phẩm
+                </li>
+            </ol>
+        </nav>
+        <div class="table-responsive-sm">
+            <table id="table-product" class="table" style="width: 100%">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Danh mục</th>
+                     
+                        <th>Giá bán</th>
+                        <th>SizeM</th>
+                        <th>SizeL</th>
+                        <th>SizeXL</th>
+                        <th style="overflow: hidden; font-size: 0"></th>
+                        <th style="overflow: hidden; font-size: 0"></th>
+                    </tr>
+                </thead>
+                <tbody id="renderData">
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.nameProduct)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.sizeM)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.sizeL)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.sizeXL)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.price)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Type.nameType)
-        </th>
-        <th></th>
-    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.idProduct</td>
+                            <td>@item.nameProduct</td>
+                            <td>@item.idType</td>
+                         
+                            <td>
+                                @item.price
+                            </td>
+                            <td>
+                                @item.sizeM
+                            </td>
+                            <td>
+                                @item.sizeL
+                            </td>
+                            <td>
+                                @item.sizeXL
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-update btn-w-100 btn-outline-primary">
+                                    Cập nhật
+                                </button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-delete btn-w-80 btn-outline-danger">
+                                    Xóa
+                                </button>
+                            </td>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.nameProduct)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.sizeM)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.sizeL)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.sizeXL)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.price)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Type.nameType)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.idProduct }) |
-            @Html.ActionLink("Details", "Details", new { id=item.idProduct }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.idProduct })
-        </td>
-    </tr>
-}
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
-</table>
+<div class="modal-cus modal-update">
+    <div class="modal__overplay"></div>
+    <div class="modal__body">
+        <div class="modal__inner">
+            <div class="cus-form">
+                <h2>Cập nhật sản phẩm </h2>
+                <form method="post" action="/Admin/Products/edit" class="row g-3">
+                    @Html.AntiForgeryToken()
+                    <!-- ID -->
+                    <div style="display:none" class="col-md-12">
+                        <label for="validationDefault01" class="form-label">ID</label>
+                        <input type="text"
+                               name="idProduct"
+                               disabled
+                               class="form-control pid"
+                               id="validationDefault01"
+                               required />
+                    </div>
+                    <!-- nameProduct -->
+                    <div class="col-md-12">
+                        <label for="validationDefault01" class="form-label">Tên sản phẩm</label>
+                        <input type="text"
+                               name="nameProduct"
+                               class="form-control pname"
+                               id="validationDefault01"
+                               required />
+                    </div>
+                    <!-- type -->
+                    <div class="col-md-12">
+                        <label for="validationDefault04" class="form-label">Danh mục</label>
+                        <select class="form-select ptype" name="idType" id="validationDefault04" required>
+                            <option selected disabled value="">Chọn</option>
+                            <option>T01</option>
+                            <option>T02</option>
+                            <option>T03</option>
+                            <option>T04</option>
+                            <option>T05</option>
+                            <option>T06</option>
+                            <option>T07</option>
+                            <option>T08</option>
+                            <option>T09</option>
+                            <option>T10</option>
+                            <option>T11</option>
+                            <option>T12</option>
+
+                        </select>
+                    </div>
+                    <!-- sizeM -->
+                    <div class="col-md-4">
+                        <label for="validationDefault01" class="form-label">SizeM</label>
+                        <input type="number"
+                               name="sizeM"
+                               class="form-control pm"
+                               id="validationDefault01"
+                               required />
+                    </div>
+                    <!-- sizeL -->
+                    <div class="col-md-4">
+                        <label for="validationDefault01" class="form-label">SizeL</label>
+                        <input type="number"
+                               name="sizeL"
+                               class="form-control pl"
+                               id="validationDefault01"
+                               required />
+                    </div>
+                    <!-- sizeXl -->
+                    <div class="col-md-4">
+                        <label for="validationDefault01" class="form-label">SizeXL</label>
+                        <input type="number"
+                               name="sizeXL"
+                               class="form-control pxl"
+                               id="validationDefault01"
+                               required />
+                    </div>
+                    <!-- price -->
+                    <div class="col-md-12">
+                        <label for="validationDefault01" class="form-label">Giá bán</label>
+                        <input type="number"
+                               name="price "
+                               class="form-control pprice"
+                               id="validationDefault01"
+                               required />
+                    </div>
+                    <!-- description -->
+                    <div class="col-md-12">
+                        <label for="validationDefault01" class="form-label">Mô tả</label>
+                        <textarea type="text"
+                                  name="description"
+                                  class="form-control pdes"
+                                  id="validationDefault01"
+                                  required></textarea>
+                    </div>
+
+                    <div class="col-12">
+                        <button class="btn btn-primary" type="submit">Cập nhật</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@Scripts.Render("~/bundles/admin/jquery")
+
+<script>
+    $('.sp ul').addClass('show');
+    $('.allsp').addClass('active');
+</script>
+
+<!-- database jquery -->
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+<script type="text/javascript"
+        src="https://cdn.datatables.net/v/bs5/jq-3.6.0/jszip-2.5.0/dt-1.11.5/b-2.2.2/b-html5-2.2.2/b-print-2.2.2/datatables.min.js"></script>
+
+
+
+
+
+@Scripts.Render("~/bundles/admin/allproduct")

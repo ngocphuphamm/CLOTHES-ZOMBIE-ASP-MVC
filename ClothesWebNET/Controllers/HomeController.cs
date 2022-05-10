@@ -21,7 +21,7 @@ namespace ClothesWebNET.Controllers
                                where (s.idType == idPant || s.idType == id)
                              select s);
 
-            var query = dataList.Include(p => p.ImageProducts);
+            var query = dataList.Include(p => p.ImageProducts); 
              return View(query.ToList());
           
         }
