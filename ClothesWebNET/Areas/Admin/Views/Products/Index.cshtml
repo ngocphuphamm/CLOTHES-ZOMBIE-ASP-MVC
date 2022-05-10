@@ -27,6 +27,7 @@
                         <th>Tên sản phẩm</th>
                         <th>Danh mục</th>
                      
+
                         <th>Giá bán</th>
                         <th>SizeM</th>
                         <th>SizeL</th>
@@ -39,35 +40,36 @@
 
                     @foreach (var item in Model)
                     {
-                        <tr>
-                            <td>@item.idProduct</td>
-                            <td>@item.nameProduct</td>
-                            <td>@item.idType</td>
-                         
-                            <td>
-                                @item.price
-                            </td>
-                            <td>
-                                @item.sizeM
-                            </td>
-                            <td>
-                                @item.sizeL
-                            </td>
-                            <td>
-                                @item.sizeXL
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-update btn-w-100 btn-outline-primary">
-                                    Cập nhật
-                                </button>
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-delete btn-w-80 btn-outline-danger">
-                                    Xóa
-                                </button>
-                            </td>
+                    <tr>
+                        <td>@item.idProduct</td>
+                        <td>@item.nameProduct</td>
+                        <td>@item.idType</td>
+                      
 
-                        </tr>
+                        <td>
+                            @item.price
+                        </td>
+                        <td>
+                            @item.sizeM
+                        </td>
+                        <td>
+                            @item.sizeL
+                        </td>
+                        <td>
+                            @item.sizeXL
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-update btn-w-100 btn-outline-primary">
+                                Cập nhật
+                            </button>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-delete btn-w-80 btn-outline-danger">
+                                Xóa
+                            </button>
+                        </td>
+
+                    </tr>
                     }
                 </tbody>
             </table>
@@ -84,11 +86,11 @@
                 <form method="post" action="/Admin/Products/edit" class="row g-3">
                     @Html.AntiForgeryToken()
                     <!-- ID -->
-                    <div style="display:none" class="col-md-12">
+                    <div  class="col-md-12">
                         <label for="validationDefault01" class="form-label">ID</label>
                         <input type="text"
                                name="idProduct"
-                               disabled
+                               
                                class="form-control pid"
                                id="validationDefault01"
                                required />

@@ -15,15 +15,15 @@ namespace ClothesWebNET.Controllers
         // GET: Home
         public ActionResult Index( )
         {
-            string  id = "T01";
-            string idPant = "T05";
-            var dataList = (from s in db.Products
-                               where (s.idType == idPant || s.idType == id)
-                             select s);
+            string id = "T03";
+            var productList = (from s in db.Products
+                               where s.idType == id
+                               select s);
 
-            var query = dataList.Include(p => p.ImageProducts); 
-             return View(query.ToList());
-          
+            var query = productList.Include(p => p.ImageProducts);
+            ViewBag.list = query.ToList();
+            return View(query.ToList());
+
         }
     }
 }
