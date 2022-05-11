@@ -13,11 +13,7 @@ namespace ClothesWebNET.Controllers
         private CLOTHESEntities db = new CLOTHESEntities();
 
         // GET: Home
-        /// <summary>
-        /// ////////////
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult Index( )
+        public ActionResult Index()
         {
             string id = "T03";
             var productList = (from s in db.Products
