@@ -85,7 +85,7 @@
                             <div class="item-info">
                                 <div class="info-heading">
                                     <div class="heading-title">${el['title']}</div>
-                                    <div class="heading-close">${intoMoney.toLocaleString()},000 VND</div>
+                                    <div class="heading-close" onclick="remove('${el['title']}','${el['size']}',event)">✖</div>
                                 </div>
                                 <div class="info-price">${el['price']},000 VND</div>
                                 <div class="info-price">${el['size']}</div>
@@ -96,7 +96,7 @@
                                         <button class="button-amount button-add" onclick="clickAdd('${el['title']}','${el['size']}',event)">+</button>
                                     </div>
                                     <div class="total-money">
-
+                                    ${intoMoney.toLocaleString()},000 VND
                                     </div>
                                 </div>
                             </div>
@@ -150,6 +150,19 @@
         window.localStorage.setItem('cart', JSON.stringify(cart));
 
         renderTable(cart);
+    }
+    function remove(title, size, e) {
+        let cart = JSON.parse(window.localStorage.getItem('cart'));
+        const cartNew = cart.filter((el) => {
+
+            return el['title'] !== title
+        })
+        cartNew.filter((el) => {
+            return el['size'] !== size
+        })
+       window.localStorage.setItem('cart', JSON.stringify(cartNew));
+
+        renderTable(cartNew);
     }
 </script>
 
