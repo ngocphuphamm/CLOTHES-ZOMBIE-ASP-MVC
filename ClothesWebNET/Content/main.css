@@ -47,14 +47,14 @@
 /* product */
 .product {
 }
-.product-heading {
-  margin-top: 25px;
-  cursor: pointer;
-  font-family: Quicksand;
-  font-size: 37px;
-  font-weight: 500;
-  line-height: 40.7px;
-  text-align: center;
+.product-headingg, .product-heading {
+    margin-top: 25px;
+    cursor: pointer;
+    font-family: Quicksand;
+    font-size: 37px;
+    font-weight: 500;
+    line-height: 40.7px;
+    text-align: center;
 }
 .product-heading:hover {
   color: #f3ab70;

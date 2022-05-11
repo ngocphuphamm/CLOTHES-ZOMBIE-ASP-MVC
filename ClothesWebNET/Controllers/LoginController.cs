@@ -5,6 +5,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using static ClothesWebNET.Models.User;
+using System.Data.Entity;
+
 
 namespace ClothesWebNET.Controllers
 {
@@ -53,13 +55,36 @@ namespace ClothesWebNET.Controllers
             Response.Cookies.Add(pas);
 
         }
+        //thêm hàm lưu hết thông tin trong cookies
+        public void SaveInfoInCookies(string username, string fullName,string email, string phone)
+        {
+            HttpCookie us = new HttpCookie("username");
+            HttpCookie fn = new HttpCookie("fullName");
+            HttpCookie em = new HttpCookie("email");
+            HttpCookie p = new HttpCookie("phone");
+
+            us.Value = username;
+            fn.Value = fullName;
+            em.Value = email;
+            p.Value = phone;
+
+            us.Expires = DateTime.Now.AddDays(1);
+            fn.Expires = DateTime.Now.AddDays(1);
+            em.Expires = DateTime.Now.AddDays(1);
+            p.Expires = DateTime.Now.AddDays(1);
+            Response.Cookies.Add(us);
+            Response.Cookies.Add(fn);
+            Response.Cookies.Add(em);
+            Response.Cookies.Add(p);
+
+        }
 
         [HttpPost]
         public ActionResult kiemtradangnhap(string username, string password, string ghinho)
         {
    
 
-            if (Request.Cookies["username"] != null && Request.Cookies["username"] != null)
+            if (Request.Cookies["username"] != null && Request.Cookies["password"] != null)
             {
                 username = Request.Cookies["username"].Value;
                 password = Request.Cookies["password"].Value;
@@ -70,7 +95,7 @@ namespace ClothesWebNET.Controllers
 
                 var infoUser = getInfoUser(username);
                 var email= "";
-                var phone = 1;
+                var  phone = 1;
                 var fullName = "";
                 for(var i = 0; i < infoUser.Count; i++)
                 {
@@ -101,12 +126,16 @@ namespace ClothesWebNET.Controllers
                     // namePermission
                     Session.Add("SESSION_GROUP_ADMIN", listGroups);
                     Session.Add("USER_SESSION", userSession);
+                    //lưu hết thông tin người dùng vào cookies trừ password
+                    SaveInfoInCookies(username, fullName, email, phone.ToString());
                     return Redirect("~/Admin/Dashboard/Index");
                 }
                 else
                 {
                     Session.Add("SESSION_GROUP", listGroups);
                     Session.Add("USER_SESSION", userSession);
+                    //lưu hết thông tin người dùng vào cookies trừ password
+                    SaveInfoInCookies(username, fullName, email, phone.ToString());
                     return Redirect("~/Home");
                 }
 
@@ -157,7 +186,31 @@ namespace ClothesWebNET.Controllers
 
 
         }
+       
+        //thêm hàm xóa hết thông tin trong cookies
+        private void DeleteCookies()
+        {
+            Session.Clear();
 
+            HttpCookie us = Request.Cookies["username"];
+            HttpCookie fn = Request.Cookies["fullName"];
+            HttpCookie em = Request.Cookies["email"];
+            HttpCookie p = Request.Cookies["phone"];
+          
+         
+
+            fn.Expires = DateTime.Now.AddDays(-1);
+            us.Expires = DateTime.Now.AddDays(-1);
+            em.Expires = DateTime.Now.AddDays(-1);
+            p.Expires = DateTime.Now.AddDays(-1);
+          
+
+            Response.Cookies.Add(fn);
+            Response.Cookies.Add(us);
+            Response.Cookies.Add(p);
+            Response.Cookies.Add(em);
+          
+        }
         public ActionResult SignOut()
         {
 
@@ -170,21 +223,16 @@ namespace ClothesWebNET.Controllers
                 HttpCookie asp = Request.Cookies["ASP.NET_SessionId"];
                 asp.Expires = DateTime.Now.AddDays(-1);
                 Response.Cookies.Add(asp);
+
+                DeleteCookies();
             }
             if (Request.Cookies["username"] != null && Request.Cookies["password"] != null )
             {
+                DeleteCookies();
+                HttpCookie pass = Request.Cookies["password"];
+                pass.Expires = DateTime.Now.AddDays(-1);
+                Response.Cookies.Add(pass);
 
-                Session.Clear();
-                HttpCookie us = Request.Cookies["username"];
-                HttpCookie ps = Request.Cookies["password"];
-
-                
-                ps.Expires = DateTime.Now.AddDays(-1);
-                us.Expires = DateTime.Now.AddDays(-1);
-                Response.Cookies.Add(us);
-                Response.Cookies.Add(ps);
-                
-           
             }
             
             return Redirect("/Home");

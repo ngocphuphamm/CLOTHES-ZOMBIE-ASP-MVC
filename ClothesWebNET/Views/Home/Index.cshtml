@@ -1,8 +1,10 @@
-﻿@{
+﻿@model IEnumerable<ClothesWebNET.Models.Product>
+@{
     ViewBag.Title = "Home Page";
 }
 
 @Styles.Render("~/Content/main")
+@Styles.Render("~/Content/product")
 <!-- ----------Slider---------- -->
 <div class="slider">
     <a href="/" class="">
@@ -28,127 +30,48 @@
 </div>
 
 <!-- ----------Banner---------- -->
+
+@{
+    int ctop = 0;
+    int cbot = 0;
+}
 <!-- Product -->
 <div class="products">
-    <div class="product-heading">SẢN PHẨM MỚI - NEW PRODUCTS</div>
+    <div class="product-headingg">SẢN PHẨM MỚI - NEW PRODUCTS</div>
     <div class="grid">
         <div class="grid__row">
-            <div class="grid__col-3 product-item">
-                <div class="product">
-                    <img src="https://product.hstatic.net/200000321771/product/2p6a9859_0b69d118a40b4207bfa4e22bc19454c6_master.jpg" alt="" class="product-img product-show">
-                    <img src="https://product.hstatic.net/200000321771/product/2p6a9860_c9fa74ab45404986abcb4b7942ebf7bf_grande.jpg" alt="" class="product-img product-img-hover">
-                </div>
-                <div class="product-info">
-                    <div class="product-title">
-                        HOMO Tee In White
-                    </div>
-                    <div class="product-price">
-                        380,000₫
-                    </div>
-                </div>
-            </div>
-            <div class="grid__col-3 product-item">
-                <div class="product">
-                    <img src="https://product.hstatic.net/200000321771/product/271456888_233558595622847_148706376794218123_n_2a0da6a29d844c469d1f96a0c83a8f5b_master.jpg" alt="" class="product-img product-show">
-                    <img src="https://product.hstatic.net/200000321771/product/269670583_714518126161762_1892768403296979016_n_82173cd522a24355a3f483c3c06c0ce7_grande.jpg" alt="" class="product-img product-img-hover">
-                </div>
-                <div class="product-info">
-                    <div class="product-title">
-                        HOMO Tee In White  HOMO Tee In White  HOMO Tee In White  HOMO Tee In White
-                    </div>
-                    <div class="product-price">
-                        380,000₫
-                    </div>
-                </div>
-            </div>
-            <div class="grid__col-3 product-item">
-                <div class="product">
-                    <img src="https://product.hstatic.net/200000321771/product/2p6a5735_a04687a3dcf94adb88dbe6441f5b922b_medium.jpg" alt="" class="product-img product-show">
-                    <img src="https://product.hstatic.net/200000321771/product/2p6a5737_b3213b065504466c8d9aa9da19795954_grande.jpg" alt="" class="product-img product-img-hover">
-                </div>
-                <div class="product-info">
-                    <div class="product-title">
-                        HOMO Tee In White  HOMO Tee In White  HOMO Tee In White  HOMO Tee In White
-                    </div>
-                    <div class="product-price">
-                        380,000₫
-                    </div>
-                </div>
-            </div>
-            <div class="grid__col-3 product-item">
-                <div class="product">
-                    <img src="https://product.hstatic.net/200000321771/product/271739691_894884961076838_8135394162538589269_n_e814b41a580a4cb6b3d8e1963e0ef8db_medium.jpg" alt="" class="product-img product-show">
-                    <img src="https://product.hstatic.net/200000321771/product/271541735_634953457746867_7566922806359762025_n_bbabb788919c43d193a79576e58f739d_grande.jpg" alt="" class="product-img product-img-hover">
-                </div>
-                <div class="product-info">
-                    <div class="product-title">
-                        HOMO Tee In White  HOMO Tee In White  HOMO Tee In White  HOMO Tee In White
-                    </div>
-                    <div class="product-price">
-                        380,000₫
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="grid__row">
-            <div class="grid__col-3 product-item">
-                <div class="product">
-                    <img src="https://product.hstatic.net/200000321771/product/2p6a5735_a04687a3dcf94adb88dbe6441f5b922b_medium.jpg" alt="" class="product-img product-show">
-                    <img src="https://product.hstatic.net/200000321771/product/2p6a5737_b3213b065504466c8d9aa9da19795954_grande.jpg" alt="" class="product-img product-img-hover">
-                </div>
-                <div class="product-info">
-                    <div class="product-title">
-                        HOMO Tee In White  HOMO Tee In White  HOMO Tee In White  HOMO Tee In White
-                    </div>
-                    <div class="product-price">
-                        380,000₫
-                    </div>
-                </div>
-            </div>
-            <div class="grid__col-3 product-item">
-                <div class="product">
-                    <img src="https://product.hstatic.net/200000321771/product/271739691_894884961076838_8135394162538589269_n_e814b41a580a4cb6b3d8e1963e0ef8db_medium.jpg" alt="" class="product-img product-show">
-                    <img src="https://product.hstatic.net/200000321771/product/271541735_634953457746867_7566922806359762025_n_bbabb788919c43d193a79576e58f739d_grande.jpg" alt="" class="product-img product-img-hover">
-                </div>
-                <div class="product-info">
-                    <div class="product-title">
-                        HOMO Tee In White  HOMO Tee In White  HOMO Tee In White  HOMO Tee In White
-                    </div>
-                    <div class="product-price">
-                        380,000₫
-                    </div>
-                </div>
-            </div>
 
-            <div class="grid__col-3 product-item">
-                <div class="product">
-                    <img src="https://product.hstatic.net/200000321771/product/271456888_233558595622847_148706376794218123_n_2a0da6a29d844c469d1f96a0c83a8f5b_master.jpg" alt="" class="product-img product-show">
-                    <img src="https://product.hstatic.net/200000321771/product/269670583_714518126161762_1892768403296979016_n_82173cd522a24355a3f483c3c06c0ce7_grande.jpg" alt="" class="product-img product-img-hover">
-                </div>
-                <div class="product-info">
-                    <div class="product-title">
-                        HOMO Tee In White  HOMO Tee In White  HOMO Tee In White  HOMO Tee In White
-                    </div>
-                    <div class="product-price">
-                        380,000₫
-                    </div>
-                </div>
-            </div>
 
-            <div class="grid__col-3 product-item">
-                <div class="product">
-                    <img src="https://product.hstatic.net/200000321771/product/2p6a9859_0b69d118a40b4207bfa4e22bc19454c6_master.jpg" alt="" class="product-img product-show">
-                    <img src="https://product.hstatic.net/200000321771/product/2p6a9860_c9fa74ab45404986abcb4b7942ebf7bf_grande.jpg" alt="" class="product-img product-img-hover">
-                </div>
-                <div class="product-info">
-                    <div class="product-title">
-                        HOMO Tee In White
+
+            @foreach (var item in Model)
+            {
+                cbot++;
+                if (cbot > 7)
+                {
+                    <div class="grid__col-3">
+                        <div class="product">
+                            <h1 style="display:none" id="idProduct">@item.idProduct</h1>
+                            <img src="@item.ImageProducts.First().URLImage"
+                                 alt=""
+                                 class="product-img product-show" />
+                            <img src="@item.ImageProducts.Last().URLImage"
+                                 alt=""
+                                 class="product-img product-img-hover" />
+                        </div>
+                        <div class="product-info">
+                            <div class="product-title">
+                                @item.nameProduct
+                            </div>
+                            <div class="product-price">@item.price,000₫</div>
+                        </div>
                     </div>
-                    <div class="product-price">
-                        380,000₫
-                    </div>
-                </div>
-            </div>
+                }
+
+
+                if (cbot == 15)
+                { break; }
+
+            }
 
         </div>
 
@@ -172,126 +95,38 @@
 </div>
 <!-- ----------Banner---------- -->
 <!-- Product -->
+
+
 <div class="products">
-    <div class="product-heading">JEANS COLLECTION 2022</div>
+    <div style="text-transform:uppercase" class="product-headingg">Sweater - Hoodie  2022</div>
     <div class="grid">
         <div class="grid__row">
-            <div class="grid__col-3 product-item">
-                <div class="product">
-                    <img src="~Images/jean1.webp" alt="" class="product-img product-show">
-                    <img src="./assets/images/jean1hv.webp" alt="" class="product-img product-img-hover">
-                </div>
-                <div class="product-info">
-                    <div class="product-title">
-                        HOMO Tee In White
+            @foreach (var item in Model)
+            {
+                ctop++;
+                <div class="grid__col-3">
+                    <div class="product">
+                        <h1 style="display:none" id="idProduct">@item.idProduct</h1>
+                        <img src="@item.ImageProducts.First().URLImage"
+                             alt=""
+                             class="product-img product-show" />
+                        <img src="@item.ImageProducts.Last().URLImage"
+                             alt=""
+                             class="product-img product-img-hover" />
                     </div>
-                    <div class="product-price">
-                        380,000₫
-                    </div>
-                </div>
-            </div>
-            <div class="grid__col-3 product-item">
-                <div class="product">
-                    <img src="./assets/images/j2.webp" alt="" class="product-img product-show">
-                    <img src="./assets/images/j2hv.webp" alt="" class="product-img product-img-hover">
-                </div>
-                <div class="product-info">
-                    <div class="product-title">
-                        HOMO Tee In White  HOMO Tee In White  HOMO Tee In White  HOMO Tee In White
-                    </div>
-                    <div class="product-price">
-                        380,000₫
+                    <div class="product-info">
+                        <div class="product-title">
+                            @item.nameProduct
+                        </div>
+                        <div class="product-price">@item.price,000₫</div>
                     </div>
                 </div>
-            </div>
-            <div class="grid__col-3 product-item">
-                <div class="product">
-                    <img src="./assets/images/j3.webp" alt="" class="product-img product-show">
-                    <img src="./assets/images/j3hv.webp" alt="" class="product-img product-img-hover">
-                </div>
-                <div class="product-info">
-                    <div class="product-title">
-                        HOMO Tee In White  HOMO Tee In White  HOMO Tee In White  HOMO Tee In White
-                    </div>
-                    <div class="product-price">
-                        380,000₫
-                    </div>
-                </div>
-            </div>
-            <div class="grid__col-3 product-item">
-                <div class="product">
-                    <img src="./assets/images/j4.webp" alt="" class="product-img product-show">
-                    <img src="./assets/images/j4hv.webp" alt="" class="product-img product-img-hover">
-                </div>
-                <div class="product-info">
-                    <div class="product-title">
-                        HOMO Tee In White  HOMO Tee In White  HOMO Tee In White  HOMO Tee In White
-                    </div>
-                    <div class="product-price">
-                        380,000₫
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="grid__row">
-            <div class="grid__col-3 product-item">
-                <div class="product">
-                    <img src="./assets/images/j5.webp" alt="" class="product-img product-show">
-                    <img src="./assets/images/j5hv.webp" alt="" class="product-img product-img-hover">
-                </div>
-                <div class="product-info">
-                    <div class="product-title">
-                        HOMO Tee In White  HOMO Tee In White  HOMO Tee In White  HOMO Tee In White
-                    </div>
-                    <div class="product-price">
-                        380,000₫
-                    </div>
-                </div>
-            </div>
-            <div class="grid__col-3 product-item">
-                <div class="product">
-                    <img src="./assets/images/j6.webp" alt="" class="product-img product-show">
-                    <img src="./assets/images/j6hv.webp" alt="" class="product-img product-img-hover">
-                </div>
-                <div class="product-info">
-                    <div class="product-title">
-                        HOMO Tee In White  HOMO Tee In White  HOMO Tee In White  HOMO Tee In White
-                    </div>
-                    <div class="product-price">
-                        380,000₫
-                    </div>
-                </div>
-            </div>
 
-            <div class="grid__col-3 product-item">
-                <div class="product">
-                    <img src="./assets/images/j7.jpg" alt="" class="product-img product-show">
-                    <img src="./assets/images/j7hv.jpg" alt="" class="product-img product-img-hover">
-                </div>
-                <div class="product-info">
-                    <div class="product-title">
-                        HOMO Tee In White  HOMO Tee In White  HOMO Tee In White  HOMO Tee In White
-                    </div>
-                    <div class="product-price">
-                        380,000₫
-                    </div>
-                </div>
-            </div>
-
-            <div class="grid__col-3 product-item">
-                <div class="product">
-                    <img src="./assets/images/j8.webp" alt="" class="product-img product-show">
-                    <img src="./assets/images/j8hv.jpg" alt="" class="product-img product-img-hover">
-                </div>
-                <div class="product-info">
-                    <div class="product-title">
-                        HOMO Tee In White
-                    </div>
-                    <div class="product-price">
-                        380,000₫
-                    </div>
-                </div>
-            </div>
+                if (ctop == 8)
+                {
+                    break;
+                }
+            }
 
         </div>
 
@@ -299,4 +134,6 @@
 </div>
 <!-- Product -->
 @Scripts.Render("~/bundles/product")
+
+
 

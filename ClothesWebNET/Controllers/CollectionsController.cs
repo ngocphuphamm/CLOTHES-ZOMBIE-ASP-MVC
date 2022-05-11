@@ -45,18 +45,12 @@ namespace ClothesWebNET.Controllers
 
         }
 
-       
-
-
-
+      
       
         // collections/ao
         public ActionResult ao(string id)
         {
-            id = "T01";
-
-
-         
+            id = "T02";
             var productList = (from s in db.Products
                                where s.idType == id
                                select s);
@@ -64,7 +58,7 @@ namespace ClothesWebNET.Controllers
             var query = productList.Include(p => p.ImageProducts);
             ViewBag.list = query.ToList();
             return View(query.ToList());
-        
+
 
         }
 

@@ -93,77 +93,7 @@
                                         </button>
                                     </div>
 
-                                    <!-- search results -->
-                                    <!--<div class="search-result">-->
-                                    <!-- item  -->
-                                    <!--<a href="" class="result-link">
-                                        <div class="search-result-item">
-                                            <div class="result-item-info">
-                                                <p class="item-info-name">
-                                                    ZOMBIE® Sweater In DarkRed
-                                                </p>
-                                                <p class="item-info-price">350,000₫</p>
-                                            </div>
-                                            <img src="https://product.hstatic.net/200000321771/product/271456888_233558595622847_148706376794218123_n_2a0da6a29d844c469d1f96a0c83a8f5b_compact.jpg"
-                                                 class="result-item-img" />
-                                        </div>
-                                    </a>-->
-                                    <!-- item  -->
-                                    <!--<a href="" class="result-link">
-                                        <div class="search-result-item">
-                                            <div class="result-item-info">
-                                                <p class="item-info-name">
-                                                    ZOMBIE® Sweater In DarkRed
-                                                </p>
-                                                <p class="item-info-price">350,000₫</p>
-                                            </div>
-                                            <img src="https://product.hstatic.net/200000321771/product/271456888_233558595622847_148706376794218123_n_2a0da6a29d844c469d1f96a0c83a8f5b_compact.jpg"
-                                                 class="result-item-img" />
-                                        </div>
-                                    </a>-->
-                                    <!-- item  -->
-                                    <!--<a href="" class="result-link">
-                                        <div class="search-result-item">
-                                            <div class="result-item-info">
-                                                <p class="item-info-name">
-                                                    ZOMBIE® Sweater In DarkRed
-                                                </p>
-                                                <p class="item-info-price">350,000₫</p>
-                                            </div>
-                                            <img src="https://product.hstatic.net/200000321771/product/271456888_233558595622847_148706376794218123_n_2a0da6a29d844c469d1f96a0c83a8f5b_compact.jpg"
-                                                 class="result-item-img" />
-                                        </div>
-                                    </a>-->
-                                    <!-- item  -->
-                                    <!--<a href="" class="result-link">
-                                        <div class="search-result-item">
-                                            <div class="result-item-info">
-                                                <p class="item-info-name">
-                                                    ZOMBIE® Sweater In DarkRed
-                                                </p>
-                                                <p class="item-info-price">350,000₫</p>
-                                            </div>
-                                            <img src="https://product.hstatic.net/200000321771/product/271456888_233558595622847_148706376794218123_n_2a0da6a29d844c469d1f96a0c83a8f5b_compact.jpg"
-                                                 class="result-item-img" />
-                                        </div>
-                                    </a>-->
-                                    <!-- item  -->
-                                    <!--<a href="" class="result-link">
-                                        <div class="search-result-item">
-                                            <div class="result-item-info">
-                                                <p class="item-info-name">
-                                                    ZOMBIE® Sweater In DarkRed
-                                                </p>
-                                                <p class="item-info-price">350,000₫</p>
-                                            </div>
-                                            <img src="https://product.hstatic.net/200000321771/product/271456888_233558595622847_148706376794218123_n_2a0da6a29d844c469d1f96a0c83a8f5b_compact.jpg"
-                                                 class="result-item-img" />
-                                        </div>
-                                    </a>-->
-                                    <!-- Xem thêm  -->
-                                    <!--<a href="" class="see-more">Xem thêm 40 sản phẩm</a>
-                                    </div>-->
-                                    <!-- search results -->
+                       
                                 </div>
                                 <!-- Search box -->
 
@@ -171,178 +101,160 @@
                             <!-- search -->
                             <!-- Login -->
                             <li class="header-top-action-item item-icon-user">
-                                <span href="" class="header-top-link">
-                                    <i class="bx bxs-user-circle"></i>
-                                </span>
 
-                                <!-- form login -->
-                                <form class="form-login" action="">
-                                    <div class="header-top-login-box header-top-modal">
+                                @if (Session["USER_SESSION"] != null)
+                                {
+                                    <span class="header-top-link">
+                                       <i class="bx bx-user-check"></i>
+                                    </span>
+                                    <!-- đã đăng nhập -->
+                                    <div class="header-top-modal header-logged ">
                                         <span class="box-triangle">
                                             <svg viewBox="0 0 20 9" role="presentation">
                                                 <path d="M.47108938 9c.2694725-.26871321.57077721-.56867841.90388257-.89986354C3.12384116 6.36134886 5.74788116 3.76338565 9.2467995.30653888c.4145057-.4095171 1.0844277-.40860098 1.4977971.00205122L19.4935156 9H.47108938z"
                                                       fill="#ffffff"></path>
                                             </svg>
                                         </span>
-                                        <p class="heading">đăng nhập tài khoản</p>
-                                        <div class="heading-login-with">Nhập email và mật khẩu của bạn</div>
-                                        <div class="header-box login-box">
-                                            <div class="form-control err ">
-                                                <input type="text" id="email" placeholder="Email" class="modal-form-input">
-                                                <small></small>
-                                            </div>
-                                            <div class="form-control err">
-                                                <input type="text" id="password" placeholder="Password" class="modal-form-input">
-                                                <small></small>
-                                            </div>
+                                        <p class="heading">tài khoản</p>
+                                        <div class="heading-login-with"></div>
+                                        <div class="info-box">
+                                            <p class="info-name">@Request.Cookies["fullname"].Value</p>
+                                            <p class="info-detail">Tài khoản của tôi</p>
 
-                                            <div class="recapcha">
-                                                This site is protected by reCAPTCHA and the Google <a class="recapcha-link" href="">Privacy Policy</a> and <a class="recapcha-link" href="">Terms of Service</a> apply.
-                                            </div>
-                                            <button type="submit" class="button-login button-hover">ĐĂNG NHẬP</button>
-                                            <div class="modal-help">Khách hàng mới? <div style="display: inline; cursor: pointer;" id="modal-register" class="modal-link">Tạo tài khoản</div></div>
-                                            <div class="modal-help">Quên mật khẩu? <div style="display: inline; cursor: pointer;" id="modal-reset-password" class="modal-link ">Khôi phục mật khẩu</div></div>
+                                            <p class="info-logout"><a href="/login/SignOut">Đăng xuất</a></p>
 
                                         </div>
-                                    </div>
-                                </form>
 
-                                <!-- form login -->
-                                <!-- form reset password -->
-                                <div class=" header-top-modal reset-password-box ">
-                                    <span class="box-triangle">
-                                        <svg viewBox="0 0 20 9" role="presentation">
-                                            <path d="M.47108938 9c.2694725-.26871321.57077721-.56867841.90388257-.89986354C3.12384116 6.36134886 5.74788116 3.76338565 9.2467995.30653888c.4145057-.4095171 1.0844277-.40860098 1.4977971.00205122L19.4935156 9H.47108938z"
-                                                  fill="#ffffff"></path>
-                                        </svg>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <span class="header-top-link">
+                                        <a style="color: #050505" href="/login"><i class="bx bxs-user-circle"></i></a>
                                     </span>
-                                    <p class="heading">khôi phục mật khẩu</p>
-                                    <div class="heading-login-with">Nhập email của bạn</div>
-                                    <div class="header-box login-box">
-                                        <input type="text" placeholder="Email" class="modal-form-input">
-
-                                        <div class="recapcha">
-                                            This site is protected by reCAPTCHA and the Google <a class="recapcha-link" href="">Privacy Policy</a> and <a class="recapcha-link" href="">Terms of Service</a> apply.
-                                        </div>
-                                        <button type="button" class="button-login button-hover">KHÔI PHỤC MẬT KHẨU</button>
-                                        <div class="modal-help">Bạn đã nhớ mật khẩu? <div style="display: inline; cursor: pointer;" id="modal-back-login" class="modal-link">Quay về đăng nhập</div></div>
+                                }
 
 
-                                    </div>
-                                </div>
-                                <!-- form reset password -->
+
+
+
+
+
+
+
                             </li>
                             <!-- Login -->
-                            <!-- giỏ hàng -->
-                            <li class="header-top-action-item item-icon-cart">
-                                <span href="" class="header-top-link">
-                                    <i class="bx bx-cart"></i>
-                                </span>
-                                <div class="header-top-cart-box header-top-modal  ">
-                                    <span class="box-triangle">
-                                        <svg viewBox="0 0 20 9" role="presentation">
-                                            <path d="M.47108938 9c.2694725-.26871321.57077721-.56867841.90388257-.89986354C3.12384116 6.36134886 5.74788116 3.76338565 9.2467995.30653888c.4145057-.4095171 1.0844277-.40860098 1.4977971.00205122L19.4935156 9H.47108938z"
-                                                  fill="#ffffff"></path>
-                                        </svg>
-                                    </span>
-                                    <div class="box-heading">giỏ hàng</div>
-                                    <!-- giỏ hàng trống -->
-                                    <!-- <div class="box-cart-empty">
-                                      <svg width="81" height="70" viewBox="0 0 81 70"><g transform="translate(0 2)" stroke-width="4" stroke="#1e2d7d" fill="none" fill-rule="evenodd"><circle stroke-linecap="square" cx="34" cy="60" r="6"></circle><circle stroke-linecap="square" cx="67" cy="60" r="6"></circle><path d="M22.9360352 15h54.8070373l-4.3391876 30H30.3387146L19.6676025 0H.99560547"></path></g></svg>
-                                     <div>Giỏ hàng của bạn đang trống</div>
-                                    </div> -->
-                                    <div class="box-item-cart">
-                                        <div class="item-cart-product">
-                                            <img src="./assets/images/dt1.webp" class="item-cart-product-img">
-                                            <div class="item-cart-info">
-                                                <div class="cart-info-item">
-                                                    <p class="info-item-title">HOMO TEE IN WHITE</p>
-                                                    <div class="info-item-delete">X</div>
-                                                </div>
-                                                <div class="cart-info-size">XL</div>
-                                                <div class="cart-info-item">
-                                                    <div class="info-item-amount">1</div>
-                                                    <div class="info-item-pice">380,000₫</div>
-                                                </div>
-                                            </div>
+                         
+                    <!-- Login -->
+                    <!-- giỏ hàng -->
+                    <li class="header-top-action-item item-icon-cart">
+                        <span href="" class="header-top-link">
+                            <i class="bx bx-cart"></i>
+                        </span>
+                        <div class="header-top-cart-box header-top-modal  ">
+                            <span class="box-triangle">
+                                <svg viewBox="0 0 20 9" role="presentation">
+                                    <path d="M.47108938 9c.2694725-.26871321.57077721-.56867841.90388257-.89986354C3.12384116 6.36134886 5.74788116 3.76338565 9.2467995.30653888c.4145057-.4095171 1.0844277-.40860098 1.4977971.00205122L19.4935156 9H.47108938z"
+                                          fill="#ffffff"></path>
+                                </svg>
+                            </span>
+                            <div class="box-heading">giỏ hàng</div>
+                            <!-- giỏ hàng trống -->
+                            <!-- <div class="box-cart-empty">
+              <svg width="81" height="70" viewBox="0 0 81 70"><g transform="translate(0 2)" stroke-width="4" stroke="#1e2d7d" fill="none" fill-rule="evenodd"><circle stroke-linecap="square" cx="34" cy="60" r="6"></circle><circle stroke-linecap="square" cx="67" cy="60" r="6"></circle><path d="M22.9360352 15h54.8070373l-4.3391876 30H30.3387146L19.6676025 0H.99560547"></path></g></svg>
+             <div>Giỏ hàng của bạn đang trống</div>
+            </div> -->
+                            <div class="box-item-cart">
+                                <div class="item-cart-product">
+                                    <img src="./assets/images/dt1.webp" class="item-cart-product-img">
+                                    <div class="item-cart-info">
+                                        <div class="cart-info-item">
+                                            <p class="info-item-title">HOMO TEE IN WHITE</p>
+                                            <div class="info-item-delete">X</div>
                                         </div>
-                                        <div class="item-cart-product">
-                                            <img src="./assets/images/dt1.webp" class="item-cart-product-img">
-                                            <div class="item-cart-info">
-                                                <div class="cart-info-item">
-                                                    <p class="info-item-title">HOMO TEE IN WHITE</p>
-                                                    <div class="info-item-delete">X</div>
-                                                </div>
-                                                <div class="cart-info-size">XL</div>
-                                                <div class="cart-info-item">
-                                                    <div class="info-item-amount">1</div>
-                                                    <div class="info-item-pice">380,000₫</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="item-cart-product">
-                                            <img src="./assets/images/dt1.webp" class="item-cart-product-img">
-                                            <div class="item-cart-info">
-                                                <div class="cart-info-item">
-                                                    <p class="info-item-title">HOMO TEE IN WHITE</p>
-                                                    <div class="info-item-delete">X</div>
-                                                </div>
-                                                <div class="cart-info-size">XL</div>
-                                                <div class="cart-info-item">
-                                                    <div class="info-item-amount">1</div>
-                                                    <div class="info-item-pice">380,000₫</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="item-cart-product">
-                                            <img src="./assets/images/dt1.webp" class="item-cart-product-img">
-                                            <div class="item-cart-info">
-                                                <div class="cart-info-item">
-                                                    <p class="info-item-title">HOMO TEE IN WHITE</p>
-                                                    <div class="info-item-delete">X</div>
-                                                </div>
-                                                <div class="cart-info-size">XL</div>
-                                                <div class="cart-info-item">
-                                                    <div class="info-item-amount">1</div>
-                                                    <div class="info-item-pice">380,000₫</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="item-cart-product">
-                                            <img src="./assets/images/dt1.webp" class="item-cart-product-img">
-                                            <div class="item-cart-info">
-                                                <div class="cart-info-item">
-                                                    <p class="info-item-title">HOMO TEE IN WHITE</p>
-                                                    <div class="info-item-delete">X</div>
-                                                </div>
-                                                <div class="cart-info-size">XL</div>
-                                                <div class="cart-info-item">
-                                                    <div class="info-item-amount">1</div>
-                                                    <div class="info-item-pice">380,000₫</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="box-payment">
-                                        <div class="box-payment-item">
-                                            <div class="payment-text payment-item-top">tổng tiền:</div>
-                                            <div class="payment-total payment-item-top">2,260,000₫</div>
-                                        </div>
-                                        <div class="box-payment-item">
-                                            <button type="button" class="button-hover box-view-cart box-payment-button">xem giỏ hàng</button>
-                                            <button type="button" class="button-hover box-make-payment  box-payment-button">thanh toán</button>
-
+                                        <div class="cart-info-size">XL</div>
+                                        <div class="cart-info-item">
+                                            <div class="info-item-amount">1</div>
+                                            <div class="info-item-pice">380,000₫</div>
                                         </div>
                                     </div>
                                 </div>
-                            </li>
+                                <div class="item-cart-product">
+                                    <img src="./assets/images/dt1.webp" class="item-cart-product-img">
+                                    <div class="item-cart-info">
+                                        <div class="cart-info-item">
+                                            <p class="info-item-title">HOMO TEE IN WHITE</p>
+                                            <div class="info-item-delete">X</div>
+                                        </div>
+                                        <div class="cart-info-size">XL</div>
+                                        <div class="cart-info-item">
+                                            <div class="info-item-amount">1</div>
+                                            <div class="info-item-pice">380,000₫</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="item-cart-product">
+                                    <img src="./assets/images/dt1.webp" class="item-cart-product-img">
+                                    <div class="item-cart-info">
+                                        <div class="cart-info-item">
+                                            <p class="info-item-title">HOMO TEE IN WHITE</p>
+                                            <div class="info-item-delete">X</div>
+                                        </div>
+                                        <div class="cart-info-size">XL</div>
+                                        <div class="cart-info-item">
+                                            <div class="info-item-amount">1</div>
+                                            <div class="info-item-pice">380,000₫</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="item-cart-product">
+                                    <img src="./assets/images/dt1.webp" class="item-cart-product-img">
+                                    <div class="item-cart-info">
+                                        <div class="cart-info-item">
+                                            <p class="info-item-title">HOMO TEE IN WHITE</p>
+                                            <div class="info-item-delete">X</div>
+                                        </div>
+                                        <div class="cart-info-size">XL</div>
+                                        <div class="cart-info-item">
+                                            <div class="info-item-amount">1</div>
+                                            <div class="info-item-pice">380,000₫</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="item-cart-product">
+                                    <img src="./assets/images/dt1.webp" class="item-cart-product-img">
+                                    <div class="item-cart-info">
+                                        <div class="cart-info-item">
+                                            <p class="info-item-title">HOMO TEE IN WHITE</p>
+                                            <div class="info-item-delete">X</div>
+                                        </div>
+                                        <div class="cart-info-size">XL</div>
+                                        <div class="cart-info-item">
+                                            <div class="info-item-amount">1</div>
+                                            <div class="info-item-pice">380,000₫</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="box-payment">
+                                <div class="box-payment-item">
+                                    <div class="payment-text payment-item-top">tổng tiền:</div>
+                                    <div class="payment-total payment-item-top">2,260,000₫</div>
+                                </div>
+                                <div class="box-payment-item">
+                                    <button type="button" class="button-hover box-view-cart box-payment-button">xem giỏ hàng</button>
+                                    <button type="button" class="button-hover box-make-payment  box-payment-button">thanh toán</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </li>
 
 
-                            <!-- giỏ hàng -->
+                    <!-- giỏ hàng -->
+                    </ul>
 
-                        </ul>
-
-                    </div>
+                </div>
 
                 </div>
             </div>
@@ -465,7 +377,16 @@
         <footer class="footer">
             <div class="footer-top">
                 <div class="grid">
-                    <div class="footer-news"><i class='footer-top-icon bx bx-mail-send'></i>Đăng kí nhận tin</div>
+
+                  
+
+                        <div class="footer-news"><i class='footer-top-icon bx bx-mail-send'></i>Đăng ký nhận tin</div>
+                    
+
+
+
+
+
 
                     <div class="footer-form-news">
                         <input type="text" placeholder="Nhập email của bạn" class="send-mail">

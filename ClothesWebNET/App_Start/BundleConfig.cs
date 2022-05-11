@@ -87,6 +87,7 @@ namespace ClothesWebNET
             bundles.Add(new ScriptBundle("~/bundles/admin/jquery").Include("~/Scripts/admin/jquery.min.js"));
             bundles.Add(new ScriptBundle("~/bundles/admin/main").Include("~/Scripts/admin/main.js"));
             bundles.Add(new ScriptBundle("~/bundles/admin/popper").Include("~/Scripts/admin/popper.js"));
+            bundles.Add(new ScriptBundle("~/bundles/admin/header").Include("~/Scripts/admin/header.js"));
 
 
             bundles.Add(new ScriptBundle("~/bundles/poppermin", "https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"));

@@ -5,88 +5,117 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Create</h2>
+<div id="content" class="">
 
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Product</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.nameProduct, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.nameProduct, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.nameProduct, "", new { @class = "text-danger" })
-            </div>
-        </div>
+    <div class="content-main p-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">Sản phẩm</li>
+                <li class="breadcrumb-item active" aria-current="page">
+                    Thêm sản phẩm
+                </li>
+            </ol>
+        </nav>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.idProduct, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.idProduct, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.idProduct, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        <div class="cus-form-add">
+            <form method="post" action="/Admin/Products/create" class="row g-3">
+                @Html.AntiForgeryToken()
+                <!-- ID -->
+                <div class="col-md-12">
+                    <label for="validationDefault01" class="form-label">ID</label>
+                    <input type="text"
+                           name="idProduct"
+                           class="form-control"
+                           id="validationDefault01"
+                           required />
+                </div>
+                <!-- nameProduct -->
+                <div class="col-md-12">
+                    <label for="validationDefault01" class="form-label">Tên sản phẩm</label>
+                    <input type="text"
+                           name="nameProduct"
+                           class="form-control"
+                           id="validationDefault01"
+                           required />
+                </div>
+                <!-- type -->
+                <div class="col-md-12">
+                    <label for="validationDefault04" class="form-label">Danh mục</label>
+                    <select class="form-select" name="idType" id="validationDefault04" required>
+                        <option selected disabled value="">Chọn</option>
+                        <option>T01</option>
+                        <option>T02</option>
+                        <option>T03</option>
+                        <option>T04</option>
+                        <option>T05</option>
+                        <option>T06</option>
+                        <option>T07</option>
+                        <option>T08</option>
+                        <option>T09</option>
+                        <option>T10</option>
+                        <option>T11</option>
+                        <option>T12</option>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.sizeM, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.sizeM, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.sizeM, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                    </select>
+                </div>
+                <!-- sizeM -->
+                <div class="col-md-4">
+                    <label for="validationDefault01" class="form-label">SizeM</label>
+                    <input type="number"
+                           name="sizeM"
+                           class="form-control"
+                           id="validationDefault01"
+                           required />
+                </div>
+                <!-- sizeL -->
+                <div class="col-md-4">
+                    <label for="validationDefault01" class="form-label">SizeL</label>
+                    <input type="number"
+                           name="sizeL"
+                           class="form-control"
+                           id="validationDefault01"
+                           required />
+                </div>
+                <!-- sizeXl -->
+                <div class="col-md-4">
+                    <label for="validationDefault01" class="form-label">SizeXL</label>
+                    <input type="number"
+                           name="sizeXL"
+                           class="form-control"
+                           id="validationDefault01"
+                           required />
+                </div>
+                <!-- price -->
+                <div class="col-md-12">
+                    <label for="validationDefault01" class="form-label">Giá bán</label>
+                    <input type="number"
+                           name="price"
+                           class="form-control"
+                           id="validationDefault01"
+                           required />
+                </div>
+                <!-- description -->
+                <div class="col-md-12">
+                    <label for="validationDefault01" class="form-label">Mô tả</label>
+                    <textarea type="text"
+                              name="description"
+                              class="form-control"
+                              id="validationDefault01"
+                              required></textarea>
+                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.sizeL, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.sizeL, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.sizeL, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.sizeXL, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.sizeXL, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.sizeXL, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.price, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.price, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.price, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.description, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.description, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.idType, "idType", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("idType", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.idType, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
+                <div class="col-12">
+                    <button class="btn btn-primary" type="submit">Thêm</button>
+                </div>
+            </form>
         </div>
     </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
 </div>
+
+
+@Scripts.Render("~/bundles/admin/jquery")
+
+<script>
+    $('.sp ul').addClass('show');
+    $('.addsp').addClass('active');
+</script>

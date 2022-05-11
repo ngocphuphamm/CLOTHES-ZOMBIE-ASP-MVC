@@ -4,26 +4,12 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-@Styles.Render("~/Content/admin/index")
 
-<div id="content" class="pl-4">
-    <div class="content-top">
-        <div class="header-left">
-            <h4>Xin chào Nguyễn Duy Khang</h4>
-            <p>Bây giờ là: 11h38 - 29/05/2022</p>
-        </div>
-        <div class="header-right">
-            <div class="icon-user">
-                <img src="https://yt3.ggpht.com/yti/APfAmoE--aKM88dHvdB2-a8lKhM-2pJ4Zyg2t7YFM45RTw=s88-c-k-c0x00ffffff-no-rj-mo"
-                     alt="" />
-                <ul>
-                    <li>Thông tin</li>
-                    <li>Đăng xuất</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="content-main">
+
+
+<div id="content">
+    
+    <div class="content-main p-4">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">Trang chủ</li>
@@ -146,9 +132,9 @@
         </div>
     </div>
 </div>
+@Scripts.Render("~/bundles/admin/jquery")
 
 <script>
 
     $('.tq').addClass('active');
 </script>
-
