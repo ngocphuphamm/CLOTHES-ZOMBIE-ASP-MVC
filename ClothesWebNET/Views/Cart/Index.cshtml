@@ -1,11 +1,11 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 @Styles.Render("~/Content/main")
-@Styles.Render("~/Content/cart")
+@Styles.Render("~/Content/cart")  
 <div class="container">
     <div class="breadcrumb">
         <div class="grid">
@@ -17,117 +17,19 @@
         <div class="cart">
             <div class="cart-heading">
                 <h2>Giỏ hàng của bạn</h2>
-                <h3>Có <span class="count-cart">5 sản phẩm</span> trong giỏ hàng</h3>
+                <h3>Có <span class="count-cart" id="qty">5 </span>  sản phẩm trong giỏ hàng</h3>
             </div>
             <div class="product-cart">
-                <div class="cart-list-product">
-                    <div class="cart-product-item">
-                        <img src="https://product.hstatic.net/200000321771/product/2p6a5735_a04687a3dcf94adb88dbe6441f5b922b_medium.jpg" alt="" class="item-img">
-                        <div class="item-info">
-                            <div class="info-heading">
-                                <div class="heading-title">ZOMBIE® Sweater In DarkRed</div>
-                                <div class="heading-close">✖</div>
-                            </div>
-                            <div class="info-price">350,000₫</div>
-                            <div class="info-total">
-                                <div class="total-amount">
-                                    <button class="button-amount button-minus">-</button>
-                                    <input type="number" class="input-amout" readonly min="1" value="1" />
-                                    <button class="button-amount button-add">+</button>
-                                </div>
-                                <div class="total-money">
+                <div class="cart-list-product" id="renderBody">   </div>
 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="cart-product-item">
-                        <img src="https://product.hstatic.net/200000321771/product/2p6a5735_a04687a3dcf94adb88dbe6441f5b922b_medium.jpg" alt="" class="item-img">
-                        <div class="item-info">
-                            <div class="info-heading">
-                                <div class="heading-title">ZOMBIE® Sweater In DarkRed</div>
-                                <div class="heading-close">✖</div>
-                            </div>
-                            <div class="info-price">150,000₫</div>
-                            <div class="info-total">
-                                <div class="total-amount">
-                                    <button class="button-amount button-minus">-</button>
-                                    <input type="number" class="input-amout" readonly min="1" value="1" />
-                                    <button class="button-amount button-add">+</button>
-                                </div>
-                                <div class="total-money">
 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="cart-product-item">
-                        <img src="https://product.hstatic.net/200000321771/product/2p6a5735_a04687a3dcf94adb88dbe6441f5b922b_medium.jpg" alt="" class="item-img">
-                        <div class="item-info">
-                            <div class="info-heading">
-                                <div class="heading-title">ZOMBIE® Sweater In DarkRed</div>
-                                <div class="heading-close">✖</div>
-                            </div>
-                            <div class="info-price">550,000₫</div>
-                            <div class="info-total">
-                                <div class="total-amount">
-                                    <button class="button-amount button-minus">-</button>
-                                    <input type="number" class="input-amout" readonly min="1" value="1" />
-                                    <button class="button-amount button-add">+</button>
-                                </div>
-                                <div class="total-money">
 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="cart-product-item">
-                        <img src="https://product.hstatic.net/200000321771/product/2p6a5735_a04687a3dcf94adb88dbe6441f5b922b_medium.jpg" alt="" class="item-img">
-                        <div class="item-info">
-                            <div class="info-heading">
-                                <div class="heading-title">ZOMBIE® Sweater In DarkRed</div>
-                                <div class="heading-close">✖</div>
-                            </div>
-                            <div class="info-price">450,000₫</div>
-                            <div class="info-total">
-                                <div class="total-amount">
-                                    <button class="button-amount button-minus">-</button>
-                                    <input type="number" class="input-amout" readonly min="1" value="1" />
-                                    <button class="button-amount button-add">+</button>
-                                </div>
-                                <div class="total-money">
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="cart-product-item">
-                        <img src="https://product.hstatic.net/200000321771/product/2p6a5735_a04687a3dcf94adb88dbe6441f5b922b_medium.jpg" alt="" class="item-img">
-                        <div class="item-info">
-                            <div class="info-heading">
-                                <div class="heading-title">ZOMBIE® Sweater In DarkRed</div>
-                                <div class="heading-close">✖</div>
-                            </div>
-                            <div class="info-price">350,000₫</div>
-                            <div class="info-total">
-                                <div class="total-amount">
-                                    <button class="button-amount button-minus">-</button>
-                                    <input type="number" class="input-amout" readonly min="1" value="1" />
-                                    <button class="button-amount button-add">+</button>
-                                </div>
-                                <div class="total-money">
-                                    <!-- giá*số lương -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <div class="cart-info-product">
                     <div class="cart-info-title">
                         Thông tin đơn hàng
                     </div>
                     <div class="cart-info-total-money">
-                        <div class="info-total-title">Tổng tiền:</div>
+                        <div class="info-total-title" id="totalMoney">Tổng tiền:</div>
                         <div class="info-total-money"></div>
                     </div>
                     <p class="cart-info-note">
@@ -164,5 +66,103 @@
 
 @Scripts.Render("~/bundles/cart")
 @Scripts.Render("~/bundles/calculate")
+<script>
+    let listCart = JSON.parse(window.localStorage.getItem('cart'));
+    let totalMoney = document.getElementById('totalMoney');
+    let qty = document.getElementById('qty');
+    
+    function renderTable(dataList) {
+        $(document).ready(() => {
+            let str = ''
+            let total = 0
+            let count=0;
+            dataList.forEach((el, index) => {
+                count++
+            let intoMoney = Number(el['price']) * Number(el['amount'])
+            let bodyCart = `
+                     <div class="cart-product-item">
+                            <img src="${el['img']}" alt="" class="item-img">
+                            <div class="item-info">
+                                <div class="info-heading">
+                                    <div class="heading-title">${el['title']}</div>
+                                    <div class="heading-close" onclick="remove('${el['title']}','${el['size']}',event)">✖</div>
+                                </div>
+                                <div class="info-price">${el['price']},000 VND</div>
+                                <div class="info-price">${el['size']}</div>
+                                <div class="info-total">
+                                    <div class="total-amount">
+                                        <button class="button-amount button-minus" onclick="clickMinus('${el['title']}','${el['size']}',event)"/>-</button>
+                                        <input type="number" class="input-amout" readonly min="1" value="${el['amount']}" />
+                                        <button class="button-amount button-add" onclick="clickAdd('${el['title']}','${el['size']}',event)">+</button>
+                                    </div>
+                                    <div class="total-money">
+                                    ${intoMoney.toLocaleString()},000 VND
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+            `
+              total += intoMoney
+              str += bodyCart
+            })
+            console.log(count)
+            qty.innerHTML = count
+            totalMoney.innerHTML = total.toLocaleString() + ",000 VND";
+            $('#renderBody').html(str)
+        })
+    }
 
+
+    renderTable(listCart);
+    function clickMinus(title,size, e) {
+       let cart = JSON.parse(window.localStorage.getItem('cart'));
+        cart.forEach((el)=>{
+            if(el['title']===title && el['size'] === size)
+            {
+                if (el['amount'] > 1) {
+                    el['amount'] -= 1;
+                }
+                else {
+                    alert("Số lượng giảm trên 1")
+                }
+        
+            }
+        })
+        window.localStorage.setItem('cart', JSON.stringify(cart));
+        let total = 0
+        listCart.forEach((el) => {
+            let intoMoney = Number(el['price']) * Number(el['amount'])
+            total += intoMoney
+        })
+        totalMoney.innerHTML = total.toLocaleString() + ",000 VND";
+       renderTable(cart);
+    }
+    function clickAdd(title, size, e) {
+        let cart = JSON.parse(window.localStorage.getItem('cart'));
+        cart.forEach((el) => {
+            if (el['title'] === title && el['size'] === size) {
+             
+                    el['amount'] += 1;
+             
+
+            }
+        })
+        window.localStorage.setItem('cart', JSON.stringify(cart));
+
+        renderTable(cart);
+    }
+    function remove(title, size, e) {
+        let cart = JSON.parse(window.localStorage.getItem('cart'));
+        const cartNew = cart.filter((el) => {
+
+            return el['title'] !== title
+        })
+        cartNew.filter((el) => {
+            return el['size'] !== size
+        })
+       window.localStorage.setItem('cart', JSON.stringify(cartNew));
+
+        renderTable(cartNew);
+    }
+</script>
 
