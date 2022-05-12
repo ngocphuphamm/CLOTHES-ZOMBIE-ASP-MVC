@@ -3,10 +3,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Sidebar 02</title>
+
     <meta charset="utf-8" />
     <meta name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="shortcut icon"
+          href="https://file.hstatic.net/200000321771/file/aaa_e9159f8bafd648bfa39e1436fdbacb9d.png"
+          type="image/png" />
+    <title>ADMIN – ZOMBIE® OFFICIAL STORE</title>
 
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900"
           rel="stylesheet" />
@@ -21,7 +25,7 @@
     <link rel="stylesheet"
           href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css" />
 
-
+    @Styles.Render("~/Content/admin/index")
 
     @Styles.Render("~/Content/admin/style.css")
 
@@ -41,7 +45,7 @@
                 <div class="pl-4 pr-4">
                     <ul class="list-unstyled components mb-5">
                         <li class="tq">
-                            <a href="/" class="">Tổng quan</a>
+                            <a href="/Admin/Dashboard/Index" class="">Tổng quan</a>
                         </li>
                         <li class="sp">
                             <a href="#SanPhamMenu"
@@ -50,32 +54,22 @@
                                class="dropdown-toggle">Sản phẩm</a>
                             <ul class="collapse list-unstyled" id="SanPhamMenu">
                                 <li class="allsp">
-                                    <a href="/">Tất cả sản phẩm</a>
+                                    <a href="/Admin/Products/Index">Tất cả sản phẩm</a>
                                 </li>
                                 <li class="addsp">
-                                    <a href="#">Thêm sản phẩm</a>
+                                    <a href="/Admin/Products/create">Thêm sản phẩm</a>
                                 </li>
                             </ul>
                         </li>
                         <li class="d-bill">
-                            <a href="/">Đơn hàng</a>
+                            <a href="/Admin/Bills">Đơn hàng</a>
                         </li>
-                        <li>
-                            <a href="#DonHangMenu"
-                               data-toggle="collapse"
-                               aria-expanded="false"
-                               class="dropdown-toggle">Thống kê</a>
-                            <ul class="collapse list-unstyled" id="DonHangMenu">
-                                <li>
-                                    <a href="#">Hóa đơn</a>
-                                </li>
-                                <li>
-                                    <a href="#">Top sản phẩm bán chạy</a>
-                                </li>
-                            </ul>
-                        </li>
+
                         <li class="d-customer">
                             <a href="/">Khách hàng</a>
+                        </li>
+                        <li class="d-xs">
+                            <a href="/home">Xem cửa hàng</a>
                         </li>
                     </ul>
                 </div>
@@ -83,9 +77,51 @@
         </nav>
 
         <!-- Page Content  -->
-        @RenderBody()
-
     </div>
+    <div class="content-top">
+        <div class="header-left">
+            <h4 class="hello-user">
+                <span> QUẢN LÝ BÁN HÀNG</span>
+            </h4>
+
+            <div class="real-time">
+                <div id="MyClockDisplay" class="clock" onload="showTime()"></div>
+                <div id="today">29/05/2022</div>
+            </div>
+        </div>
+        <div class="header-right">
+            <div class="icon-user">
+                <img src="https://colorlib.com/polygon/cooladmin/images/icon/avatar-01.jpg"
+                     alt="" />
+                <div class="icon-user-fullname">@Request.Cookies["fullname"].Value</div>
+                <div class="icon-user-dropdown">
+                    <span class="box-triangle">
+                        <svg viewBox="0 0 20 9" role="presentation">
+                            <path d="M.47108938 9c.2694725-.26871321.57077721-.56867841.90388257-.89986354C3.12384116 6.36134886 5.74788116 3.76338565 9.2467995.30653888c.4145057-.4095171 1.0844277-.40860098 1.4977971.00205122L19.4935156 9H.47108938z"
+                                  fill="#ffffff"></path>
+                        </svg>
+                    </span>
+                    <div class="info-user">
+                        <img class="avt-user"
+                             src="https://colorlib.com/polygon/cooladmin/images/icon/avatar-01.jpg"
+                             alt="" />
+                        <div class="info-user-login">
+                            <div class="info-fullName">@Request.Cookies["fullname"].Value</div>
+                            <div class="info-email">@Request.Cookies["email"].Value</div>
+                        </div>
+                    </div>
+                    <div class="user-logout">
+                        <a href="/info"><i class="bx bxs-user"></i> Thông tin</a>
+                        <a href="/login/signout">
+                            <i class="bx bxs-log-out"></i> Đăng xuất
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    @RenderBody()
     @Scripts.Render("~/bundles/admin/jquery")
     @Scripts.Render("~/bundles/admin/popper")
     @Scripts.Render("~/bundles/admin/bstr")
@@ -97,8 +133,10 @@
             crossorigin="anonymous"></script>
 
     @Scripts.Render("~/bundles/admin/main")
+    @Scripts.Render("~/bundles/admin/header")
 
- 
+
+
     @RenderSection("scripts", required: false)
 </body>
 </html>
