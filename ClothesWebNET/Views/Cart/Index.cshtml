@@ -85,7 +85,7 @@
                             <div class="item-info">
                                 <div class="info-heading">
                                     <div class="heading-title">${el['title']}</div>
-                                    <div class="heading-close" onclick="remove('${el['title']}','${el['size']}',event)">✖</div>
+                                    <div class="heading-close" onclick="remove('${el['id']}',event)">✖</div>
                                 </div>
                                 <div class="info-price">${el['price']},000 VND</div>
                                 <div class="info-price">${el['size']}</div>
@@ -151,18 +151,17 @@
 
         renderTable(cart);
     }
-    function remove(title, size, e) {
+    function remove(id, e) {
         let cart = JSON.parse(window.localStorage.getItem('cart'));
+
+
         const cartNew = cart.filter((el) => {
 
-            return el['title'] !== title
-        })
-        cartNew.filter((el) => {
-            return el['size'] !== size
+            return el['id'] !== Number(id)
         })
        window.localStorage.setItem('cart', JSON.stringify(cartNew));
 
-        renderTable(cartNew);
+        renderTable(cartNew)
     }
 </script>
 
