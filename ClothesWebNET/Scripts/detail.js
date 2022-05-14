@@ -12,8 +12,10 @@ const removeAllSizeActive = (btnSizes) => {
 };
 
 for (let i = 0; i < btnSizes.length; i++) {
-  btnSizes[i].addEventListener("click", (e) => {
-    removeAllSizeActive(btnSizes);
+    btnSizes[i].addEventListener("click", (e) => {
+        document.querySelector(".input-amout").value = 1;
+      removeAllSizeActive(btnSizes);
+    
     btnSizes[i].classList.add("size-active");
   });
 }
@@ -26,6 +28,10 @@ const getSize = () => {
   });
   return selectSize;
 };
+
+
+
+let ttttMoney = document.querySelector('.payment-total');
 
 btnAddCart.addEventListener("click", (e) => {
 
@@ -73,13 +79,107 @@ btnAddCart.addEventListener("click", (e) => {
         listCart.push(data);
       }
       window.localStorage.setItem("cart", JSON.stringify(listCart));
-    }
-  } else alert("Bạn chưa chọn size");
+      }
+      let cartList = JSON.parse(window.localStorage.getItem('cart'));
+      renderIconCart(cartList)
+      ShowSucces();
+    
+
+    
+      
+  } else ShowErr("Bạn chưa chọn size")
 });
 
-//lấy giá trị từ localStorage với key=cart
-//let itemCart=value
-//itemCart.push(data);
-//push lại vào localStorage;
 
-//[{},{},{}]
+
+function renderIconCart(dataList) {
+    $(document).ready(() => {
+        let str = ''
+        let total = 0
+        let count = 0;
+
+        dataList.forEach((el, index) => {
+            count++;
+            let intoMoney = Number(el['price']) * Number(el['amount'])
+            let bodyCart = `
+                          <div class="item-cart-product">
+                                        <img src="${el['img']}" class="item-cart-product-img">
+                                        <div class="item-cart-info">
+                                            <div class="cart-info-item">
+                                                <p class="info-item-title">${el['title']}</p>
+                                                <div class="info-item-delete">X</div>
+                                            </div>
+                                            <div class="cart-info-size">${el['size']}</div>
+                                            <div class="cart-info-item">
+                                                <div class="info-item-amount">${el['amount']}</div>
+                                                <div class="info-item-pice">${el['price']},000?</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                `
+            total += intoMoney
+            str += bodyCart
+        });
+
+        if (count > 0) {
+            ttttMoney.innerHTML = total.toLocaleString() + ",000 VND";
+            $('.box-item-cart').html(str)
+        }
+        else {
+            let emp = `<div class="box-cart-empty">
+                  <svg width="81" height="70" viewBox="0 0 81 70"><g transform="translate(0 2)" stroke-width="4" stroke="#1e2d7d" fill="none" fill-rule="evenodd"><circle stroke-linecap="square" cx="34" cy="60" r="6"></circle><circle stroke-linecap="square" cx="67" cy="60" r="6"></circle><path d="M22.9360352 15h54.8070373l-4.3391876 30H30.3387146L19.6676025 0H.99560547"></path></g></svg>
+                 <div>Giỏ hàng của bạn đang trống</div>
+                </div>`
+            $('.box-item-cart').addClass('box-cart-empty')
+            $('.box-item-cart').removeClass('box-item-cart')
+            $('.box-cart-empty').html(emp);
+        }
+
+
+    })
+}
+
+
+function ShowSucces() {
+    toastr["success"]("Thêm vào giỏ hàng thành công")
+
+    toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": false,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "1000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
+}
+
+function ShowErr(mess) {
+    toastr["error"](mess)
+
+    toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": false,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "2000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
+}

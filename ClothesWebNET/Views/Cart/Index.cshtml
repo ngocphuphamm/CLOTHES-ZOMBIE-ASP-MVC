@@ -5,22 +5,40 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 @Styles.Render("~/Content/main")
-@Styles.Render("~/Content/cart")  
+@Styles.Render("~/Content/cart")
+<style>
+    .empty-cart {
+        color: #050505;
+        font-family: Quicksand;
+        font-size: 20px;
+        line-height: 21px;
+        margin: 30px 0px;
+    }
+    .heading-close{
+        cursor:pointer;
+    }
+        .heading-close:hover {
+            color: #fc700b;
+        }
+</style>
 <div class="container">
     <div class="breadcrumb">
         <div class="grid">
-            <a href="./index.html">Trang chủ / </a>
-            <a class="br-main" href="./cart.html">Giỏ hàng </a>
+            <a href="/">Trang chủ / </a>
+            <a class="br-main" href="/cart">Giỏ hàng </a>
         </div>
     </div>
     <div class="grid">
         <div class="cart">
             <div class="cart-heading">
                 <h2>Giỏ hàng của bạn</h2>
-                <h3>Có <span class="count-cart" id="qty">5 </span>  sản phẩm trong giỏ hàng</h3>
+                <h3>Có <span class="count-cart" id="qty">0 </span>  sản phẩm trong giỏ hàng</h3>
             </div>
             <div class="product-cart">
-                <div class="cart-list-product" id="renderBody">   </div>
+                <div class="cart-list-product" id="renderBody">
+
+
+                </div>
 
 
 
@@ -29,15 +47,15 @@
                         Thông tin đơn hàng
                     </div>
                     <div class="cart-info-total-money">
-                        <div class="info-total-title" id="totalMoney">Tổng tiền:</div>
-                        <div class="info-total-money"></div>
+                        <div class="info-total-title" >Tổng tiền:</div>
+                        <div class="info-total-money" id="totalMoney"></div>
                     </div>
                     <p class="cart-info-note">
                         Phí vận chuyển sẽ được tính ở trang thanh toán.
                         Bạn cũng có thể nhập mã giảm giá ở trang thanh toán.
                     </p>
                     <button class="button-hover button-payment">THANH TOÁN</button>
-                    <p class="back-home"><a href="/product.html" class="link-back-home"><i class='bx bxs-chevron-left'></i> Tiếp tục mua hàng</a></p>
+                    <p class="back-home"><a href="/" class="link-back-home"><i class='bx bxs-chevron-left'></i> Tiếp tục mua hàng</a></p>
                 </div>
             </div>
             <div class="product-note">
@@ -64,28 +82,28 @@
 
 </div>
 
-@Scripts.Render("~/bundles/cart")
-@Scripts.Render("~/bundles/calculate")
 <script>
+
     let listCart = JSON.parse(window.localStorage.getItem('cart'));
     let totalMoney = document.getElementById('totalMoney');
     let qty = document.getElementById('qty');
-    
+    let tttMoney = document.querySelector('.payment-total');
+    //render cart
     function renderTable(dataList) {
         $(document).ready(() => {
             let str = ''
             let total = 0
-            let count=0;
+            let count = 0;
             dataList.forEach((el, index) => {
                 count++
-            let intoMoney = Number(el['price']) * Number(el['amount'])
-            let bodyCart = `
+                let intoMoney = Number(el['price']) * Number(el['amount'])
+                let bodyCart = `
                      <div class="cart-product-item">
                             <img src="${el['img']}" alt="" class="item-img">
                             <div class="item-info">
                                 <div class="info-heading">
                                     <div class="heading-title">${el['title']}</div>
-                                    <div class="heading-close" onclick="remove('${el['title']}','${el['size']}',event)">✖</div>
+                                    <div class="heading-close" onclick="remove('${el['title']}','${el['size']}',event)"><img src="//theme.hstatic.net/200000321771/1000699946/14/ic_close.png?v=305"></div>
                                 </div>
                                 <div class="info-price">${el['price']},000 VND</div>
                                 <div class="info-price">${el['size']}</div>
@@ -102,30 +120,88 @@
                             </div>
                         </div>
             `
-              total += intoMoney
-              str += bodyCart
+                total += intoMoney
+                str += bodyCart
             })
-            console.log(count)
+
             qty.innerHTML = count
-            totalMoney.innerHTML = total.toLocaleString() + ",000 VND";
-            $('#renderBody').html(str)
+            if (count > 0) {
+                totalMoney.innerHTML = total.toLocaleString() + ",000 VND";
+                $('#renderBody').html(str)
+            }
+            else {
+                totalMoney.innerHTML = "0 VND";
+                let emp = ` <div class="empty-cart">Chưa có sản phẩm nào trong giỏ hàng</div>`
+                $('#renderBody').html(emp);
+
+            }
+
+
+
+        })
+    }
+    renderTable(listCart);
+    //render icon cart
+    function renderIconCart(dataList) {
+        $(document).ready(() => {
+            let str = ''
+            let total = 0
+            let count = 0;
+
+            dataList.forEach((el, index) => {
+                count++;
+                let intoMoney = Number(el['price']) * Number(el['amount'])
+                let bodyCart = `
+                          <div class="item-cart-product">
+                                        <img src="${el['img']}" class="item-cart-product-img">
+                                        <div class="item-cart-info">
+                                            <div class="cart-info-item">
+                                                <p class="info-item-title">${el['title']}</p>
+                                                <div class="info-item-delete">X</div>
+                                            </div>
+                                            <div class="cart-info-size">${el['size']}</div>
+                                            <div class="cart-info-item">
+                                                <div class="info-item-amount">${el['amount']}</div>
+                                                <div class="info-item-pice">${el['price']},000?</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                `
+                total += intoMoney
+                str += bodyCart
+            });
+
+            if (count > 0) {
+                tttMoney.innerHTML = total.toLocaleString() + ",000 VND";
+                $('.box-item-cart').html(str)
+            }
+            else {
+                let emp = `<div class="box-cart-empty">
+                  <svg width="81" height="70" viewBox="0 0 81 70"><g transform="translate(0 2)" stroke-width="4" stroke="#1e2d7d" fill="none" fill-rule="evenodd"><circle stroke-linecap="square" cx="34" cy="60" r="6"></circle><circle stroke-linecap="square" cx="67" cy="60" r="6"></circle><path d="M22.9360352 15h54.8070373l-4.3391876 30H30.3387146L19.6676025 0H.99560547"></path></g></svg>
+                 <div>Giỏ hàng của bạn đang trống</div>
+                </div>`
+                $('.box-item-cart').addClass('box-cart-empty')
+                $('.box-item-cart').removeClass('box-item-cart')
+                $('.box-cart-empty').html(emp);
+            }
+
+
         })
     }
 
 
-    renderTable(listCart);
-    function clickMinus(title,size, e) {
-       let cart = JSON.parse(window.localStorage.getItem('cart'));
-        cart.forEach((el)=>{
-            if(el['title']===title && el['size'] === size)
-            {
+
+    function clickMinus(title, size, e) {
+        let cart = JSON.parse(window.localStorage.getItem('cart'));
+        cart.forEach((el) => {
+            if (el['title'] === title && el['size'] === size) {
                 if (el['amount'] > 1) {
                     el['amount'] -= 1;
                 }
                 else {
-                    alert("Số lượng giảm trên 1")
+                    alert("Số lượng phải trên 1")
                 }
-        
+
             }
         })
         window.localStorage.setItem('cart', JSON.stringify(cart));
@@ -135,15 +211,15 @@
             total += intoMoney
         })
         totalMoney.innerHTML = total.toLocaleString() + ",000 VND";
-       renderTable(cart);
+        renderTable(cart);
     }
     function clickAdd(title, size, e) {
         let cart = JSON.parse(window.localStorage.getItem('cart'));
         cart.forEach((el) => {
             if (el['title'] === title && el['size'] === size) {
-             
-                    el['amount'] += 1;
-             
+
+                el['amount'] += 1;
+
 
             }
         })
@@ -160,9 +236,17 @@
         cartNew.filter((el) => {
             return el['size'] !== size
         })
-       window.localStorage.setItem('cart', JSON.stringify(cartNew));
+        window.localStorage.setItem('cart', JSON.stringify(cartNew));
 
+        //render car
         renderTable(cartNew);
+        //render cart icon
+        renderIconCart(cartNew)
     }
 </script>
+
+@Scripts.Render("~/bundles/calculate")
+
+
+
 
