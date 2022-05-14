@@ -3,6 +3,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 @Styles.Render("~/Content/main")
 @Styles.Render("~/Content/cart")
 <style>
@@ -13,9 +14,11 @@
         line-height: 21px;
         margin: 30px 0px;
     }
-    .heading-close{
-        cursor:pointer;
+
+    .heading-close {
+        cursor: pointer;
     }
+
         .heading-close:hover {
             color: #fc700b;
         }
@@ -46,7 +49,7 @@
                         Thông tin đơn hàng
                     </div>
                     <div class="cart-info-total-money">
-                        <div class="info-total-title" >Tổng tiền:</div>
+                        <div class="info-total-title">Tổng tiền:</div>
                         <div class="info-total-money" id="totalMoney"></div>
                     </div>
                     <p class="cart-info-note">
@@ -102,11 +105,7 @@
                             <div class="item-info">
                                 <div class="info-heading">
                                     <div class="heading-title">${el['title']}</div>
-<<<<<<< HEAD
-                                    <div class="heading-close" onclick="remove('${el['title']}','${el['size']}',event)"><img src="//theme.hstatic.net/200000321771/1000699946/14/ic_close.png?v=305"></div>
-=======
-                                    <div class="heading-close" onclick="remove('${el['id']}',event)">✖</div>
->>>>>>> 5ffc7ab22f8b3f3a4772a49a8747d8b0ccef0e5b
+                                    <div class="heading-close" onclick="remove('${ el['id']}',event)"><img src="//theme.hstatic.net/200000321771/1000699946/14/ic_close.png?v=305"></div>
                                 </div>
                                 <div class="info-price">${el['price']},000 VND</div>
                                 <div class="info-price">${el['size']}</div>
@@ -217,12 +216,14 @@
         renderTable(cart);
     }
     function clickAdd(title, size, e) {
+ 
+
         let cart = JSON.parse(window.localStorage.getItem('cart'));
         cart.forEach((el) => {
             if (el['title'] === title && el['size'] === size) {
-
-                el['amount'] += 1;
-
+               
+                const amountNumber = Number(el['amount']);
+                el['amount']= amountNumber + 1;
 
             }
         })
@@ -232,27 +233,19 @@
     }
     function remove(id, e) {
         let cart = JSON.parse(window.localStorage.getItem('cart'));
-
-
         const cartNew = cart.filter((el) => {
-
             return el['id'] !== Number(id)
         })
         window.localStorage.setItem('cart', JSON.stringify(cartNew));
 
-<<<<<<< HEAD
         //render car
         renderTable(cartNew);
         //render cart icon
         renderIconCart(cartNew)
-=======
-        renderTable(cartNew)
->>>>>>> 5ffc7ab22f8b3f3a4772a49a8747d8b0ccef0e5b
     }
 </script>
 
 @Scripts.Render("~/bundles/calculate")
-
 
 
 
