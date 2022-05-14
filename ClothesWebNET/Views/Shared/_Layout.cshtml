@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8" />
+   
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon"
@@ -93,7 +94,7 @@
                                         </button>
                                     </div>
 
-                       
+
                                 </div>
                                 <!-- Search box -->
 
@@ -105,7 +106,7 @@
                                 @if (Session["USER_SESSION"] != null)
                                 {
                                     <span class="header-top-link">
-                                       <i class="bx bx-user-check"></i>
+                                        <i class="bx bx-user-check"></i>
                                     </span>
                                     <!-- đã đăng nhập -->
                                     <div class="header-top-modal header-logged ">
@@ -144,117 +145,48 @@
 
                             </li>
                             <!-- Login -->
-                         
-                    <!-- Login -->
-                    <!-- giỏ hàng -->
-                    <li class="header-top-action-item item-icon-cart">
-                        <span href="" class="header-top-link">
-                            <i class="bx bx-cart"></i>
-                        </span>
-                        <div class="header-top-cart-box header-top-modal  ">
-                            <span class="box-triangle">
-                                <svg viewBox="0 0 20 9" role="presentation">
-                                    <path d="M.47108938 9c.2694725-.26871321.57077721-.56867841.90388257-.89986354C3.12384116 6.36134886 5.74788116 3.76338565 9.2467995.30653888c.4145057-.4095171 1.0844277-.40860098 1.4977971.00205122L19.4935156 9H.47108938z"
-                                          fill="#ffffff"></path>
-                                </svg>
-                            </span>
-                            <div class="box-heading">giỏ hàng</div>
-                            <!-- giỏ hàng trống -->
-                            <!-- <div class="box-cart-empty">
-              <svg width="81" height="70" viewBox="0 0 81 70"><g transform="translate(0 2)" stroke-width="4" stroke="#1e2d7d" fill="none" fill-rule="evenodd"><circle stroke-linecap="square" cx="34" cy="60" r="6"></circle><circle stroke-linecap="square" cx="67" cy="60" r="6"></circle><path d="M22.9360352 15h54.8070373l-4.3391876 30H30.3387146L19.6676025 0H.99560547"></path></g></svg>
-             <div>Giỏ hàng của bạn đang trống</div>
-            </div> -->
-                            <div class="box-item-cart">
-                                <div class="item-cart-product">
-                                    <img src="./assets/images/dt1.webp" class="item-cart-product-img">
-                                    <div class="item-cart-info">
-                                        <div class="cart-info-item">
-                                            <p class="info-item-title">HOMO TEE IN WHITE</p>
-                                            <div class="info-item-delete">X</div>
-                                        </div>
-                                        <div class="cart-info-size">XL</div>
-                                        <div class="cart-info-item">
-                                            <div class="info-item-amount">1</div>
-                                            <div class="info-item-pice">380,000₫</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="item-cart-product">
-                                    <img src="./assets/images/dt1.webp" class="item-cart-product-img">
-                                    <div class="item-cart-info">
-                                        <div class="cart-info-item">
-                                            <p class="info-item-title">HOMO TEE IN WHITE</p>
-                                            <div class="info-item-delete">X</div>
-                                        </div>
-                                        <div class="cart-info-size">XL</div>
-                                        <div class="cart-info-item">
-                                            <div class="info-item-amount">1</div>
-                                            <div class="info-item-pice">380,000₫</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="item-cart-product">
-                                    <img src="./assets/images/dt1.webp" class="item-cart-product-img">
-                                    <div class="item-cart-info">
-                                        <div class="cart-info-item">
-                                            <p class="info-item-title">HOMO TEE IN WHITE</p>
-                                            <div class="info-item-delete">X</div>
-                                        </div>
-                                        <div class="cart-info-size">XL</div>
-                                        <div class="cart-info-item">
-                                            <div class="info-item-amount">1</div>
-                                            <div class="info-item-pice">380,000₫</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="item-cart-product">
-                                    <img src="./assets/images/dt1.webp" class="item-cart-product-img">
-                                    <div class="item-cart-info">
-                                        <div class="cart-info-item">
-                                            <p class="info-item-title">HOMO TEE IN WHITE</p>
-                                            <div class="info-item-delete">X</div>
-                                        </div>
-                                        <div class="cart-info-size">XL</div>
-                                        <div class="cart-info-item">
-                                            <div class="info-item-amount">1</div>
-                                            <div class="info-item-pice">380,000₫</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="item-cart-product">
-                                    <img src="./assets/images/dt1.webp" class="item-cart-product-img">
-                                    <div class="item-cart-info">
-                                        <div class="cart-info-item">
-                                            <p class="info-item-title">HOMO TEE IN WHITE</p>
-                                            <div class="info-item-delete">X</div>
-                                        </div>
-                                        <div class="cart-info-size">XL</div>
-                                        <div class="cart-info-item">
-                                            <div class="info-item-amount">1</div>
-                                            <div class="info-item-pice">380,000₫</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="box-payment">
-                                <div class="box-payment-item">
-                                    <div class="payment-text payment-item-top">tổng tiền:</div>
-                                    <div class="payment-total payment-item-top">2,260,000₫</div>
-                                </div>
-                                <div class="box-payment-item">
-                                    <button type="button" class="button-hover box-view-cart box-payment-button">xem giỏ hàng</button>
-                                    <button type="button" class="button-hover box-make-payment  box-payment-button">thanh toán</button>
-
-                                </div>
-                            </div>
-                        </div>
-                    </li>
+                            <!-- Login -->
+                            <!-- giỏ hàng -->
+                            <li class="header-top-action-item item-icon-cart">
+                                <span href="" class="header-top-link">
+                                    <i class="bx bx-cart"></i>
+                                </span>
+                                <div class="header-top-cart-box header-top-modal  ">
+                                    <span class="box-triangle">
+                                        <svg viewBox="0 0 20 9" role="presentation">
+                                            <path d="M.47108938 9c.2694725-.26871321.57077721-.56867841.90388257-.89986354C3.12384116 6.36134886 5.74788116 3.76338565 9.2467995.30653888c.4145057-.4095171 1.0844277-.40860098 1.4977971.00205122L19.4935156 9H.47108938z"
+                                                  fill="#ffffff"></path>
+                                        </svg>
+                                    </span>
+                                    <div class="box-heading">giỏ hàng</div>
+                                    <!-- giỏ hàng trống -->
+                                    <!-- <div class="box-cart-empty">
+                                      <svg width="81" height="70" viewBox="0 0 81 70"><g transform="translate(0 2)" stroke-width="4" stroke="#1e2d7d" fill="none" fill-rule="evenodd"><circle stroke-linecap="square" cx="34" cy="60" r="6"></circle><circle stroke-linecap="square" cx="67" cy="60" r="6"></circle><path d="M22.9360352 15h54.8070373l-4.3391876 30H30.3387146L19.6676025 0H.99560547"></path></g></svg>
+                                     <div>Giỏ hàng của bạn đang trống</div>
+                                    </div> -->
+                                    <div class="box-item-cart">
 
 
-                    <!-- giỏ hàng -->
-                    </ul>
+                                    </div>
+                                    <div class="box-payment">
+                                        <div class="box-payment-item">
+                                            <div class="payment-text payment-item-top">tổng tiền:</div>
+                                            <div class="payment-total payment-item-top">0đ</div>
+                                        </div>
+                                        <div class="box-payment-item">
+                                            <button type="button" class="button-hover box-view-cart box-payment-button">xem giỏ hàng</button>
+                                            <button type="button" class="button-hover box-make-payment  box-payment-button">thanh toán</button>
 
-                </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+
+                            <!-- giỏ hàng -->
+                        </ul>
+
+                    </div>
 
                 </div>
             </div>
@@ -378,10 +310,10 @@
             <div class="footer-top">
                 <div class="grid">
 
-                  
 
-                        <div class="footer-news"><i class='footer-top-icon bx bx-mail-send'></i>Đăng ký nhận tin</div>
-                    
+
+                    <div class="footer-news"><i class='footer-top-icon bx bx-mail-send'></i>Đăng ký nhận tin</div>
+
 
 
 
@@ -447,8 +379,8 @@
         </div>
     </div>
 
-
-
+    @Scripts.Render("~/bundles/admin/jquery")
+  
 
 
     @Scripts.RenderFormat("<script src='{0}' type='module'></script>", "~/bundles/index")

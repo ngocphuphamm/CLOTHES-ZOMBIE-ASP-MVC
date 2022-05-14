@@ -40,6 +40,9 @@ namespace ClothesWebNET
             bundles.Add(new StyleBundle("~/Content/payment").Include(
                      "~/Content/payment.css"));
 
+            
+             
+
             //detail (main+detail) js (product, calculate, detail)
             bundles.Add(new StyleBundle("~/Content/detail").Include(
                    "~/Content/detail.css"));
@@ -54,7 +57,8 @@ namespace ClothesWebNET
 
 
 
-
+            bundles.Add(new StyleBundle("~/Content/toastr").Include(
+               "~/Content/toastr.css"));
 
 
             bundles.Add(new ScriptBundle("~/bundles/index").Include("~/Scripts/index.js"));
