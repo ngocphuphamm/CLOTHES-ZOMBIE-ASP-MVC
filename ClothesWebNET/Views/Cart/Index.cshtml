@@ -3,7 +3,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
 @Styles.Render("~/Content/main")
 @Styles.Render("~/Content/cart")
 <style>
@@ -103,7 +102,11 @@
                             <div class="item-info">
                                 <div class="info-heading">
                                     <div class="heading-title">${el['title']}</div>
+<<<<<<< HEAD
                                     <div class="heading-close" onclick="remove('${el['title']}','${el['size']}',event)"><img src="//theme.hstatic.net/200000321771/1000699946/14/ic_close.png?v=305"></div>
+=======
+                                    <div class="heading-close" onclick="remove('${el['id']}',event)">✖</div>
+>>>>>>> 5ffc7ab22f8b3f3a4772a49a8747d8b0ccef0e5b
                                 </div>
                                 <div class="info-price">${el['price']},000 VND</div>
                                 <div class="info-price">${el['size']}</div>
@@ -227,21 +230,24 @@
 
         renderTable(cart);
     }
-    function remove(title, size, e) {
+    function remove(id, e) {
         let cart = JSON.parse(window.localStorage.getItem('cart'));
+
+
         const cartNew = cart.filter((el) => {
 
-            return el['title'] !== title
-        })
-        cartNew.filter((el) => {
-            return el['size'] !== size
+            return el['id'] !== Number(id)
         })
         window.localStorage.setItem('cart', JSON.stringify(cartNew));
 
+<<<<<<< HEAD
         //render car
         renderTable(cartNew);
         //render cart icon
         renderIconCart(cartNew)
+=======
+        renderTable(cartNew)
+>>>>>>> 5ffc7ab22f8b3f3a4772a49a8747d8b0ccef0e5b
     }
 </script>
 

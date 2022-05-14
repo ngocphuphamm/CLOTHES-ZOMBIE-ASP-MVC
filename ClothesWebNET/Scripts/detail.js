@@ -42,8 +42,8 @@ btnAddCart.addEventListener("click", (e) => {
     let price = Number(priceFake.slice(0, 3).trim());
     let title = document.querySelector(".detail-title").textContent;
       let amount = document.querySelector(".input-amout").value;
-
-    let data = { title, price, size, img, amount };
+      let id = 0
+    let data = {id, title, price, size, img, amount };
 
     var cart = window.localStorage.getItem("cart");
     if (cart === null) {
@@ -65,7 +65,8 @@ btnAddCart.addEventListener("click", (e) => {
           const cartFake = listCart.find((el2) => {
             return el["title"] === el2["title"];
           });
-          if (!cartFake) {
+            if (!cartFake) {
+                data['id'] = Number(listCart.length);
             listCart.push(data);
           }
         }
@@ -75,7 +76,7 @@ btnAddCart.addEventListener("click", (e) => {
         return el["title"] === data["title"] && el["size"] === data["size"];
       });
       if (!dataSize) {
-        console.log("da vao");
+        data['id'] = Number(listCart.length);
         listCart.push(data);
       }
       window.localStorage.setItem("cart", JSON.stringify(listCart));
