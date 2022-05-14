@@ -1,4 +1,6 @@
 
+/bin
+/obj
 # /Models
 /Web.config
 ###################
