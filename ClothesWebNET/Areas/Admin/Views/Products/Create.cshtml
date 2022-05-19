@@ -1,0 +1,121 @@
+﻿@model ClothesWebNET.Models.Product
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div id="content" class="">
+
+    <div class="content-main p-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">Sản phẩm</li>
+                <li class="breadcrumb-item active" aria-current="page">
+                    Thêm sản phẩm
+                </li>
+            </ol>
+        </nav>
+
+        <div class="cus-form-add">
+            <form method="post" action="/Admin/Products/create" class="row g-3">
+                @Html.AntiForgeryToken()
+                <!-- ID -->
+                <div class="col-md-12">
+                    <label for="validationDefault01" class="form-label">ID</label>
+                    <input type="text"
+                           name="idProduct"
+                           class="form-control"
+                           id="validationDefault01"
+                           required />
+                </div>
+                <!-- nameProduct -->
+                <div class="col-md-12">
+                    <label for="validationDefault01" class="form-label">Tên sản phẩm</label>
+                    <input type="text"
+                           name="nameProduct"
+                           class="form-control"
+                           id="validationDefault01"
+                           required />
+                </div>
+                <!-- type -->
+                <div class="col-md-12">
+                    <label for="validationDefault04" class="form-label">Danh mục</label>
+                    <select class="form-select" name="idType" id="validationDefault04" required>
+                        <option selected disabled value="">Chọn</option>
+                        <option>T01</option>
+                        <option>T02</option>
+                        <option>T03</option>
+                        <option>T04</option>
+                        <option>T05</option>
+                        <option>T06</option>
+                        <option>T07</option>
+                        <option>T08</option>
+                        <option>T09</option>
+                        <option>T10</option>
+                        <option>T11</option>
+                        <option>T12</option>
+
+                    </select>
+                </div>
+                <!-- sizeM -->
+                <div class="col-md-4">
+                    <label for="validationDefault01" class="form-label">SizeM</label>
+                    <input type="number"
+                           name="sizeM"
+                           class="form-control"
+                           id="validationDefault01"
+                           required />
+                </div>
+                <!-- sizeL -->
+                <div class="col-md-4">
+                    <label for="validationDefault01" class="form-label">SizeL</label>
+                    <input type="number"
+                           name="sizeL"
+                           class="form-control"
+                           id="validationDefault01"
+                           required />
+                </div>
+                <!-- sizeXl -->
+                <div class="col-md-4">
+                    <label for="validationDefault01" class="form-label">SizeXL</label>
+                    <input type="number"
+                           name="sizeXL"
+                           class="form-control"
+                           id="validationDefault01"
+                           required />
+                </div>
+                <!-- price -->
+                <div class="col-md-12">
+                    <label for="validationDefault01" class="form-label">Giá bán</label>
+                    <input type="number"
+                           name="price"
+                           class="form-control"
+                           id="validationDefault01"
+                           required />
+                </div>
+                <!-- description -->
+                <div class="col-md-12">
+                    <label for="validationDefault01" class="form-label">Mô tả</label>
+                    <textarea type="text"
+                              name="description"
+                              class="form-control"
+                              id="validationDefault01"
+                              required></textarea>
+                </div>
+
+                <div class="col-12">
+                    <button class="btn btn-primary" type="submit">Thêm</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+@Scripts.Render("~/bundles/admin/jquery")
+
+<script>
+    $('.sp ul').addClass('show');
+    $('.addsp').addClass('active');
+</script>
