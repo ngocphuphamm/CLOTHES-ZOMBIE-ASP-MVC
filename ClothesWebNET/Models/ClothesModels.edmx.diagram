@@ -4,8 +4,8 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="4bd6c4bb8b874d30a285641ad46523c0" Name="Diagram1">
-        <EntityTypeShape EntityType="CLOTHESModel.Bill" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
+      <Diagram DiagramId="94fc7c7461be429492482a3787d59aff" Name="Diagram1">
+        <EntityTypeShape EntityType="CLOTHESModel.Bill" Width="1.5" PointX="3" PointY="6.625" IsExpanded="true" />
         <EntityTypeShape EntityType="CLOTHESModel.DetailBIll" Width="1.5" PointX="5.25" PointY="2.375" IsExpanded="true" />
         <EntityTypeShape EntityType="CLOTHESModel.ImageProduct" Width="1.5" PointX="5.25" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CLOTHESModel.Permission" Width="1.5" PointX="1.5" PointY="11.625" IsExpanded="true" />

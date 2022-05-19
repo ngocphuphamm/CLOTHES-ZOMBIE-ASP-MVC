@@ -42,8 +42,9 @@ btnAddCart.addEventListener("click", (e) => {
     let price = Number(priceFake.slice(0, 3).trim());
     let title = document.querySelector(".detail-title").textContent;
       let amount = document.querySelector(".input-amout").value;
+      let idFood = document.querySelector('.idFood').textContent;
       let id = 0
-    let data = {id, title, price, size, img, amount };
+      let data = { id, title, price, size, img, amount, idFood};
 
     var cart = window.localStorage.getItem("cart");
     if (cart === null) {

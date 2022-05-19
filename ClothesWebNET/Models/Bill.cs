@@ -28,6 +28,10 @@ namespace ClothesWebNET.Models
         public bool status { get; set; }
         public System.DateTime createdAt { get; set; }
         public int totalQty { get; set; }
+        public string nameBook { get; set; }
+        public string email { get; set; }
+        public string phone { get; set; }
+        public string address { get; set; }
     
         public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

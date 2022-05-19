@@ -32,7 +32,7 @@ namespace ClothesWebNET.Models
             this.DetailBIlls = new HashSet<DetailBIll>();
             this.ImageProducts = new HashSet<ImageProduct>();
         }
-    
+
         public string nameProduct { get; set; }
         public string idProduct { get; set; }
         public int sizeM { get; set; }
@@ -41,7 +41,7 @@ namespace ClothesWebNET.Models
         public double price { get; set; }
         public string description { get; set; }
         public string idType { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DetailBIll> DetailBIlls { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -56,7 +56,7 @@
                         Phí vận chuyển sẽ được tính ở trang thanh toán.
                         Bạn cũng có thể nhập mã giảm giá ở trang thanh toán.
                     </p>
-                    <button class="button-hover button-payment">THANH TOÁN</button>
+                    <button class="button-hover button-payment" >THANH TOÁN</button>
                     <p class="back-home"><a href="/" class="link-back-home"><i class='bx bxs-chevron-left'></i> Tiếp tục mua hàng</a></p>
                 </div>
             </div>
@@ -90,11 +90,12 @@
     let totalMoney = document.getElementById('totalMoney');
     let qty = document.getElementById('qty');
     let tttMoney = document.querySelector('.payment-total');
+    let total = 0
     //render cart
     function renderTable(dataList) {
         $(document).ready(() => {
             let str = ''
-            let total = 0
+        
             let count = 0;
             dataList.forEach((el, index) => {
                 count++
@@ -143,6 +144,7 @@
         })
     }
     renderTable(listCart);
+    console.log(total);
     //render icon cart
     function renderIconCart(dataList) {
         $(document).ready(() => {

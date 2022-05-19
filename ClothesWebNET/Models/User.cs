@@ -22,7 +22,7 @@ namespace ClothesWebNET.Models
         {
             this.Bills = new HashSet<Bill>();
         }
-    
+
         public string idUser { get; set; }
         public string idPermission { get; set; }
         public string fullName { get; set; }
@@ -36,7 +36,7 @@ namespace ClothesWebNET.Models
         public string email { get; set; }
         public string URLAvatar { get; set; }
         public int phone { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Bill> Bills { get; set; }
         public virtual Permission Permission { get; set; }
@@ -58,17 +58,19 @@ namespace ClothesWebNET.Models
         [Serializable]
         public class UserLogin
         {
+            public string idUser { get; set; }  
             public string UserName { set; get; }
             public string GroupID { set; get; }
             public string fullName { get; set; }
             public string email { get; set; }
-            public int phone { get;set; }   
-            
+            public int phone { get; set; }
+
 
         }
         public class getUserDTO
         {
-             public string fullName { get; set; }
+            public string userId { get; set;}
+            public string fullName { get; set; }
             public string email { get; set; }
             public int phone { get; set; }
         }

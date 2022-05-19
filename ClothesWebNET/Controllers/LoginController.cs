@@ -56,33 +56,35 @@ namespace ClothesWebNET.Controllers
 
         }
         //thêm hàm lưu hết thông tin trong cookies
-        public void SaveInfoInCookies(string username, string fullName,string email, string phone)
+        public void SaveInfoInCookies(string idUser,string username, string fullName,string email, string phone)
         {
             HttpCookie us = new HttpCookie("username");
             HttpCookie fn = new HttpCookie("fullName");
             HttpCookie em = new HttpCookie("email");
             HttpCookie p = new HttpCookie("phone");
-
+            HttpCookie user = new HttpCookie("user");
             us.Value = username;
             fn.Value = fullName;
             em.Value = email;
             p.Value = phone;
+            user.Value = idUser;
 
             us.Expires = DateTime.Now.AddDays(1);
             fn.Expires = DateTime.Now.AddDays(1);
             em.Expires = DateTime.Now.AddDays(1);
             p.Expires = DateTime.Now.AddDays(1);
+            user.Expires = DateTime.Now.AddDays(1);
             Response.Cookies.Add(us);
             Response.Cookies.Add(fn);
             Response.Cookies.Add(em);
             Response.Cookies.Add(p);
-
+            Response.Cookies.Add(user);
         }
 
         [HttpPost]
         public ActionResult kiemtradangnhap(string username, string password, string ghinho)
         {
-   
+            var idUser = "";
 
             if (Request.Cookies["username"] != null && Request.Cookies["password"] != null)
             {
@@ -97,11 +99,13 @@ namespace ClothesWebNET.Controllers
                 var email= "";
                 var  phone = 1;
                 var fullName = "";
+            
                 for(var i = 0; i < infoUser.Count; i++)
                 {
                     email = infoUser[i].email;
                     phone = infoUser[i].phone;
-                    fullName = infoUser[i].fullName;    
+                    fullName = infoUser[i].fullName;
+                    idUser = infoUser[i].userId;
                 }
            
 
@@ -110,7 +114,7 @@ namespace ClothesWebNET.Controllers
                 userSession.fullName = fullName;
                 userSession.phone = phone;  
                 userSession.email = email;
-
+                userSession.idUser = idUser; 
                 var group = "";
                 var listGroups = GetListGroupID(username);//Có thể viết dòng lệnh lấy các GroupID từ CSDL, ví dụ gán ="ADMIN", dùng List<string>
              
@@ -127,7 +131,7 @@ namespace ClothesWebNET.Controllers
                     Session.Add("SESSION_GROUP_ADMIN", listGroups);
                     Session.Add("USER_SESSION", userSession);
                     //lưu hết thông tin người dùng vào cookies trừ password
-                    SaveInfoInCookies(username, fullName, email, phone.ToString());
+                    SaveInfoInCookies(idUser,username, fullName, email, phone.ToString());
                     return Redirect("~/Admin/Dashboard/Index");
                 }
                 else
@@ -135,7 +139,7 @@ namespace ClothesWebNET.Controllers
                     Session.Add("SESSION_GROUP", listGroups);
                     Session.Add("USER_SESSION", userSession);
                     //lưu hết thông tin người dùng vào cookies trừ password
-                    SaveInfoInCookies(username, fullName, email, phone.ToString());
+                    SaveInfoInCookies(idUser,username, fullName, email, phone.ToString());
                     return Redirect("~/Home");
                 }
 
@@ -151,6 +155,7 @@ namespace ClothesWebNET.Controllers
                         where s.username == userName
                         select new getUserDTO
                         {
+                            userId = s.idUser,  
                             fullName = s.fullName , 
                             email = s.email ,   
                             phone = s.phone 
@@ -196,20 +201,20 @@ namespace ClothesWebNET.Controllers
             HttpCookie fn = Request.Cookies["fullName"];
             HttpCookie em = Request.Cookies["email"];
             HttpCookie p = Request.Cookies["phone"];
-          
-         
+            HttpCookie user = Request.Cookies["user"];
+
 
             fn.Expires = DateTime.Now.AddDays(-1);
             us.Expires = DateTime.Now.AddDays(-1);
             em.Expires = DateTime.Now.AddDays(-1);
             p.Expires = DateTime.Now.AddDays(-1);
-          
+            user.Expires = DateTime.Now.AddDays(-1);
 
             Response.Cookies.Add(fn);
             Response.Cookies.Add(us);
             Response.Cookies.Add(p);
             Response.Cookies.Add(em);
-          
+            Response.Cookies.Add(user);
         }
         public ActionResult SignOut()
         {

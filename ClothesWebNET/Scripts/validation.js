@@ -1,4 +1,4 @@
-//hiển thị lỗi
+//hi?n th? l?i
 function showError(input, message) {
     const parent = input.parentElement;
     parent.classList.add('err');
@@ -6,7 +6,7 @@ function showError(input, message) {
     small.innerText = message;
 }
 
-//tắt lỗi
+//t?t l?i
 function showSuccess(input) {
     const parent = input.parentElement;
     if (parent.classList.contains('err')) {
@@ -20,12 +20,12 @@ function getPlaceholder(input) {
     return input.getAttribute('placeholder');
 }
 class Validation {
-    //kiểm tra chưa nhập
+    //ki?m tra ch?a nh?p
     checkRequired(inputArr) {
         let isRequired = true;
         inputArr.forEach(function (input) {
             if (input.value.trim() === '') {
-                showError(input, `${getPlaceholder(input)} không được trống`);
+                showError(input, `${getPlaceholder(input)} kh�ng ???c tr?ng`);
                 isRequired = false;
             } else {
                 showSuccess(input);
@@ -34,7 +34,7 @@ class Validation {
         return isRequired;
     }
 
-    //kiểm tra email hợp lệ
+    //ki?m tra email h?p l?
     checkEmail(input) {
         let check = false;
         const re =
@@ -44,7 +44,7 @@ class Validation {
             showSuccess(input);
             check = true;
         } else {
-            showError(input, 'Email không hợp lệ');
+            showError(input, 'Email kh�ng h?p l?');
         }
         return check;
     }
@@ -57,7 +57,7 @@ class Validation {
             showSuccess(input);
             check = true;
         } else {
-            showError(input, 'Số điện thoại không hợp lệ');
+            showError(input, 'S? ?i?n tho?i kh�ng h?p l?');
         }
         return check;
     }
@@ -69,17 +69,17 @@ class Validation {
             check = true;
             showSuccess(inputPass2);
         } else {
-            showError(inputPass2, 'Mật khẩu không khớp');
+            showError(inputPass2, 'M?t kh?u kh�ng kh?p');
         }
         return check;
     }
 
-    //kiểm tra tỉnh thành phố quận huyện xã
+    //ki?m tra t?nh th�nh ph? qu?n huy?n x�
     checkAddress(selectArr) {
         let check = true;
         selectArr.forEach(function (select) {
             if (select.value.trim() == 'none') {
-                showError(select, `Bạn chưa chọn ${getPlaceholder(select)}`);
+                showError(select, `B?n ch?a ch?n ${getPlaceholder(select)}`);
                 check = false;
             } else {
                 showSuccess(select);
