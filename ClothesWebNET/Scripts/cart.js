@@ -158,3 +158,6 @@ function remove(title, size, e) {
     //render cart nh?
     renderIconCart(cartNew)
 }
+$('.button-payment').click(() => {
+    window.location.href = '/bill'
+})
