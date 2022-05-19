@@ -11,8 +11,7 @@ namespace ClothesWebNET.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
-
+    
     public partial class Bill
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -29,10 +28,11 @@ namespace ClothesWebNET.Models
         public bool status { get; set; }
         public System.DateTime createdAt { get; set; }
         public int totalQty { get; set; }
-        public string  nameBook { get; set; }   
+        public string nameBook { get; set; }
         public string email { get; set; }
-        public int phone { get; set; }
+        public string phone { get; set; }
         public string address { get; set; }
+    
         public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DetailBIll> DetailBIlls { get; set; }

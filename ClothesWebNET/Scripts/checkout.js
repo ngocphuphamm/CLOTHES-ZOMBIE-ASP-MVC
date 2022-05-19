@@ -134,6 +134,10 @@ $('#save_btn').click(() => {
         },
         dataType: 'json',
         method: 'Post',
-        success: function (res) { alert(res) }
+        success: function (res) {
+            alert(res);
+            window.localStorage.removeItem('cart');
+            window.location.replace('/home')
+        }
     })
 })

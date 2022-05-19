@@ -24,41 +24,33 @@ namespace ClothesWebNET.Controllers
         public ActionResult PostBill(string idBill , string idUser,int Shipping , int Total , int totalQty,string nameBook ,string email , int phone,
                                     string address , string PTTT , DetailBIll []  detailBill ,bool status )
         {
-            string addressFake = address;
+            var idUserReal = "";      
+            if(Request.Cookies["user"]!=null)
+            {
+                idUserReal = Request.Cookies["user"].Value;
+         
+            }
            var bill = new Bill()
             {
-                idBill = "B02",
-                idUser = null,
+                idBill = idBill,
+                idUser = idUserReal != "" ? idUserReal : null,
                 createdAt = DateTime.Now,   
                 Shipping = Shipping,
                 Total = Total,
                 totalQty = totalQty,
                 nameBook = nameBook,
                 email = email,
-                phone = phone,
-                address = addressFake,
+                phone = Convert.ToString(phone),
+                address = address,
                 PTTT = PTTT,
                 status = status,
                 DetailBIlls = detailBill ,
             };
             db.Bills.Add(bill);
 
-         /*   for (var i = 0; i < detailBill.Length; i++)
-            {
-                var detailBills = new DetailBIll
-                {
-                    idBill = "DT01",
-                    idDetailBill = detailBill[i].idDetailBill,
-                    idProduct = detailBill[i].idProduct,
-                    qty = detailBill[i].qty,
-                    intoMoney = detailBill[i].intoMoney,
-                };
-                db.DetailBIlls.Add(detailBills);
-              
-            }*/
            
             db.SaveChanges();
-            return Json("Response from Create");
+            return Json("Đặt hàng thành công");
 
         }
 

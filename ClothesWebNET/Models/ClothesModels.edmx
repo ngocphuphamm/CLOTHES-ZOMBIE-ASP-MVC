@@ -17,6 +17,10 @@
           <Property Name="status" Type="bit" Nullable="false" />
           <Property Name="createdAt" Type="datetime" Nullable="false" />
           <Property Name="totalQty" Type="int" Nullable="false" />
+          <Property Name="nameBook" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="phone" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="address" Type="nvarchar" MaxLength="255" Nullable="false" />
         </EntityType>
         <EntityType Name="DetailBIll">
           <Key>
@@ -213,6 +217,10 @@
           <Property Name="status" Type="Boolean" Nullable="false" />
           <Property Name="createdAt" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="totalQty" Type="Int32" Nullable="false" />
+          <Property Name="nameBook" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="phone" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="User" Relationship="Self.FK__Bill__idUser__412EB0B6" FromRole="Bill" ToRole="User" />
           <NavigationProperty Name="DetailBIlls" Relationship="Self.FK__DetailBIl__idBil__4316F928" FromRole="Bill" ToRole="DetailBIll" />
         </EntityType>
@@ -421,6 +429,10 @@
                 <ScalarProperty Name="status" ColumnName="status" />
                 <ScalarProperty Name="createdAt" ColumnName="createdAt" />
                 <ScalarProperty Name="totalQty" ColumnName="totalQty" />
+                <ScalarProperty Name="nameBook" ColumnName="nameBook" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="address" ColumnName="address" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
