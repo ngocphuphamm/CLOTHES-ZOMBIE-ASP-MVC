@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ClothesWebNET.Models.Product>
+﻿﻿@model IEnumerable<ClothesWebNET.Models.Product>
 
 @{
     ViewBag.Title = "Index";
@@ -20,52 +20,56 @@
             </ol>
         </nav>
         <div class="table-responsive-sm">
-            <table id="table-product" class="table" style="width: 100%">
+            <table id="table-product" class="table table-sm" style="width: 100%">
                 <thead>
                     <tr>
                         <th>ID</th>
                         <th>Tên sản phẩm</th>
+                        <th>Hình ảnh</th>
                         <th>Danh mục</th>
-                        <th>Giá bán</th>
+                        <th>Giá</th>
                         <th>SizeM</th>
                         <th>SizeL</th>
                         <th>SizeXL</th>
+
                         <th style="overflow: hidden; font-size: 0"></th>
                         <th style="overflow: hidden; font-size: 0"></th>
                     </tr>
                 </thead>
                 <tbody id="renderData">
-
                     @foreach (var item in Model)
                     {
-                        <tr>
-                            <td>@item.idProduct</td>
-                            <td>@item.nameProduct</td>
-                            <td>@item.idType</td>
-                            <td>
-                                @item.price
-                            </td>
-                            <td>
-                                @item.sizeM
-                            </td>
-                            <td>
-                                @item.sizeL
-                            </td>
-                            <td>
-                                @item.sizeXL
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-update btn-w-100 btn-outline-primary">
-                                    Cập nhật
-                                </button>
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-delete btn-w-80 btn-outline-danger">
-                                    Xóa
-                                </button>
-                            </td>
+                    <tr>
+                        <td>@item.idProduct</td>
+                        <td>@item.nameProduct</td>
+                        <td><img src="@item.ImageProducts.First().URLImage"  width="70"
+                  height="70"  /></td>
+                        <td>@item.Type.nameType</td>
+                        <td>
+                            @item.price
+                        </td>
+                        <td>
+                            @item.sizeM
+                        </td>
+                        <td>
+                            @item.sizeL
+                        </td>
+                        <td>
+                            @item.sizeXL
+                        </td>
 
-                        </tr>
+                        <td>
+                            <button type="button" class="btn btn-update btn-w-100 btn-outline-primary">
+                                Cập nhật
+                            </button>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-delete btn-w-80 btn-outline-danger">
+                                Xóa
+                            </button>
+                        </td>
+
+                    </tr>
                     }
                 </tbody>
             </table>
@@ -73,6 +77,7 @@
     </div>
 </div>
 
+@*Modal cập nhật*@
 <div class="modal-cus modal-update">
     <div class="modal__overplay"></div>
     <div class="modal__body">
@@ -105,18 +110,19 @@
                         <label for="validationDefault04" class="form-label">Danh mục</label>
                         <select class="form-select ptype" name="idType" id="validationDefault04" required>
                             <option selected disabled value="">Chọn</option>
-                            <option>T01</option>
-                            <option>T02</option>
-                            <option>T03</option>
-                            <option>T04</option>
-                            <option>T05</option>
-                            <option>T06</option>
-                            <option>T07</option>
-                            <option>T08</option>
-                            <option>T09</option>
-                            <option>T10</option>
-                            <option>T11</option>
-                            <option>T12</option>
+                            <option value="T01">Áo | CLOTHES</option>
+                            <option value="T02">Áo thun - Sơ mi | Shirt - Tshirt</option>
+                            <option value="T03">Áo tay dài | Sweater</option>
+                            <option value="T04">QUẦN | PANTS</option>
+                            <option value="T05">Quần dài | Pants</option>
+                            <option value="T06">Quần ngắn | Short</option>
+                            <option value="T07">PHỤ KIỆN | ACCESSORIES</option>
+                            <option value="T08">Wallet chain</option>
+                            <option value="T09">Kính | Glasses</option>
+                            <option value="T10">Nón | Cap</option>
+                            <option value="T11">Nhẫn | Ring</option>
+                         
+
 
                         </select>
                     </div>
@@ -174,6 +180,10 @@
         </div>
     </div>
 </div>
+
+
+
+
 @Scripts.Render("~/bundles/admin/jquery")
 
 <script>

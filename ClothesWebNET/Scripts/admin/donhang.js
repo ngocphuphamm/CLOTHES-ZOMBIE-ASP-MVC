@@ -14,13 +14,16 @@
     //data[1],2,3
 
     // set data cho modal cập nhật
-    $('.update-customer').val(data[1]);
-    $('.update-createAt').val(data[2]);
-    let price = data[3].slice(0, 3);
-    $('.update-price').val(price);
+      $('.bid').val(data[0]);
+      $('.bname').val(data[1]);
+   
+      $('.bphone').val(data[2]);
 
-    $('.update-status').val(data[4]);
-    $('.update-updateAt').val(data[5]);
+      $('.baddress').val(data[3]);
+      $('.btotal').val(data[4]);
+      $('.bpttt').val(data[5]);
+      $('.bstatus').val(data[6]);
+      
 
     // Hiện modal cập nhật
     $('.modal-update').css('display', 'flex');
@@ -30,7 +33,12 @@
     $('.modal-update').toggle();
   });
 
-  $('.btn-detail').click(function () {
-    window.location.href = '/chitietdonhang.html';
-  });
+    $('#table-product tbody').on('click', 'tr .btn-detail', function () {
+        let td = $(this).parent();
+        let tr = td.parent();
+        var data = table.row(tr).data();
+        window.location.href = `/Admin/Bills/Details/${data[0]}`;
+       
+    });
+ 
 })(jQuery);

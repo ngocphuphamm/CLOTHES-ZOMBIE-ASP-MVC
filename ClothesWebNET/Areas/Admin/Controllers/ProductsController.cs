@@ -19,7 +19,9 @@ namespace ClothesWebNET.Areas.Admin.Controllers
         {
             if (Session["SESSION_GROUP_ADMIN"] != null)
             {
-                var products = db.Products.Include(p => p.Type);
+                var products = db.Products
+                    .Include(p => p.Type)
+                    .Include(i=>i.ImageProducts);
                 return View(products.ToList());
             }
             return Redirect("~/Home");

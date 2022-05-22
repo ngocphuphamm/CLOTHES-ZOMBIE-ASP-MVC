@@ -9,13 +9,12 @@
       type="text/css"
       href="https://cdn.datatables.net/v/bs5/jq-3.6.0/jszip-2.5.0/dt-1.11.5/b-2.2.2/b-html5-2.2.2/b-print-2.2.2/datatables.min.css" />
 <div id="content" class="">
-
     <div class="content-main p-4">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item">Sản phẩm</li>
+                <li class="breadcrumb-item"><a href="/Admin/Bills">Đơn hàng</a></li>
                 <li class="breadcrumb-item active" aria-current="page">
-                    Danh sách đơn hàng
+                    <a href="/Admin/Bills">Danh sách đơn hàng</a>
                 </li>
             </ol>
         </nav>
@@ -25,10 +24,11 @@
                     <tr>
                         <th>ID</th>
                         <th>Khách hàng</th>
-                        <th>Ngày tạo</th>
+                        <th>SĐT</th>
+                        <th style="display:none">Địa chỉ</th>
                         <th>Tổng tiền</th>
+                        <th>Thanh toán</th>
                         <th>Trạng thái</th>
-                        <th>Phương thức thanh toán</th>
                         <th style="overflow: hidden; font-size: 0"></th>
                         <th style="overflow: hidden; font-size: 0"></th>
                     </tr>
@@ -37,30 +37,39 @@
 
                     @foreach (var item in Model)
                     {
-                        <tr>
-                            <td>@item.idBill</td>
-                            <td>@item.idUser</td>
-                            <td>@item.createdAt</td>
-                            <td>@item.Total</td>
-                            <td>@item.status</td>
-                            <td>@item.Shipping</td>
+                    <tr>
+                        <td>@item.idBill</td>
+                        <td>@item.nameBook</td>
+                        <td>@item.phone</td>
+                        <td style="display:none">@item.address</td>
+                        <td>@item.Total</td>
+                        <td>@item.PTTT</td>
 
 
-
+                        @if (item.status == true)
+                        {
+                            <td>Thành công</td>
                             <td>
-                                <button type="button"
-                                        class="btn btn-w-100 btn-detail btn-outline-info">
-                                    Chi tiết
-                                </button>
-                            </td>
-                            <td>
-                                <button type="button"
-                                        class="btn btn-w-100 btn-update btn-outline-primary">
-                                    Cập nhật
-                                </button>
+                                <a class="btn btn-success disabled" href="" role="button">Cập nhật</a>
                             </td>
 
-                        </tr>
+                        }
+                        else
+                        {
+                            <td>Đang chờ</td>
+                            <td>
+                                <a class="btn btn-success" href="Bills/Edit/@item.idBill" role="button">Cập nhật</a>
+                            </td>
+
+                        }
+
+
+                        <td>
+                            <a class="btn btn-info" href="Bills/Details/@item.idBill" role="button">Chi tiết</a>
+                        </td>
+
+
+                    </tr>
                     }
                 </tbody>
             </table>
@@ -74,67 +83,86 @@
         <div class="modal__inner">
             <div class="cus-form">
                 <h2>Cập nhật đơn hàng</h2>
-                <form class="row g-3">
+                <form method="post" action="/Admin/Bills/edit" class="row g-3">
+                    @Html.AntiForgeryToken()
+                    <!-- ID -->
+                    <div style="display:none" class="col-md-12">
+                        <label for="validationDefault01" class="form-label">ID</label>
+                        <input type="text"
+                               name="idBill"
+                               readonly
+                               class="form-control bid"
+                               id="validationDefault01"
+                               required />
+                    </div>
                     <!-- tên khách hàng -->
                     <div class="col-md-12">
                         <label for="validationDefault01" class="form-label">Khách hàng</label>
                         <input type="text"
-                               class="form-control update-customer"
+                               name="nameBook"
+                               class="form-control bname"
                                id="validationDefault01"
                                required />
                     </div>
+                    <!-- sđt -->
                     <div class="col-md-12">
-                        <label for="validationDefault01" class="form-label">Ngày tạo</label>
-                        <input type="date"
-                               class="form-control update-createAt"
+                        <label for="validationDefault01" class="form-label">SĐT</label>
+                        <input type="number"
+                               name="phone"
+                               class="form-control bphone"
+                               id="validationDefault01"
+                               required />
+                    </div>
+                    <!-- địa chỉ -->
+                    <div class="col-md-12">
+                        <label for="validationDefault01" class="form-label">Địa chỉ</label>
+                        <input type="text"
+                               name="address"
+                               class="form-control baddress"
                                id="validationDefault01"
                                required />
                     </div>
                     <!-- tổng tiền -->
-                    <div class="col-md-12">
-                        <label for="validationDefault01 " class="form-label">Giá bán (VD:200,000đ=200)</label>
+                    <div class="col-md-4">
+                        <label for="validationDefault01" class="form-label">Tổng tiền</label>
                         <input type="number"
-                               max="999"
-                               class="form-control update-price"
+                               name="Total"
+                               class="form-control btotal"
+                               id="validationDefault01"
+                               required />
+                    </div>
+                    <!-- PTTT -->
+                    <div class="col-md-4">
+                        <label for="validationDefault01" class="form-label">PTTT</label>
+                        <input type="text"
+                               name="PTTT"
+                               class="form-control bpttt"
                                id="validationDefault01"
                                required />
                     </div>
                     <!-- trạng thái -->
                     <div class="col-md-12">
                         <label for="validationDefault04" class="form-label">Trạng thái</label>
-                        <select class="form-select update-status"
-                                id="validationDefault04 "
-                                required>
+                        <select class="form-select bstatus" name="status" id="validationDefault04" required>
                             <option selected disabled value="">Chọn</option>
-                            <option>Chờ xác nhận</option>
-                            <option>Đã xác nhận</option>
-                            <option>Đang giao</option>
-                            <option>Từ chối</option>
-                            <option>Hoàn thành</option>
-                            <option>Đã hủy</option>
+                            <option value="False">Chưa xác nhận</option>
+                            <option value="True">Thành công</option>
                         </select>
-                    </div>
-                    <!-- update at -->
-                    <div class="col-md-12">
-                        <label for="formFile validationDefault01 " class="form-label">Cập nhật lần cuối</label>
-                        <input required
-                               class="form-control update-updateAt"
-                               type="date"
-                               id="formFile validationDefault01" />
                     </div>
 
                     <div class="col-12">
-                        <button class="btn btn-primary" type="submit">Lưu lại</button>
+                        <button class="btn btn-primary" type="submit">Cập nhật</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
 @Scripts.Render("~/bundles/admin/jquery")
 
 <script>
-    
+
     $('.d-bill').addClass('active');
 </script>
 

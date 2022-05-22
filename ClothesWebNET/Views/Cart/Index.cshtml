@@ -56,7 +56,7 @@
                         Phí vận chuyển sẽ được tính ở trang thanh toán.
                         Bạn cũng có thể nhập mã giảm giá ở trang thanh toán.
                     </p>
-                    <button class="button-hover button-payment" >THANH TOÁN</button>
+                    <button style="cursor:pointer" class="button-hover button-payment" >THANH TOÁN</button>
                     <p class="back-home"><a href="/" class="link-back-home"><i class='bx bxs-chevron-left'></i> Tiếp tục mua hàng</a></p>
                 </div>
             </div>
@@ -112,7 +112,7 @@
                                 <div class="info-price">${el['size']}</div>
                                 <div class="info-total">
                                     <div class="total-amount">
-                                        <button class="button-amount button-minus" onclick="clickMinus('${el['title']}','${el['size']}',event)"/>-</button>
+                                        <button class="button-amount button-minus" onclick="clickMinus('${el['title']}','${el['size']}',event)">-</button>
                                         <input type="number" class="input-amout" readonly min="1" value="${el['amount']}" />
                                         <button class="button-amount button-add" onclick="clickAdd('${el['title']}','${el['size']}',event)">+</button>
                                     </div>
@@ -245,6 +245,16 @@
         //render cart icon
         renderIconCart(cartNew)
     }
+
+
+
+    //giỏ hàng trống sẽ không chuyển hướng qua trang thanh toán được
+    $('.button-payment').click(() => {
+        const listCart = JSON.parse(window.localStorage.getItem('cart'));
+        if (listCart.length > 0) {
+            window.location = '/bill';
+        }
+    })
 </script>
 
 @Scripts.Render("~/bundles/calculate")

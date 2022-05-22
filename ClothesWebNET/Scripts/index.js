@@ -40,7 +40,11 @@ btnViewCart.addEventListener('click', (e) => {
 
 let btnViewCheckout = document.querySelector('.box-make-payment');
 btnViewCheckout.addEventListener('click', (e) => {
-  window.location = '/cart/checkout';
+    const listCart = JSON.parse(window.localStorage.getItem('cart'));
+    if (listCart.length >0) {
+        window.location = '/bill';
+    }
+  
 });
 
 
@@ -89,12 +93,15 @@ btnS.addEventListener('click', e => {
 //render giỏ hàng nhỏ
 let listCartt = JSON.parse(window.localStorage.getItem('cart'));
 let ttMoney = document.querySelector('.payment-total');
+
+
 function renderIconCart(dataList) {
     $(document).ready(() => {
         let str = ''
         let total = 0
         let count = 0;
 
+        if (dataList)
         dataList.forEach((el, index) => {
             count++;
             let intoMoney = Number(el['price']) * Number(el['amount'])
@@ -135,4 +142,5 @@ function renderIconCart(dataList) {
 
     })
 }
+
 renderIconCart(listCartt)

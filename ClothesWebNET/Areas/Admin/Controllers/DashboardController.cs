@@ -17,7 +17,7 @@ namespace ClothesWebNET.Areas.Admin.Controllers
             {
                 return View();
             }
-            return Redirect("~/Home");
+            return Redirect("~/login");
 
         }
     }

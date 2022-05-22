@@ -22,31 +22,52 @@ namespace ClothesWebNET.Controllers
             ViewBag.list = query.ToList();
             return View(query.ToList());
 
-            
         }
 
         // GET: Collections/Details/5
         public ActionResult Details(string id)
         {
+            ProductDTODetail productDTO = new ProductDTODetail();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = db.Products.Find(id);
-                    
+            var product = from el in db.Products
+                          where el.idProduct == id
+                          select el;
+
             if (product == null)
             {
                 return HttpNotFound();
             }
-            return View(product);
+            else
+            {
+                var listProduct = from p in product
+                                  join image in db.ImageProducts on p.idProduct equals image.idProduct
+                                  join type in db.Types on p.idType equals type.idType
+                                  select new ProductDTODetail()
+                                  {
+                                      idProduct = p.idProduct,
+                                      type = type.nameType,
+                                      nameProduct = p.nameProduct,
+                                      price = p.price,
+                                      URLImage = image.URLImage,
+                                      sizeL = p.sizeL,
+                                      sizeM = p.sizeM,
+                                      sizeXL = p.sizeXL,
+                                  };
+
+                ViewBag.List = listProduct;
+                return View(listProduct.ToList());
+            };
 
 
 
 
         }
 
-      
-      
+       
+
         // collections/ao
         public ActionResult ao(string id)
         {

@@ -41,8 +41,8 @@ namespace ClothesWebNET.Areas.Admin.Controllers
                 }
                 return View(user);
             }
-             return Redirect("~/Home");
-    }
+            return Redirect("~/Home");
+        }
 
         // GET: Admin/Users/Create
         public ActionResult Create()
@@ -107,7 +107,7 @@ namespace ClothesWebNET.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "idUser,idPermission,fullName,username,password,gender,identityCard,address,email,URLAvatar,phone")] User user)
+        public ActionResult Edit([Bind(Include = "idUser,idPermission,username,fullName,password,gender,identityCard,address,email,URLAvatar,phone")] User user)
         {
             if (Session["SESSION_GROUP_ADMIN"] != null)
             {

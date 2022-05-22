@@ -38,8 +38,9 @@
 <body>
 
 
+
+
     <div class="main">
-    
         <div class="grid">
             <div class="checkout">
                 <div class="checkout-info">
@@ -63,7 +64,8 @@
                     <div class="back-login checkout-item">
                         Bạn đã có tài khoản? <a href="/login" class="login">Đăng nhập</a>
                     </div>
-                    <form action="" class="form-info checkout-item">
+                    <!-- <form  class="form-info checkout-item">-->
+                    <div class="form-info checkout-item">
                         <div class="form-control form-item">
                             <input placeholder="Họ và tên" id="fullname" type="text" name="fullName" />
                             <small></small>
@@ -88,20 +90,20 @@
                                         id="province"
                                         type="text">
                                     <option value="invalid">Tỉnh/Thành phố</option>
-                             
+
                                 </select>
                                 <small></small>
                             </div>
                             <div class="form-control w-1">
                                 <select placeholder="Quận/Huyện" id="district" type="text">
-                                    <option value="none">Quận/Huyện</option>
+                                    <option value="invalid">Quận/Huyện</option>
 
                                 </select>
                                 <small></small>
                             </div>
                             <div class="form-control w-1">
                                 <select placeholder="Phường/Xã" id="village" type="text">
-                                    <option value="none">Phường/Xã</option>
+                                    <option value="invalid">Phường/Xã</option>
 
                                 </select>
                                 <small></small>
@@ -109,12 +111,14 @@
                         </div>
 
                         <div class="pay form-item">
-                            <a href="/cart.html" class="cart">Giỏ hàng</a>
+                            <a href="/cart" class="cart">Giỏ hàng</a>
                             <button type="button" class="btnPay" id="save_btn">
                                 THANH TOÁN
                             </button>
                         </div>
-                    </form>
+                    </div>
+
+                    <!--     </form>  -->
                 </div>
                 <div class="checkout-bill">
                     <div class="checkout-product" id="detailProduct">
@@ -138,17 +142,12 @@
                         </div>
                         <div class="payment-total total">
                             <div class="total-text">Tổng cộng:</div>
-
                             <div class="total-text total-money" id="totalMoney">0₫</div>
                         </div>
-
-
-
-
                     </div>
                 </div>
             </div>
-        </div>5
+        </div>
     </div>
     <footer class="footer">
         <div class="footer-top">
@@ -185,10 +184,11 @@
     let totalMoney = document.getElementById('totalMoney');
     let tamTinh = document.getElementById('tamTinh');
     let render = document.getElementById('detailProduct');
+    let total = 0
     function renderTableLeft(dataList) {
         $(document).ready(() => {
             let str = ''
-            let total = 0
+
             let count = 0;
             dataList.forEach((el, index) => {
                 count++
@@ -197,26 +197,26 @@
 
 
                 let bodyCart = `
-                <div class="product-item">
-                            <div class="item-img">
-                                <img src='${el['img']}'
-                                     alt=""
-                                     class="img-product" />
-                                <span class="amount">${el['amount']}</span>
-                            </div>
-                            <div class="item-info">
-                                <div class="info-left">
-                                    <div class="info-name-product">
-                                       ${el['title']}
+                    <div class="product-item">
+                                <div class="item-img">
+                                    <img src='${el['img']}'
+                                         alt=""
+                                         class="img-product" />
+                                    <span class="amount">${el['amount']}</span>
+                                </div>
+                                <div class="item-info">
+                                    <div class="info-left">
+                                        <div class="info-name-product">
+                                           ${el['title']}
+                                        </div>
+                                        <div class="info-size-product">${el['size']}</div>
                                     </div>
-                                    <div class="info-size-product">${el['size']}</div>
-                                </div>
-                                <div class="info-right">
-                                    <div class="item-money">${intoMoney.toLocaleString()},000VND</div>
+                                    <div class="info-right">
+                                        <div class="item-money">${intoMoney.toLocaleString()},000VND</div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-            `
+                `
                 total += intoMoney
                 str += bodyCart
             })
@@ -231,6 +231,5 @@
         })
     }
     renderTableLeft(listCart);
-
 </script>
 

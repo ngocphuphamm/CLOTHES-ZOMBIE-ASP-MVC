@@ -1,12 +1,12 @@
-const formInfo = document.querySelector('.form-info');
+
 const fullname = document.getElementById('fullname');
 const email = document.getElementById('email');
 const phone = document.getElementById('phone');
 const address = document.getElementById('address');
 
-const city = document.getElementById('province');
-const district = document.getElementById('district');
-const ward = document.getElementById('village');
+const city = document.getElementById('province'); //thanh pho
+const district = document.getElementById('district'); //quan/huyen
+const ward = document.getElementById('village');//
 
 fetch('/data.json')
     .then((response) => response.json())
@@ -65,79 +65,95 @@ function renderCity(data) {
 import validation from './validation.js';
 
 //submit form
+const listCart = JSON.parse(window.localStorage.getItem('cart'));
+if (!listCart || listCart.length==0) {
 
+    window.location.href='/'
+}
 
 function uuidv4() {
+   
     return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c =>
         (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
     );
 }
+function GenerateId() {
+    const d = new Date();
+    let ms =d.getTime();
+    return ms
+}
 
 
 $('#save_btn').click(() => {
-    validation.checkRequired([fullname, email, phone, address]);
-    validation.checkEmail(email);
-    validation.checkNumberPhone(phone);
-    validation.checkAddress([city, district, ward]);
-    var dsChiTietDH = []
-    const listCart = JSON.parse(window.localStorage.getItem('cart'));
-    
-    const idBill = uuidv4();
-    let total = 0;
-    let totalQty = 0;
-    listCart.forEach((el) => {
-        let idDetail = uuidv4();
-        let converNumberAmount = Number(el.amount);
-        let intoMoney = el.price * converNumberAmount;
-        totalQty += Number(el.amount);
-        total += intoMoney
-       var ctdh = {
-           idDetailBill: idDetail ,   idProduct: el.idFood, idBill: idBill, qty: converNumberAmount, intoMoney : intoMoney
-        }
-        dsChiTietDH.push(ctdh);
-    })
- 
-    const idUser = null;
-    const customData = {
-        idBill: idBill,
-        idUser: idUser !== null ? idUser : null,
-        Shipping: 50,
-        Total: total,
-        PTTT: "Tien Mat",
-        status: 0,
-        detailBill: dsChiTietDH
-    }
+    let checkEmpty = validation.checkRequired([fullname, email, phone, address]);
+    let checkEmailInvalid = validation.checkEmail(email);
+    let checkPhoneInvalid = validation.checkNumberPhone(phone);
+    let checkAddressInvalid = validation.checkAddress([city, district, ward]);
 
-    let thanhpho = $("#province option:selected").text()
-    let quan = $("#village option:selected").text()
-    let phuong = $("#district option:selected").text()
-    let diachi = address.value + ', ' + quan + ', ' + phuong + ', ' + thanhpho
-    let dienthoai = Number(phone.value)
-   /* $.post('/Bill/PostBill',"hello", function (res) {
-        alert(res);
-    })*/
+    if (
+        checkEmpty &&
+        checkEmailInvalid &&
+        checkPhoneInvalid &&
+        !checkAddressInvalid
+    ) {
+        var dsChiTietDH = []
+        const idBill = "DH" +GenerateId();
+        let total = 0;
+        let totalQty = 0;
+        listCart.forEach((el) => {
+            let idDetail = uuidv4();
+            let converNumberAmount = Number(el.amount);
+            let intoMoney = el.price * converNumberAmount;
+            totalQty += Number(el.amount);
+            total += intoMoney
+            var ctdh = {
+                idDetailBill: idDetail, idProduct: el.idFood, idBill: idBill, qty: converNumberAmount, intoMoney: intoMoney
+            }
+            dsChiTietDH.push(ctdh);
+        })
 
-    $.ajax('/Bill/PostBill', {
-        data: {
+        const idUser = null;
+        const customData = {
             idBill: idBill,
             idUser: idUser !== null ? idUser : null,
             Shipping: 50,
             Total: total,
-            totalQty: totalQty,
-            nameBook: fullname.value,
-            email: email.value,
-            phone: dienthoai,
-            address: diachi,
             PTTT: "Tien Mat",
-            detailBill: dsChiTietDH,
-            status: false,
-        },
-        dataType: 'json',
-        method: 'Post',
-        success: function (res) {
-            alert(res);
-            window.localStorage.removeItem('cart');
-            window.location.replace('/home')
+            status: 0,
+            detailBill: dsChiTietDH
         }
-    })
+
+        let thanhpho = $("#province option:selected").text()
+        let quan = $("#village option:selected").text()
+        let phuong = $("#district option:selected").text()
+        let diachi = address.value + ', ' + quan + ', ' + phuong + ', ' + thanhpho
+        let dienthoai = Number(phone.value)
+        /* $.post('/Bill/PostBill',"hello", function (res) {
+             alert(res);
+         })*/
+
+        $.ajax('/Bill/PostBill', {
+            data: {
+                idBill: idBill,
+                idUser: idUser !== null ? idUser : null,
+                Shipping: 50,
+                Total: total,
+                totalQty: totalQty,
+                nameBook: fullname.value,
+                email: email.value,
+                phone: dienthoai,
+                address: diachi,
+                PTTT: "Tien Mat",
+                detailBill: dsChiTietDH,
+                status: false,
+            },
+            dataType: 'json',
+            method: 'Post',
+            success: function (res) {
+                alert(res);
+                window.localStorage.removeItem('cart');
+                window.location.replace('/home')
+            }
+        })
+    }
 })

@@ -1,3 +1,5 @@
+
+
 (function ($) {
   'use strict';
 
@@ -13,26 +15,13 @@
     $('#sidebar').toggleClass('active');
   });
 
-  new Chartist.Line(
-    '#chart-with-area',
-    {
-      labels: [
-        'Thứ 2',
-        'Thứ 3',
-        'Thứ 4',
-        'Thứ 5',
-        'Thứ 6',
-        'Thứ 7',
-        'Chủ nhật',
-      ],
-      series: [[20, 30, 50, 40, 30, 60, 25]],
-    },
-    {
-      low: 0,
-      showArea: true,
-      // plugins: [Chartist.plugins.tooltip()],
-    }
-  );
+  
+
+   
+   
+  
+
+
 
   let classActiveLi = document.querySelectorAll('.rvAc li');
   let classActiveA = document.querySelectorAll('.rvAc li a');

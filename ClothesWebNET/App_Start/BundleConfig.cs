@@ -8,7 +8,7 @@ namespace ClothesWebNET
         // For more information on bundling, visit https://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
-     
+
 
 
 
@@ -40,8 +40,8 @@ namespace ClothesWebNET
             bundles.Add(new StyleBundle("~/Content/payment").Include(
                      "~/Content/payment.css"));
 
-            
-             
+
+
 
             //detail (main+detail) js (product, calculate, detail)
             bundles.Add(new StyleBundle("~/Content/detail").Include(
@@ -54,7 +54,8 @@ namespace ClothesWebNET
             bundles.Add(new StyleBundle("~/Content/login").Include(
                 "~/Content/login.css"));
             bundles.Add(new ScriptBundle("~/bundles/login").Include("~/Scripts/login.js"));
-
+            bundles.Add(new StyleBundle("~/Content/register").Include(
+              "~/Content/register.css"));
 
 
             bundles.Add(new StyleBundle("~/Content/toastr").Include(

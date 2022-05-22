@@ -137,4 +137,38 @@
 <script>
 
     $('.tq').addClass('active');
+    let data;
+    fetch('/Admin/Bills/GetAllBill')
+        .then(response => response.json())
+        .then(json => {
+            console.log(json)
+            json.forEach(item => {
+                let d = item.createdAt;
+                let t = parseInt(d.replace(/[^0-9]/g, ''))
+                const day = new Date(t).getDay() + 1;
+                console.log(day);
+            })
+
+
+            new Chartist.Line(
+                '#chart-with-area',
+                {
+                    labels: [
+                        'Thứ 2',
+                        'Thứ 3',
+                        'Thứ 4',
+                        'Thứ 5',
+                        'Thứ 6',
+                        'Thứ 7',
+                        'Chủ nhật',
+                    ],
+                    series: [[20, 30, 50, 40, 30, 60, 25]],
+                },
+                {
+                    low: 0,
+                    showArea: true,
+                    // plugins: [Chartist.plugins.tooltip()],
+                }
+            );
+        })
 </script>

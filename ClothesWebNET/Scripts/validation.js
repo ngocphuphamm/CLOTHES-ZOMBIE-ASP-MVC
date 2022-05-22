@@ -1,4 +1,4 @@
-//hi?n th? l?i
+//hiển thị lỗi
 function showError(input, message) {
     const parent = input.parentElement;
     parent.classList.add('err');
@@ -6,7 +6,7 @@ function showError(input, message) {
     small.innerText = message;
 }
 
-//t?t l?i
+//tắt lỗi
 function showSuccess(input) {
     const parent = input.parentElement;
     if (parent.classList.contains('err')) {
@@ -20,12 +20,12 @@ function getPlaceholder(input) {
     return input.getAttribute('placeholder');
 }
 class Validation {
-    //ki?m tra ch?a nh?p
+    //kiểm tra chưa nhập
     checkRequired(inputArr) {
         let isRequired = true;
         inputArr.forEach(function (input) {
             if (input.value.trim() === '') {
-                showError(input, `${getPlaceholder(input)} kh�ng ???c tr?ng`);
+                showError(input, `${getPlaceholder(input)} không được trống`);
                 isRequired = false;
             } else {
                 showSuccess(input);
@@ -34,7 +34,7 @@ class Validation {
         return isRequired;
     }
 
-    //ki?m tra email h?p l?
+    //kiểm tra email hợp lệ
     checkEmail(input) {
         let check = false;
         const re =
@@ -44,7 +44,7 @@ class Validation {
             showSuccess(input);
             check = true;
         } else {
-            showError(input, 'Email kh�ng h?p l?');
+            showError(input, 'Email không hợp lệ');
         }
         return check;
     }
@@ -57,7 +57,7 @@ class Validation {
             showSuccess(input);
             check = true;
         } else {
-            showError(input, 'S? ?i?n tho?i kh�ng h?p l?');
+            showError(input, 'Số điện thoại không hợp lệ');
         }
         return check;
     }
@@ -69,18 +69,18 @@ class Validation {
             check = true;
             showSuccess(inputPass2);
         } else {
-            showError(inputPass2, 'M?t kh?u kh�ng kh?p');
+            showError(inputPass2, 'Mật khẩu không khớp');
         }
         return check;
     }
 
-    //ki?m tra t?nh th�nh ph? qu?n huy?n x�
+    //kiểm tra tỉnh thành phố quận huyện xã
     checkAddress(selectArr) {
-        let check = true;
+        let check = false;
         selectArr.forEach(function (select) {
-            if (select.value.trim() == 'none') {
-                showError(select, `B?n ch?a ch?n ${getPlaceholder(select)}`);
-                check = false;
+            if (select.value.trim() == 'invalid') {
+                showError(select, `Bạn chưa chọn ${getPlaceholder(select)}`);
+                check = true;
             } else {
                 showSuccess(select);
             }

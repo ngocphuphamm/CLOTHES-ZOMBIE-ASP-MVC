@@ -6,6 +6,11 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Data;
+using System.Data.Entity;
+using System.Net;
+
+
 
 namespace ClothesWebNET.Controllers
 {
@@ -19,6 +24,7 @@ namespace ClothesWebNET.Controllers
             
             return View();
         }
+      
 
         [HttpPost]
         public ActionResult PostBill(string idBill , string idUser,int Shipping , int Total , int totalQty,string nameBook ,string email , int phone,
@@ -54,7 +60,7 @@ namespace ClothesWebNET.Controllers
 
         }
 
-        public JsonResult hello(string arr)
+        public JsonResult hello()
         {
      
             return Json("Response from Create");

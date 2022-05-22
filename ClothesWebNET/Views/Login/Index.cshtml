@@ -1,9 +1,6 @@
 ﻿
 
 
-
-
-
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -11,7 +8,7 @@
 
 @Styles.Render("~/Content/login")
 <div class="container">
-    <form  action="~/Login/kiemtradangnhap" method="post" class="form-login form-login-cus" >
+    <form action="~/Login/kiemtradangnhap" method="post" class="form-login form-login-cus">
         <div class="login-box-cus">
             <p class="heading">đăng nhập tài khoản</p>
             <div class="heading-login-with">Nhập tên đăng nhập và mật khẩu của bạn</div>
@@ -24,6 +21,7 @@
                            placeholder="Username"
                            class="modal-form-input" />
                     <small></small>
+
                 </div>
                 <div class="form-control err">
                     <input type="password"
@@ -67,5 +65,11 @@
 
 
 @Scripts.RenderFormat("<script src='{0}' type='module'></script>", "~/bundles/login")
+@Scripts.Render("~/bundles/admin/jquery")
+<script>
+    $('#modal-register').click(() => {
+        window.location.href = '/register'
+    })
+</script>
 
 

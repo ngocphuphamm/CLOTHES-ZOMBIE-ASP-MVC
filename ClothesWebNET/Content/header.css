@@ -57,8 +57,11 @@
     font-size: 2.6rem;
     display: block;
 }
+    .header-top-link a i {
+        font-size: 2.5rem;
+    }
 
-    .header-top-link:hover {
+    .header-top-link:hover, .header-top-link a i:hover {
         color: #f3ab70;
         transition: all 0.2s ease-in-out;
         cursor: pointer;
