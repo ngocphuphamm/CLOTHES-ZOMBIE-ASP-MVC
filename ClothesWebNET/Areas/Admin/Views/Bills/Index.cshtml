@@ -19,7 +19,7 @@
             </ol>
         </nav>
         <div class="table-responsive-sm">
-            <table id="table-product" class="table" style="width: 100%">
+            <table id="table-product" class="table" style="width: 100%;font-size:13px;">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -40,7 +40,7 @@
                     <tr>
                         <td>@item.idBill</td>
                         <td>@item.nameBook</td>
-                        <td>@item.phone</td>
+                        <td><span>0</span>@item.phone</td>
                         <td style="display:none">@item.address</td>
                         <td>@item.Total</td>
                         <td>@item.PTTT</td>
@@ -50,7 +50,7 @@
                         {
                             <td>Thành công</td>
                             <td>
-                                <a class="btn btn-success disabled" href="" role="button">Cập nhật</a>
+                                <a style="width: 80px; font-size: 12px"  class="btn  btn-success disabled" href="" role="button">Cập nhật</a>
                             </td>
 
                         }
@@ -58,14 +58,14 @@
                         {
                             <td>Đang chờ</td>
                             <td>
-                                <a class="btn btn-success" href="Bills/Edit/@item.idBill" role="button">Cập nhật</a>
+                                <a style="width: 80px; font-size: 12px" class="btn btn-success" href="Bills/Edit/@item.idBill" role="button">Cập nhật</a>
                             </td>
 
                         }
 
 
                         <td>
-                            <a class="btn btn-info" href="Bills/Details/@item.idBill" role="button">Chi tiết</a>
+                            <a style="width:80px;font-size:12px"  class="btn btn-info" href="Bills/Details/@item.idBill" role="button">Chi tiết</a>
                         </td>
 
 

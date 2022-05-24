@@ -30,7 +30,7 @@
             font-weight: normal;
         }
 
-    h5.text-sm input {
+    h5.text-sm input, h5.text-sm select {
         font-weight: 500;
         margin: 5px 0;
         color: #333;
@@ -53,8 +53,14 @@
         <div class="table-responsive-sm">
             <h4 class="text-center title-detail">CẬP NHẬT THÔNG TIN ĐƠN HÀNG</h4>
             <h5 class="text-sm">Họ tên người mua hàng: <input required class="form-control" type="text" id="fullname" /></h5>
-            <h5 class="text-sm">Số điện thoại: <input required class="form-control" id="phone" /></h5>
+            <h5 class="text-sm">Số điện thoại: <input required type="number" class="form-control" id="phone" /></h5>
             <h5 class="text-sm">Địa chỉ: <input required class="form-control" id="address" /></h5>
+            <h5 class="text-sm">Trạng thái: 
+                <select required class="form-control" id="status">
+                    <option value="false">Đang chờ</option>
+                    <option value="true">Thành công</option>
+                </select>
+            </h5>
             <h5 class="text-sm">Mã hóa đơn: <span id="idBill"></span></h5>
             <table class="table table-bordered">
                 <thead>
@@ -78,22 +84,13 @@
 
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
     var pathname = window.location.pathname
     let lastS = pathname.lastIndexOf('/');
     let id = pathname.slice(lastS + 1).trim();
 
-    function CallAjax(dataPost) {
-        $.ajax('/Admin/Bills/UpdateBill', {
-            data: { idBill: "aaaa" }
-            ,
-            dataType: 'json',
-            method: 'Post',
-            success: function (res) {
-                console.log(res)
-            }
-        })
-    }
+
 
     //get api
     $.ajax('/Admin/Bills/GetDetailBill', {
@@ -109,98 +106,55 @@
             $('#address').val(res[0].address)
             $('#idBill').html(res[0].idBill)
 
+
             let html = '';
             res.forEach(item => {
                 let intoM = parseInt(item.qty) * parseInt(item.price)
                 html += `<tr class="rowDt">
              <td class="dln idDetailBill">${item.idDetailBill}</td>
              <td class="dln idProduct">${item.idProduct}</td>
-
                     <td class="nameProduct">${item.nameProduct}</td>
-                    <td> <input required type="number" min="0" class="form-control qty" value="${item.qty}"/></td>
+                    <td > ${item.qty}</td>
                     <td class="fmt price">${item.price}000</td>
                     <td class="fmt intoMoney">${intoM}000</td>
                        </tr>`
             })
             $('#renderItem').html(html)
-            $('#Total').html(res[0].Total + "000")
-
-
-            let idDetailBill = document.querySelectorAll('.idDetailBill');
-            let idProduct = document.querySelectorAll('.idProduct');
-            let qty = document.querySelectorAll('.qty');
-            let price = document.querySelectorAll('.price');
-            let intoMoney = document.querySelectorAll('.intoMoney');
-
-
-
-            for (let i = 0; i < qty.length; i++) {
-                qty[i].addEventListener('change', e => {
-                    if (!qty[i].value) qty[i].value = 1;
-                    let sl = parseInt(qty[i].value)
-                    let pc = parseInt(price[i].textContent);
-                    intoMoney[i].innerHTML = commaSeparator((sl * pc).toString() + "000");
-                    console.log(CaluTotal())
-                    $('#Total').html(commaSeparator(CaluTotal().toString()))
-
-
-                })
-
-            }
-
-            function CaluTotal() {
-                let s = 0;
-                intoMoney.forEach(item => {
-                    let into = item.textContent
-                    console.log(typeof removeComma(into));
-                    s += removeComma(into);
-                })
-                return s;
-            }
-
-
+            $('#Total').html(res[0].Total+"000")
             let fmt = document.querySelectorAll('.fmt');
             fmt.forEach(item => {
                 item.textContent = commaSeparator(item.textContent);
             })
-
-
-            //data:idBill,nameBook,phone,address,Total,itemDetailBill[]
-            let tt = removeComma($('#Total').html()).toString();
-
-
-            let detailBill = {};
-            let detailArr = []
-            for (let i = 0; i < idDetailBill.length; i++) {
-                detailBill.idDetailBil = idDetailBill[i].innerHTML
-                detailBill.idProduct = idProduct[i].innerHTML
-                detailBill.qty = parseInt(qty[i].value)
-                detailBill.intoMoney = parseInt(removeComma(intoMoney[i].innerHTML).toString().slice(0, -3));
-                detailArr.push(detailBill)
-            }
-
-            let dataPost = {
-                idBill: res[0].idBill,
-                nameBook: res[0].idBill,
-                phone: res[0].phone,
-                address: res[0].address,
-                Total: parseInt(tt.slice(0, -3)),
-                itemDetailBill: detailArr
-            }
-
-            console.log(dataPost)
-            $('.saveData').click(() => {
-                CallAjax(dataPost)
-            })
-
-
-
-
         }
     })
 
 
     //post data
+
+
+    $('.saveData').click(() => {
+        let ibBill = id;
+        let nameBook = $('#fullname').val()
+        let phone = $('#phone').val().toString().slice(1);
+        let address = $('#address').val()
+        let status = $('#status').val()
+
+      @*  let data = { ibBill, nameBook, phone, address, status: status.toLowerCase() == 'true' ? true : false  }
+        console.log(data)*@
+
+        axios.post('/Admin/Bills/UpdateBill', {ibBill, nameBook, phone, address, status: status.toLowerCase() == 'true' ? true : false })
+            .then(function (response) {
+                console.log(response);
+                if (response.data == "success") {
+                    alert("Cập nhật thành công")
+                    window.location.href ='/Admin/Bills'
+                }
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
+    })
 
 
 

@@ -49,11 +49,11 @@ namespace ClothesWebNET.Areas.Admin.Controllers
 
         }
 
+        
         [HttpPost]
         public JsonResult GetDetailBill(string idBill)
         {
         
-     
            if (Session["SESSION_GROUP_ADMIN"] != null)
             {
                 if (idBill == null)
@@ -106,28 +106,33 @@ namespace ClothesWebNET.Areas.Admin.Controllers
 
 
         }
-        // GET: Admin/Bills
+       
 
         [HttpPost]
-        public JsonResult UpdateBill(string idBill)
+        public JsonResult UpdateBill(string ibBill,string nameBook,string phone, string address, bool status)
         {
-            //thông tin cần cập nhật
-            //tên người dùng
-            //địa chỉ
-            //số điện thoại
-            //list[detailBill]
-            //
-           
 
-            
-            return Json("oke mà", JsonRequestBehavior.AllowGet);
+            if (Session["SESSION_GROUP_ADMIN"] != null)
+            {
+                if (ibBill == null)
+                {
+                    return Json("ERR");
+                }
 
-            /* if (bill != null)
-             {
-                 bill.status = false;
-                 db.SaveChanges();
-                 return Json("oke update thành công ", JsonRequestBehavior.AllowGet);
-             }*/
+                Bill bill = db.Bills.Find(ibBill);
+
+                if (bill != null)
+                {
+                    bill.nameBook= nameBook;
+                    bill.phone= phone;
+                    bill.address= address;
+                    bill.status= status;
+                    db.SaveChanges();
+                    return Json("success");
+                }
+               
+            }
+            return Json("không đủ quyền");
 
 
 
@@ -139,7 +144,7 @@ namespace ClothesWebNET.Areas.Admin.Controllers
                 var bills = db.Bills.Include(b => b.User);
                 return View(bills.ToList());
             }
-            return Redirect("~/Home");
+            return Redirect("~/login");
         }
 
         // GET: Admin/Bills/Details/5
@@ -179,7 +184,7 @@ namespace ClothesWebNET.Areas.Admin.Controllers
                 ViewBag.idUser = new SelectList(db.Users, "idUser", "idPermission");
                 return View();
             }
-            return Redirect("~/Home");
+            return Redirect("~/login");
         }
 
         // POST: Admin/Bills/Create
@@ -221,7 +226,7 @@ namespace ClothesWebNET.Areas.Admin.Controllers
                 ViewBag.idUser = new SelectList(db.Users, "idUser", "idPermission", bill.idUser);
                 return View(bill);
             }
-            return Redirect("~/Home");
+            return Redirect("~/login");
         }
 
         // POST: Admin/Bills/Edit/5
@@ -275,7 +280,7 @@ namespace ClothesWebNET.Areas.Admin.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return Redirect("~/Home");
+            return Redirect("~/login");
         }
 
         protected override void Dispose(bool disposing)

@@ -24,7 +24,7 @@ namespace ClothesWebNET.Areas.Admin.Controllers
                     .Include(i=>i.ImageProducts);
                 return View(products.ToList());
             }
-            return Redirect("~/Home");
+            return Redirect("~/login");
         }
 
         // GET: Admin/Products/Details/5
@@ -43,7 +43,7 @@ namespace ClothesWebNET.Areas.Admin.Controllers
                 }
                 return View(product);
             }
-            return Redirect("~/Home");
+            return Redirect("~/login");
         }
 
         // GET: Admin/Products/Create
@@ -54,7 +54,7 @@ namespace ClothesWebNET.Areas.Admin.Controllers
                 ViewBag.idType = new SelectList(db.Types, "idType", "nameType");
                 return View();
             }
-            return Redirect("~/Home");
+            return Redirect("~/login");
         }
 
         // POST: Admin/Products/Create
@@ -96,7 +96,7 @@ namespace ClothesWebNET.Areas.Admin.Controllers
                 ViewBag.idType = new SelectList(db.Types, "idType", "nameType", product.idType);
                 return View(product);
             }
-            return Redirect("~/Home");
+            return Redirect("~/login");
         }
 
         // POST: Admin/Products/Edit/5
@@ -117,7 +117,7 @@ namespace ClothesWebNET.Areas.Admin.Controllers
                 ViewBag.idType = new SelectList(db.Types, "idType", "nameType", product.idType);
                 return View(product);
             }
-            return Redirect("~/Home");
+            return Redirect("~/login");
         }
 
         // GET: Admin/Products/Delete/5
@@ -136,7 +136,7 @@ namespace ClothesWebNET.Areas.Admin.Controllers
                 }
                 return View(product);
             }
-            return Redirect("~/Home");
+            return Redirect("~/login");
         }
 
         // POST: Admin/Products/Delete/5
@@ -151,7 +151,7 @@ namespace ClothesWebNET.Areas.Admin.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return Redirect("~/Home");
+            return Redirect("~/login");
         }
 
         protected override void Dispose(bool disposing)

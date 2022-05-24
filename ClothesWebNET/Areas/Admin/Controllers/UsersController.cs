@@ -22,7 +22,7 @@ namespace ClothesWebNET.Areas.Admin.Controllers
                 var users = db.Users.Include(u => u.Permission);
                 return View(users.ToList());
             }
-            return Redirect("~/Home");
+            return Redirect("~/login");
         }
 
         // GET: Admin/Users/Details/5
@@ -41,7 +41,7 @@ namespace ClothesWebNET.Areas.Admin.Controllers
                 }
                 return View(user);
             }
-            return Redirect("~/Home");
+            return Redirect("~/login");
         }
 
         // GET: Admin/Users/Create
@@ -52,7 +52,7 @@ namespace ClothesWebNET.Areas.Admin.Controllers
                 ViewBag.idPermission = new SelectList(db.Permissions, "idPermission", "namePermission");
                 return View();
             }
-            return Redirect("~/Home");
+            return Redirect("~/login");
         }
 
         // POST: Admin/Users/Create
@@ -79,7 +79,7 @@ namespace ClothesWebNET.Areas.Admin.Controllers
                 ViewBag.idPermission = new SelectList(db.Permissions, "idPermission", "namePermission", user.idPermission);
                 return View(user);
             }
-            return Redirect("~/Home");
+            return Redirect("~/login");
         }
 
         // GET: Admin/Users/Edit/5
@@ -99,7 +99,7 @@ namespace ClothesWebNET.Areas.Admin.Controllers
                 ViewBag.idPermission = new SelectList(db.Permissions, "idPermission", "namePermission", user.idPermission);
                 return View(user);
             }
-            return Redirect("~/Home");
+            return Redirect("~/login");
         }
 
         // POST: Admin/Users/Edit/5
@@ -120,7 +120,7 @@ namespace ClothesWebNET.Areas.Admin.Controllers
                 ViewBag.idPermission = new SelectList(db.Permissions, "idPermission", "namePermission", user.idPermission);
                 return View(user);
             }
-            return Redirect("~/Home");
+            return Redirect("~/login");
         }
 
         // GET: Admin/Users/Delete/5
@@ -139,7 +139,7 @@ namespace ClothesWebNET.Areas.Admin.Controllers
                 }
                 return View(user);
             }
-            return Redirect("~/Home");
+            return Redirect("~/login");
         }
 
         // POST: Admin/Users/Delete/5
@@ -154,7 +154,7 @@ namespace ClothesWebNET.Areas.Admin.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return Redirect("~/Home");
+            return Redirect("~/login");
         }
 
         protected override void Dispose(bool disposing)
