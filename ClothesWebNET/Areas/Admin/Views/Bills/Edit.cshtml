@@ -6,6 +6,40 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
+<style>
+    .title-detail {
+        color: black;
+    }
+
+    .text-sm {
+        font-size: 15px;
+        font-weight: bolder;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 10px 0;
+    }
+
+        .text-sm span {
+            font-weight: 500;
+        }
+
+    h5.text-right {
+        font-weight: 500;
+    }
+
+        h5.text-right span {
+            font-weight: normal;
+        }
+
+    h5.text-sm input {
+        font-weight: 500;
+        margin: 5px 0;
+        color: #333;
+    }
+
+    .dln {
+        display: none;
+    }
+</style>
 <div id="content" class="">
     <div class="content-main p-4">
         <nav aria-label="breadcrumb">
@@ -16,88 +50,187 @@
                 </li>
             </ol>
         </nav>
-
-            @*
-            tên khách hàng,sđt, địa chỉ, trạng thái, tổng tiền,    
-            *@
         <div class="table-responsive-sm">
-            @using (Html.BeginForm())
-            {
-                @Html.AntiForgeryToken()
+            <h4 class="text-center title-detail">CẬP NHẬT THÔNG TIN ĐƠN HÀNG</h4>
+            <h5 class="text-sm">Họ tên người mua hàng: <input required class="form-control" type="text" id="fullname" /></h5>
+            <h5 class="text-sm">Số điện thoại: <input required class="form-control" id="phone" /></h5>
+            <h5 class="text-sm">Địa chỉ: <input required class="form-control" id="address" /></h5>
+            <h5 class="text-sm">Mã hóa đơn: <span id="idBill"></span></h5>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">Tên sản phẩm</th>
+                        <th scope="col">Số lượng</th>
+                        <th scope="col">Giá bán</th>
+                        <th scope="col">Tổng tiền</th>
 
-                <div class="form-horizontal">
-
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                    @Html.HiddenFor(model => model.idBill)
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.idUser, "idUser", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.DropDownList("idUser", null, htmlAttributes: new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.idUser, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Shipping, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.Shipping, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Shipping, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Total, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.Total, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Total, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.PTTT, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.PTTT, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.PTTT, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.status, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            <div class="checkbox">
-                                @Html.EditorFor(model => model.status)
-                                @Html.ValidationMessageFor(model => model.status, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.createdAt, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.createdAt, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.createdAt, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.totalQty, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.totalQty, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.totalQty, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" value="Save" class="btn btn-default" />
-                        </div>
-                    </div>
-                </div>
-            }
+                    </tr>
+                </thead>
+                <tbody id="renderItem">
+                </tbody>
+            </table>
         </div>
+        <h5 class="text-right">Tổng cộng:<span class="fmt" id="Total"></span></h5>
+        <button type="button" class="btn btn-primary saveData">Cập nhật</button>
     </div>
 </div>
+@Scripts.Render("~/bundles/admin/jquery")
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script>
+    var pathname = window.location.pathname
+    let lastS = pathname.lastIndexOf('/');
+    let id = pathname.slice(lastS + 1).trim();
+
+    function CallAjax(dataPost) {
+        $.ajax('/Admin/Bills/UpdateBill', {
+            data: { idBill: "aaaa" }
+            ,
+            dataType: 'json',
+            method: 'Post',
+            success: function (res) {
+                console.log(res)
+            }
+        })
+    }
+
+    //get api
+    $.ajax('/Admin/Bills/GetDetailBill', {
+        data: {
+            idBill: id,
+        },
+        dataType: 'json',
+        method: 'Post',
+        success: function (res) {
+            console.log(res)
+            $('#fullname').val(res[0].nameBook)
+            $('#phone').val("0" + res[0].phone)
+            $('#address').val(res[0].address)
+            $('#idBill').html(res[0].idBill)
+
+            let html = '';
+            res.forEach(item => {
+                let intoM = parseInt(item.qty) * parseInt(item.price)
+                html += `<tr class="rowDt">
+             <td class="dln idDetailBill">${item.idDetailBill}</td>
+             <td class="dln idProduct">${item.idProduct}</td>
+
+                    <td class="nameProduct">${item.nameProduct}</td>
+                    <td> <input required type="number" min="0" class="form-control qty" value="${item.qty}"/></td>
+                    <td class="fmt price">${item.price}000</td>
+                    <td class="fmt intoMoney">${intoM}000</td>
+                       </tr>`
+            })
+            $('#renderItem').html(html)
+            $('#Total').html(res[0].Total + "000")
+
+
+            let idDetailBill = document.querySelectorAll('.idDetailBill');
+            let idProduct = document.querySelectorAll('.idProduct');
+            let qty = document.querySelectorAll('.qty');
+            let price = document.querySelectorAll('.price');
+            let intoMoney = document.querySelectorAll('.intoMoney');
+
+
+
+            for (let i = 0; i < qty.length; i++) {
+                qty[i].addEventListener('change', e => {
+                    if (!qty[i].value) qty[i].value = 1;
+                    let sl = parseInt(qty[i].value)
+                    let pc = parseInt(price[i].textContent);
+                    intoMoney[i].innerHTML = commaSeparator((sl * pc).toString() + "000");
+                    console.log(CaluTotal())
+                    $('#Total').html(commaSeparator(CaluTotal().toString()))
+
+
+                })
+
+            }
+
+            function CaluTotal() {
+                let s = 0;
+                intoMoney.forEach(item => {
+                    let into = item.textContent
+                    console.log(typeof removeComma(into));
+                    s += removeComma(into);
+                })
+                return s;
+            }
+
+
+            let fmt = document.querySelectorAll('.fmt');
+            fmt.forEach(item => {
+                item.textContent = commaSeparator(item.textContent);
+            })
+
+
+            //data:idBill,nameBook,phone,address,Total,itemDetailBill[]
+            let tt = removeComma($('#Total').html()).toString();
+
+
+            let detailBill = {};
+            let detailArr = []
+            for (let i = 0; i < idDetailBill.length; i++) {
+                detailBill.idDetailBil = idDetailBill[i].innerHTML
+                detailBill.idProduct = idProduct[i].innerHTML
+                detailBill.qty = parseInt(qty[i].value)
+                detailBill.intoMoney = parseInt(removeComma(intoMoney[i].innerHTML).toString().slice(0, -3));
+                detailArr.push(detailBill)
+            }
+
+            let dataPost = {
+                idBill: res[0].idBill,
+                nameBook: res[0].idBill,
+                phone: res[0].phone,
+                address: res[0].address,
+                Total: parseInt(tt.slice(0, -3)),
+                itemDetailBill: detailArr
+            }
+
+            console.log(dataPost)
+            $('.saveData').click(() => {
+                CallAjax(dataPost)
+            })
+
+
+
+
+        }
+    })
+
+
+    //post data
+
+
+
+
+
+
+
+
+    const commaSeparator = (money) => {
+        let res = [...money];
+        let count = 0;
+        for (let i = res.length - 1; i >= 0; i--) {
+            count++;
+            if (count == 3) {
+                if (i != 0) {
+                    res[i] = ',' + res[i];
+                    count = 0;
+                }
+            }
+        }
+        return res.join('') + 'đ';
+    };
+    const removeComma = (money) => {
+        money = parseInt(money.slice(0, money.length - 1).replaceAll(',', ''));
+        // console.log(money);
+        return money;
+    };
+
+
+</script>
 
 
 

@@ -16,38 +16,45 @@ namespace ClothesWebNET.Areas.Admin.Controllers
     {
         private CLOTHESEntities db = new CLOTHESEntities();
 
+
+        
         [HttpGet]
         public JsonResult GetAllBill()
         {
-            ProductDTODetail productDTO = new ProductDTODetail();
+            if (Session["SESSION_GROUP_ADMIN"] != null)
+            {
+                ProductDTODetail productDTO = new ProductDTODetail();
 
-            var bills = db.Bills.Include(b => b.User);
-            var listProduct = from p in bills
-                                 
-                                select new BillData()
-                               {
-                                  idBill = p.idBill,
-                                  idUser = p.idUser,
-                                  Ship = p.Shipping,
-                                  Total = p.Total,
-                                  PTTT = p.PTTT,
-                                  status = p.status,
-                                    createdAt = p.createdAt,
-                                  Qty = p.totalQty,
-                                  nameUser = p.nameBook,
-                                  email = p.email,
-                                  phone = p.phone,
+                var bills = db.Bills.Include(b => b.User);
+                var listProduct = from p in bills
 
-                              };
-            return Json(listProduct.ToList(), JsonRequestBehavior.AllowGet);
+                                  select new BillData()
+                                  {
+                                      idBill = p.idBill,
+                                      idUser = p.idUser,
+                                      Ship = p.Shipping,
+                                      Total = p.Total,
+                                      PTTT = p.PTTT,
+                                      status = p.status,
+                                      createdAt = p.createdAt,
+                                      Qty = p.totalQty,
+                                      nameUser = p.nameBook,
+                                      email = p.email,
+                                      phone = p.phone,
+
+                                  };
+                return Json(listProduct.ToList(), JsonRequestBehavior.AllowGet);
+            }
+            return Json("không đủ quyền", JsonRequestBehavior.AllowGet);
+
         }
 
         [HttpPost]
         public JsonResult GetDetailBill(string idBill)
         {
-          
-       
-            if (Session["SESSION_GROUP_ADMIN"] != null)
+        
+     
+           if (Session["SESSION_GROUP_ADMIN"] != null)
             {
                 if (idBill == null)
                 {
@@ -73,11 +80,15 @@ namespace ClothesWebNET.Areas.Admin.Controllers
                                         phone=bill.phone,
                                         address=bill.address,
                                         idBill=idBill,
+                                        Total = bills.Total,
+
+                                        idDetailBill=detail.idDetailBill,
                                         nameProduct = product.nameProduct,
+                                        idProduct=detail.idProduct,
                                         qty = detail.qty,
                                         price = product.price,
                                         intoMoney = detail.intoMoney,
-                                        Total=bills.Total
+                                        
                                                                                                                  
                                     });
 
@@ -97,6 +108,30 @@ namespace ClothesWebNET.Areas.Admin.Controllers
         }
         // GET: Admin/Bills
 
+        [HttpPost]
+        public JsonResult UpdateBill(string idBill)
+        {
+            //thông tin cần cập nhật
+            //tên người dùng
+            //địa chỉ
+            //số điện thoại
+            //list[detailBill]
+            //
+           
+
+            
+            return Json("oke mà", JsonRequestBehavior.AllowGet);
+
+            /* if (bill != null)
+             {
+                 bill.status = false;
+                 db.SaveChanges();
+                 return Json("oke update thành công ", JsonRequestBehavior.AllowGet);
+             }*/
+
+
+
+        }
         public ActionResult Index()
         {
             if (Session["SESSION_GROUP_ADMIN"] != null)

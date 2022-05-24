@@ -12,6 +12,13 @@ namespace ClothesWebNET.Models
     using System;
     using System.Collections.Generic;
     
+    public class ItemBill
+    {
+        public string idDetailBill { get; set; }
+        public string idProduct { get; set; }
+        public int qty { get; set; }
+        public int intoMoney { get; set; }
+    }
     public partial class DetailBIll
     {
         public string idDetailBill { get; set; }

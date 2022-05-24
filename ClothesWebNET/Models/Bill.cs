@@ -30,16 +30,22 @@ namespace ClothesWebNET.Models
  
     public class ItemDetail
     {            
+        //thông tin trong b?ng Bill
         public string nameBook { get; set; }
         public string idBill { get; set; }
         public string phone { set; get; }
         public string address { get; set; }
+        public int Total { get; set; }
 
+        //thông tin trong b?ng DetailBill
         public string nameProduct { get; set; }
+        public string idProduct { get; set; }
         public int qty { set; get; }
         public double price { get; set; }
         public int intoMoney { get; set; }
-        public int Total { get; set; }
+        public string idDetailBill { get; set; }
+
+       
     }
     public partial class Bill
     {

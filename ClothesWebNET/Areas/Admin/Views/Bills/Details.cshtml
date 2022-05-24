@@ -64,7 +64,8 @@
 
 <script>
     var pathname = window.location.pathname
-    let id = pathname.slice(21);
+    let lastS = pathname.lastIndexOf('/');
+    let id = pathname.slice(lastS + 1).trim();
 
     $.ajax('/Admin/Bills/GetDetailBill', {
         data: {

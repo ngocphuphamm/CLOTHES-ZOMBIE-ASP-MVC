@@ -26,7 +26,7 @@
                             <h3 class="card-title text-white">Tổng số sản phẩm</h3>
                             <div class="d-inline-block">
                                 <h2 class="text-white">500</h2>
-                                <p class="text-white mb-0">18/04/2022</p>
+                              
                             </div>
                             <span class="float-right display-5 opacity-5">
                                 <i class="fa fa-shopping-cart"></i>
@@ -40,7 +40,7 @@
                             <h3 class="card-title text-white">Số đơn tháng này</h3>
                             <div class="d-inline-block">
                                 <h2 class="text-white">500</h2>
-                                <p class="text-white mb-0">Jan - March 2019</p>
+                                
                             </div>
                             <span class="float-right display-5 opacity-5">
                                 <i class="fa fa-money"></i>
@@ -54,7 +54,7 @@
                             <h3 class="card-title text-white">Khách hàng</h3>
                             <div class="d-inline-block">
                                 <h2 class="text-white">4565</h2>
-                                <p class="text-white mb-0">Jan - March 2019</p>
+                               @* <p class="text-white mb-0">Jan - March 2019</p>*@
                             </div>
                             <span class="float-right display-5 opacity-5">
                                 <i class="fa fa-users"></i>
@@ -63,16 +63,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row d-flex justify-content-end mt-4">
-                <div class="col-lg-2">
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected>Hôm nay</option>
-                        <option value="1">Hôm qua</option>
-                        <option value="2">Tuần này</option>
-                        <option value="3">Tháng này</option>
-                    </select>
-                </div>
-            </div>
+           
             <div class="row mt-3">
                 <div class="col-lg-6">
                     <div class="card">
@@ -90,7 +81,7 @@
                                     <tbody>
                                         <tr>
                                             <td>Mới</td>
-                                            <td class="tbl-center">0</td>
+                                            <td class="tbl-center qtyNew">0</td>
                                             <td class="tbl-center">0</td>
                                         </tr>
                                         <tr>
@@ -100,8 +91,8 @@
                                         </tr>
                                         <tr>
                                             <td>Thành công</td>
-                                            <td class="tbl-center">0</td>
-                                            <td class="tbl-center">0</td>
+                                            <td class="tbl-center qtySuccess">0</td>
+                                            <td class="tbl-center sales">0</td>
                                         </tr>
                                         <tr>
                                             <td>Thất bại</td>
@@ -136,18 +127,74 @@
 
 <script>
 
+    const commaSeparator = (money) => {
+        let res = [...money];
+        let count = 0;
+        for (let i = res.length - 1; i >= 0; i--) {
+            count++;
+            if (count == 3) {
+                if (i != 0) {
+                    res[i] = ',' + res[i];
+                    count = 0;
+                }
+            }
+        }
+        return res.join('') + 'đ';
+    };
+    function beginOfWeek(d) {
+        d = new Date(d);
+        var day = d.getDay(),
+            diff = d.getDate() - day + (day == 0 ? -6 : 1); 
+        return new Date(d.setDate(diff));
+    }
+    function endOfWeek(date) {
+
+        var lastday = date.getDate() - (date.getDay() - 1) + 6;
+        return new Date(date.setDate(lastday));
+
+    }
+
+    const currentDay = new Date();
+    const firstDayOfWeek = beginOfWeek(currentDay);
+      firstDayOfWeek.setHours(00, 00, 00);
+    const weekend = endOfWeek(currentDay);
+    weekend.setHours(23,59,59)
+    console.log("thứ 2 tuần này:" + firstDayOfWeek);
+    console.log("chủ nhật: "+weekend);
+
     $('.tq').addClass('active');
     let data;
     fetch('/Admin/Bills/GetAllBill')
         .then(response => response.json())
         .then(json => {
             console.log(json)
+            let dayArr = [0, 0, 0, 0, 0, 0, 0]
+
+            let qtySuccess = 0;
+            let saleSuccess = 0;
+
             json.forEach(item => {
                 let d = item.createdAt;
                 let t = parseInt(d.replace(/[^0-9]/g, ''))
-                const day = new Date(t).getDay() + 1;
-                console.log(day);
+                const day = new Date(t);
+                if (day >= firstDayOfWeek && day <= weekend) {
+                    let dayOfWeek = day.getDay();
+                    dayArr[dayOfWeek]++;
+                    if (item.status == true) {
+                        qtySuccess++
+                        saleSuccess += item.Total;
+                        $('.qtySuccess').html(qtySuccess)
+                        $('.sales').html(commaSeparator(saleSuccess+"000"))
+                    }
+                }
             })
+            console.log(dayArr)
+
+            let qtyNew = 0;
+            dayArr.forEach(item => {
+                qtyNew+=item
+            })
+            $('.qtyNew').html(qtyNew);
 
 
             new Chartist.Line(
@@ -162,7 +209,8 @@
                         'Thứ 7',
                         'Chủ nhật',
                     ],
-                    series: [[20, 30, 50, 40, 30, 60, 25]],
+
+                    series: [ [dayArr[1], dayArr[2], dayArr[3], dayArr[4], dayArr[5], dayArr[6], dayArr[0]] ],
                 },
                 {
                     low: 0,
