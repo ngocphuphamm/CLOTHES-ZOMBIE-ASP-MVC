@@ -39,7 +39,67 @@
     .dln {
         display: none;
     }
+    .vl-err{
+        color:red;
+        padding:5px 5px;
+        font-size:13px;
+        display:none;
+    }
+
+   /* The Modal (background) */
+    .modal {
+        display: none; 
+        position: fixed; 
+        z-index: 2; 
+        left: 0;
+        top: 0;
+        width: 100%; 
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0,0,0); 
+        background-color: rgba(0,0,0,0.4); 
+    }
+
+  
+    .modal-content {
+        background-color: #fefefe;
+        margin: 10% auto; 
+        margin-left:520px;
+        padding:20px 20px;
+        border: 1px solid #888;
+        width: 400px;
+       
+    }
+
+   
+    .btnClose {
+        padding:0 20px;
+        color: #aaa;
+        font-size: 28px;
+        font-weight: bold;
+        text-align:right;
+    }
+
+        .btnClose:hover,
+        .btnClose:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    .modal-message{
+        text-align:center;
+        color:blue;
+        font-size:20px;
+    }
 </style>
+
+<div id="modalSuccess" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+        <p class="modal-message">Cập nhật thành công</p>
+    </div>
+
+</div>
 <div id="content" class="">
     <div class="content-main p-4">
         <nav aria-label="breadcrumb">
@@ -52,9 +112,22 @@
         </nav>
         <div class="table-responsive-sm">
             <h4 class="text-center title-detail">CẬP NHẬT THÔNG TIN ĐƠN HÀNG</h4>
-            <h5 class="text-sm">Họ tên người mua hàng: <input required class="form-control" type="text" id="fullname" /></h5>
-            <h5 class="text-sm">Số điện thoại: <input required type="number" class="form-control" id="phone" /></h5>
-            <h5 class="text-sm">Địa chỉ: <input required class="form-control" id="address" /></h5>
+            <h5 class="text-sm">
+                Họ tên người mua hàng:
+                <input required class="form-control" type="text" id="fullname" />
+                <small class="vl-err errFullname"></small>
+
+            </h5>
+            <h5 class="text-sm">
+                Số điện thoại:
+                <input required type="number" class="form-control" id="phone" />
+                <small class="vl-err errPhone"></small>
+            </h5>
+            <h5 class="text-sm">
+                Địa chỉ:
+                <input required class="form-control" id="address" />
+                <small class="vl-err errAddress"></small>
+            </h5>
             <h5 class="text-sm">Trạng thái: 
                 <select required class="form-control" id="status">
                     <option value="false">Đang chờ</option>
@@ -80,6 +153,8 @@
         <button type="button" class="btn btn-primary saveData">Cập nhật</button>
     </div>
 </div>
+
+
 @Scripts.Render("~/bundles/admin/jquery")
 
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
@@ -131,6 +206,12 @@
 
     //post data
 
+    function CheckRequire(input) {
+        if (input.val() == '') {
+            return false;
+        }
+        return true;
+    }
 
     $('.saveData').click(() => {
         let ibBill = id;
@@ -139,26 +220,68 @@
         let address = $('#address').val()
         let status = $('#status').val()
 
-      @*  let data = { ibBill, nameBook, phone, address, status: status.toLowerCase() == 'true' ? true : false  }
-        console.log(data)*@
+        if (!CheckRequire($('#fullname')))
+            $('.errFullname').css('display', 'block').html("Tên khách hàng không được để trống")
+        else $('.errFullname').css('display', 'none').html("")
+           
+        if (!CheckRequire($('#phone')))
+            $('.errPhone').css('display', 'block').html("Số điện thoại không được để trống")
+        else $('.errPhone').css('display', 'none').html("")
 
-        axios.post('/Admin/Bills/UpdateBill', {ibBill, nameBook, phone, address, status: status.toLowerCase() == 'true' ? true : false })
-            .then(function (response) {
-                console.log(response);
-                if (response.data == "success") {
-                    alert("Cập nhật thành công")
-                    window.location.href ='/Admin/Bills'
-                }
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+        if (!CheckRequire($('#address')))
+            $('.errAddress').css('display', 'block').html("Địa chỉ giao hàng không được để trống")
+        else $('.errAddress').css('display', 'none').html("")
+
+
+        if (
+            CheckRequire($('#fullname')) &&
+            CheckRequire($('#phone')) &&
+            CheckRequire($('#address'))
+            ) {
+            axios.post('/Admin/Bills/UpdateBill', { ibBill, nameBook, phone, address, status: status.toLowerCase() == 'true' ? true : false })
+                .then(function (response) {
+                    console.log(response);
+                    if (response.data == "success") {
+                        ShowUpdateSuccess()
+                        
+                    }
+                    else {
+                        alert("Lỗi: Cập nhật không thành công")
+                    }
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+
+        }
+ 
+       
+
+   
+
+       
 
     })
 
+    var modalSuccess = document.getElementById("modalSuccess");
+    var modal = document.querySelector(".modal")
+  
+    function ShowUpdateSuccess() {
+        modalSuccess.style.display = "block";
+    }
 
+ 
 
+    
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+            window.location.href = '/Admin/Bills'
+        }
+    }
+   
 
+   
 
 
 

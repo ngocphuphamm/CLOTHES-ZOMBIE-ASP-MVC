@@ -84,26 +84,26 @@
                                             <td class="tbl-center qtyNew">0</td>
                                             <td class="tbl-center">0</td>
                                         </tr>
-                                        <tr>
+                                        @*<tr>
                                             <td>Đã gửi vận chuyển</td>
                                             <td class="tbl-center">0</td>
                                             <td class="tbl-center">0</td>
-                                        </tr>
+                                        </tr>*@
                                         <tr>
                                             <td>Thành công</td>
                                             <td class="tbl-center qtySuccess">0</td>
                                             <td class="tbl-center sales">0</td>
                                         </tr>
                                         <tr>
-                                            <td>Thất bại</td>
-                                            <td class="tbl-center">0</td>
+                                            <td>Đang chờ</td>
+                                            <td class="tbl-center qtyFalse">0</td>
                                             <td class="tbl-center">0</td>
                                         </tr>
-                                        <tr>
+                                        @*<tr>
                                             <td>Hủy</td>
                                             <td class="tbl-center">0</td>
                                             <td class="tbl-center">0</td>
-                                        </tr>
+                                        </tr>*@
                                     </tbody>
                                 </table>
                             </div>
@@ -168,9 +168,11 @@
         .then(response => response.json())
         .then(json => {
             console.log(json)
+           
             let dayArr = [0, 0, 0, 0, 0, 0, 0]
 
             let qtySuccess = 0;
+            let qtyFalse = 0;
             let saleSuccess = 0;
 
             json.forEach(item => {
@@ -179,12 +181,18 @@
                 const day = new Date(t);
                 if (day >= firstDayOfWeek && day <= weekend) {
                     let dayOfWeek = day.getDay();
+                    //số đơn trong tuần
                     dayArr[dayOfWeek]++;
+                    //số đơn thành công và đang chờ
                     if (item.status == true) {
                         qtySuccess++
                         saleSuccess += item.Total;
                         $('.qtySuccess').html(qtySuccess)
-                        $('.sales').html(commaSeparator(saleSuccess+"000"))
+                        $('.sales').html(commaSeparator(saleSuccess + "000"))
+                    }
+                    else {
+                        qtyFalse++;
+                        $('.qtyFalse').html(qtySuccess)
                     }
                 }
             })
