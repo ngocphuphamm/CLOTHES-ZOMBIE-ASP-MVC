@@ -56,7 +56,7 @@
                         Phí vận chuyển sẽ được tính ở trang thanh toán.
                         Bạn cũng có thể nhập mã giảm giá ở trang thanh toán.
                     </p>
-                    <button style="cursor:pointer" class="button-hover button-payment" >THANH TOÁN</button>
+                    <button style="cursor:pointer" class="button-hover button-payment">THANH TOÁN</button>
                     <p class="back-home"><a href="/" class="link-back-home"><i class='bx bxs-chevron-left'></i> Tiếp tục mua hàng</a></p>
                 </div>
             </div>
@@ -91,11 +91,17 @@
     let qty = document.getElementById('qty');
     let tttMoney = document.querySelector('.payment-total');
     let total = 0
+
+    listCart.forEach((el) => {
+        intoMoney = Number(el['price']) * Number(el['amount'])
+        total += intoMoney
+        window.localStorage.setItem('total', JSON.stringify(total));
+    })
     //render cart
     function renderTable(dataList) {
         $(document).ready(() => {
             let str = ''
-        
+
             let count = 0;
             dataList.forEach((el, index) => {
                 count++
@@ -106,7 +112,7 @@
                             <div class="item-info">
                                 <div class="info-heading">
                                     <div class="heading-title">${el['title']}</div>
-                                    <div class="heading-close" onclick="remove('${ el['id']}',event)"><img src="//theme.hstatic.net/200000321771/1000699946/14/ic_close.png?v=305"></div>
+                                    <div class="heading-close" onclick="remove('${el['id']}',event)"><img src="//theme.hstatic.net/200000321771/1000699946/14/ic_close.png?v=305"></div>
                                 </div>
                                 <div class="info-price">${el['price']},000 VND</div>
                                 <div class="info-price">${el['size']}</div>
@@ -123,18 +129,19 @@
                             </div>
                         </div>
             `
-                total += intoMoney
+
                 str += bodyCart
             })
+            let money = JSON.parse(window.localStorage.getItem('total'));
 
             qty.innerHTML = count
             if (count > 0) {
-                totalMoney.innerHTML = total.toLocaleString() + ",000 VND";
+                totalMoney.innerHTML = money.toLocaleString() + ",000 VND";
                 $('#renderBody').html(str)
             }
             else {
                 totalMoney.innerHTML = "0 VND";
-                let emp = ` <div class="empty-cart">Chưa có sản phẩm nào trong giỏ hàng</div>`
+                let emp =` <div class="empty-cart">Chưa có sản phẩm nào trong giỏ hàng</div>`
                 $('#renderBody').html(emp);
 
             }
@@ -144,7 +151,6 @@
         })
     }
     renderTable(listCart);
-    console.log(total);
     //render icon cart
     function renderIconCart(dataList) {
         $(document).ready(() => {
@@ -196,39 +202,47 @@
 
 
     function clickMinus(title, size, e) {
+        let totalMoney = 0;
         let cart = JSON.parse(window.localStorage.getItem('cart'));
         cart.forEach((el) => {
             if (el['title'] === title && el['size'] === size) {
                 if (el['amount'] > 1) {
                     el['amount'] -= 1;
+
                 }
                 else {
                     alert("Số lượng phải trên 1")
                 }
 
             }
+            let intoMoney = Number(el['price']) * Number(el['amount']);
+            totalMoney += intoMoney;
+            window.localStorage.setItem('total', JSON.stringify(totalMoney));
         })
+
+
         window.localStorage.setItem('cart', JSON.stringify(cart));
-        let total = 0
-        listCart.forEach((el) => {
-            let intoMoney = Number(el['price']) * Number(el['amount'])
-            total += intoMoney
-        })
-        totalMoney.innerHTML = total.toLocaleString() + ",000 VND";
         renderTable(cart);
     }
     function clickAdd(title, size, e) {
- 
 
+        let totalMoney = 0;
         let cart = JSON.parse(window.localStorage.getItem('cart'));
         cart.forEach((el) => {
             if (el['title'] === title && el['size'] === size) {
-               
+
                 const amountNumber = Number(el['amount']);
-                el['amount']= amountNumber + 1;
+                el['amount'] = amountNumber + 1;
+
 
             }
+            let intoMoney = Number(el['price']) * Number(el['amount']);
+
+            totalMoney += intoMoney;
+
+            window.localStorage.setItem('total', JSON.stringify(totalMoney));
         })
+
         window.localStorage.setItem('cart', JSON.stringify(cart));
 
         renderTable(cart);
@@ -258,6 +272,3 @@
 </script>
 
 @Scripts.Render("~/bundles/calculate")
-
-
-

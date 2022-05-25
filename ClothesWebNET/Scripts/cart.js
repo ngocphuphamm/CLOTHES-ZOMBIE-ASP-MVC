@@ -1,4 +1,3 @@
-
 let listCart = JSON.parse(window.localStorage.getItem('cart'));
 let totalMoney = document.getElementById('totalMoney');
 let qty = document.getElementById('qty');
@@ -46,7 +45,7 @@ function renderTable(dataList) {
         }
         else {
             totalMoney.innerHTML = "0 VND";
-            let emp = ` <div class="empty-cart">Ch?a có s?n ph?m nào trong gi? hàng</div>`
+            let emp = <div class="empty-cart">Ch?a có s?n ph?m nào trong gi? hàng</div>
             $('#renderBody').html(emp);
 
         }
