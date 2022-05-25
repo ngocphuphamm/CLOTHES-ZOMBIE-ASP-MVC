@@ -62,15 +62,16 @@ namespace ClothesWebNET.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "nameProduct,idProduct,sizeM,sizeL,sizeXL,price,description,idType")] Product product)
+        public ActionResult Create([Bind(Include = "nameProduct,idProduct,sizeM,sizeL,sizeXL,price,description,idType")] Product product, string URLimg1, string URLimg2)
         {
             if (Session["SESSION_GROUP_ADMIN"] != null)
             {
                 if (ModelState.IsValid)
                 {
-                    db.Products.Add(product);
+                    System.Diagnostics.Debug.WriteLine(URLimg1);
+                    /*db.Products.Add(product);
                     db.SaveChanges();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index");*/
                 }
 
                 ViewBag.idType = new SelectList(db.Types, "idType", "nameType", product.idType);
@@ -106,6 +107,7 @@ namespace ClothesWebNET.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "nameProduct,idProduct,sizeM,sizeL,sizeXL,price,description,idType")] Product product)
         {
+           
             if (Session["SESSION_GROUP_ADMIN"] != null)
             {
                 if (ModelState.IsValid)
@@ -119,6 +121,7 @@ namespace ClothesWebNET.Areas.Admin.Controllers
             }
             return Redirect("~/login");
         }
+
 
         // GET: Admin/Products/Delete/5
         public ActionResult Delete(string id)
