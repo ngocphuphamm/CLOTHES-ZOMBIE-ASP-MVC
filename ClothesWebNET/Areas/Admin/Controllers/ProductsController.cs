@@ -66,18 +66,44 @@ namespace ClothesWebNET.Areas.Admin.Controllers
         {
             if (Session["SESSION_GROUP_ADMIN"] != null)
             {
+                var idProduct = product.idProduct = Guid.NewGuid().ToString();
                 if (ModelState.IsValid)
                 {
-                    System.Diagnostics.Debug.WriteLine(URLimg1);
-                    /*db.Products.Add(product);
+                    db.Products.Add(product);
+                    for (var i = 0; i < 2; i++)
+                    {
+                        if (i % 2 == 0)
+                        {
+                            var image = new ImageProduct()
+                            {
+                                idImage = Guid.NewGuid().ToString(),
+                                idProduct = idProduct,
+                                URLImage = URLimg1
+
+                            };
+                            db.ImageProducts.Add(image);
+                        }
+                        else
+                        {
+                            var image = new ImageProduct()
+                            {
+                                idImage = Guid.NewGuid().ToString(),
+                                idProduct = idProduct,
+                                URLImage = URLimg2
+
+                            };
+                            db.ImageProducts.Add(image);
+                        }
+
+                    }
                     db.SaveChanges();
-                    return RedirectToAction("Index");*/
+                    return RedirectToAction("Index");
                 }
 
                 ViewBag.idType = new SelectList(db.Types, "idType", "nameType", product.idType);
                 return View(product);
             }
-            return Redirect("~/Home");
+            return Redirect("~/Login");
         }
 
         // GET: Admin/Products/Edit/5
