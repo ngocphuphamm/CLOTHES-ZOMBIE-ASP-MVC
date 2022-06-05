@@ -11,23 +11,18 @@ namespace ClothesWebNET.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Linq;
-
-    public partial class User : IValidatableObject
+    
+    public partial class User
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public User()
         {
             this.Bills = new HashSet<Bill>();
         }
-
+    
         public string idUser { get; set; }
         public string idPermission { get; set; }
         public string fullName { get; set; }
-        [Required]
-        [Index("ix_username", Order = 1, IsUnique = true)]
         public string username { get; set; }
         public string password { get; set; }
         public bool gender { get; set; }
@@ -36,44 +31,29 @@ namespace ClothesWebNET.Models
         public string email { get; set; }
         public string URLAvatar { get; set; }
         public int phone { get; set; }
-
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Bill> Bills { get; set; }
         public virtual Permission Permission { get; set; }
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            CLOTHESEntities db = new CLOTHESEntities();
-            List<ValidationResult> validationResult = new List<ValidationResult>();
-            var validateName = db.Users.FirstOrDefault(x => x.username == username);
-            if (validateName != null)
-            {
-                ValidationResult errorMessage = new ValidationResult
-                ("Username name already exists.", new[] { "Username" });
-                validationResult.Add(errorMessage);
-            }
-
-            return validationResult;
-        }
-
-        [Serializable]
-        public class UserLogin
-        {
-            public string idUser { get; set; }  
-            public string UserName { set; get; }
-            public string GroupID { set; get; }
-            public string fullName { get; set; }
-            public string email { get; set; }
-            public int phone { get; set; }
+    }
+    [Serializable]
+    public class UserLogin
+    {
+        public string UserName { set; get; }
+        public string GroupID { set; get; }
+        public string fullName { get; set; }
+        public string email { get; set; }
+        public int phone { get; set; }
+        public string idUser { get; set; }
+        
 
 
-        }
-        public class getUserDTO
-        {
-            public string userId { get; set;}
-            public string fullName { get; set; }
-            public string email { get; set; }
-            public int phone { get; set; }
-        }
-
+    }
+    public class getUserDTO
+    {
+        public string fullName { get; set; }
+        public string email { get; set; }
+        public int phone { get; set; }
+        public string userId { get; set; }  
     }
 }

@@ -19,13 +19,13 @@
             var data = table.row(tr).data();
             //set data cho modal
             //data[0123456
-            $('.pid').val(data[0])
-            $('.pname').val(data[1])
-            $('.ptype').val(data[3])
-            $('.pprice').val(data[4])
-            $('.pm').val(data[5])
-            $('.pl').val(data[6])
-            $('.pxl').val(data[7])
+            $('.pid').val(data[1])
+            $('.pname').val(data[2])
+            $('.ptype').val(data[4])
+            $('.pprice').val(data[5])
+            $('.pm').val(data[6])
+            $('.pl').val(data[7])
+            $('.pxl').val(data[8])
             $('.pdes').val('Chưa cập nhật')
             $('.modal-update').css('display', 'flex');
         });
@@ -36,7 +36,7 @@
             let tr = td.parent();
             var data = table.row(tr).data();
 
-            let idProduct = data[0];
+            let idProduct = data[1];
             window.location.href = `/Admin/Products/Delete/${idProduct}`
         });
 

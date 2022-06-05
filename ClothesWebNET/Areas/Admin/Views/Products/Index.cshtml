@@ -23,7 +23,9 @@
             <table id="table-product" class="table table-sm" style="width: 100%">
                 <thead>
                     <tr>
+
                         <th>STT</th>
+                        <th style="display:none">ID</th>
                         <th>Tên sản phẩm</th>
                         <th>Hình ảnh</th>
                         <th>Danh mục</th>
@@ -40,8 +42,9 @@
                     @{int stt = 1; }
                         @foreach (var item in Model)
                         {
-                    <tr>
+                         <tr>
                         <td>@stt</td>
+                             <td style="display:none">@item.idProduct</td>
                         <td>@item.nameProduct</td>
                         <td><img src="@item.ImageProducts.First().URLImage"  width="70"
                   height="70"  /></td>

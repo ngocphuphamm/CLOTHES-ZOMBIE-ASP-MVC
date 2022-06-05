@@ -133,7 +133,6 @@ namespace ClothesWebNET.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "nameProduct,idProduct,sizeM,sizeL,sizeXL,price,description,idType")] Product product)
         {
-           
             if (Session["SESSION_GROUP_ADMIN"] != null)
             {
                 if (ModelState.IsValid)
@@ -145,7 +144,7 @@ namespace ClothesWebNET.Areas.Admin.Controllers
                 ViewBag.idType = new SelectList(db.Types, "idType", "nameType", product.idType);
                 return View(product);
             }
-            return Redirect("~/login");
+            return Redirect("~/Home");
         }
 
 
