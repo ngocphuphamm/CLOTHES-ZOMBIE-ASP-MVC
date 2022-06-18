@@ -84,7 +84,9 @@ btnAddCart.addEventListener("click", (e) => {
       }
       let cartList = JSON.parse(window.localStorage.getItem('cart'));
       renderIconCart(cartList)
-      ShowSucces();
+
+      location.reload();
+      /*ShowSucces();*/
     
 
     
