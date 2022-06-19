@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ClothesWebNET.Models;
+using System.IO;
 
 namespace ClothesWebNET.Areas.Admin.Controllers
 {
@@ -62,21 +63,36 @@ namespace ClothesWebNET.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "nameProduct,idProduct,sizeM,sizeL,sizeXL,price,description,idType")] Product product, string URLimg1, string URLimg2)
+        public ActionResult Create([Bind(Include = "nameProduct,idProduct,sizeM,sizeL,sizeXL,price,description,idType")] Product product, HttpPostedFileBase img1, HttpPostedFileBase img2)
         {
             if (Session["SESSION_GROUP_ADMIN"] != null)
             {
                 var idProduct = product.idProduct = Guid.NewGuid().ToString();
                 if (ModelState.IsValid)
                 {
+                    var idImage = Guid.NewGuid().ToString();
+                    var idImage2 = Guid.NewGuid().ToString();
+                    string _FileName = "";
+                    string _FileName2 = "";
+                
+                    int index = img1.FileName.IndexOf('.');
+                    int index2 = img2.FileName.IndexOf('.');
+                    _FileName = idImage.ToString() + "." + img1.FileName.Substring(index + 1);
+                    _FileName2 = idImage2.ToString() + "." + img2.FileName.Substring(index2 + 1);
+                    string _path = Path.Combine(Server.MapPath("~/images/"), _FileName);
+                    string _path2 = Path.Combine(Server.MapPath("~/images/"), _FileName2);
+                    img1.SaveAs(_path);
+                    img2.SaveAs(_path2);
+                    
                     db.Products.Add(product);
                     for (var i = 0; i < 2; i++)
                     {
                         if (i % 2 == 0)
                         {
+                            var URLimg1 = $"/images/{_FileName}";
                             var image = new ImageProduct()
                             {
-                                idImage = Guid.NewGuid().ToString(),
+                                idImage = idImage,
                                 idProduct = idProduct,
                                 URLImage = URLimg1
 
@@ -85,9 +101,10 @@ namespace ClothesWebNET.Areas.Admin.Controllers
                         }
                         else
                         {
+                            var URLimg2 = $"/images/{_FileName2}";
                             var image = new ImageProduct()
                             {
-                                idImage = Guid.NewGuid().ToString(),
+                                idImage = idImage2,
                                 idProduct = idProduct,
                                 URLImage = URLimg2
 
