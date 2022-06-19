@@ -57,8 +57,12 @@ namespace ClothesWebNET.Controllers
                                       sizeXL = p.sizeXL,
                                   };
 
-                ViewBag.List = listProduct;
-                return View(listProduct.ToList());
+                var data = from p in product
+                           select p;
+                data.Include("ImageProducts").Include("Type");
+
+                ViewBag.List = data;
+                return View(data.ToList());
             };
 
 

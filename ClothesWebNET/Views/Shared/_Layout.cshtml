@@ -44,6 +44,26 @@
             width: 100%;
             bottom: 0;
         }
+        .item-icon-cart{
+            
+        }
+        .cart-count{
+            position:absolute;
+            width:20px;
+            height:20px;
+            border-radius:50%;
+            background-color:#ff6a00;
+            color:white;
+            text-align:center;
+            display:flex;
+            align-items:center;
+            justify-content:center; 
+            line-height:initial;
+            top:29%;
+            font-weight:bolder;
+            left:50%;
+            
+        }
     </style>
 
 </head>
@@ -134,6 +154,10 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="cart-count">
+                                    0
+                                </div>
                             </li>
                             <!-- giỏ hàng -->
                             <!-- Login -->
@@ -155,9 +179,10 @@
                                         <p class="heading">tài khoản</p>
                                         <div class="heading-login-with"></div>
                                         <div class="info-box">
-                                            <p class="info-name">@Request.Cookies["fullname"].Value</p>
-                                            <p class="info-detail">Tài khoản của tôi</p>
+                                            <p class="info-name"></p>
 
+                                            <p class="info-logout info-detail"><a href="/home/MyInfo">Thông tin tài khoản</a></p>
+                                            <p class=" info-logout info-detail"><a href="/home/MyBill">Đơn hàng của tôi</a></p>
                                             <p class="info-logout"><a href="/login/SignOut">Đăng xuất</a></p>
 
                                         </div>
@@ -268,7 +293,7 @@
                         </ul>
                     </li>
                     <li class="nav-list-item">
-                        <a href="" class="nav-list-link">Địa chỉ cửa hàng</a>
+                        <a href="/Home/Address" class="nav-list-link">Địa chỉ cửa hàng</a>
                         <i class="nav-icon-dropdown bx bx-chevron-down"></i>
 
                         <!-- Submenu -->
@@ -311,21 +336,21 @@
 
 
 
-                    <div class="footer-news"><i class='footer-top-icon bx bx-mail-send'></i>Đăng ký nhận tin</div>
+                    <div class="footer-news"><i class='footer-top-icon bx bx-mail-send'></i>Copyright © 2022 ZOMBIE® OFFICIAL STORE. Powered by PVK</div>
 
 
 
 
 
 
-
+@*
                     <div class="footer-form-news">
                         <input type="text" placeholder="Nhập email của bạn" class="send-mail">
                         <button type="submit" class="btn-sendmail">Đăng ký</button>
                     </div>
                     <div class="footer-contact">
                         <i class='footer-top-icon bx bxs-phone'></i>  Hỗ trợ / Mua hàng 0924989342
-                    </div>
+                    </div>*@
                 </div>
             </div>
             <div class="footer-mid"></div>

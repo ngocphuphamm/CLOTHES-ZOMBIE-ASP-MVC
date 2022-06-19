@@ -52,6 +52,16 @@ btnViewCheckout.addEventListener('click', (e) => {
 
 //ẩn hiện form register
 
+let info = document.querySelector('.info-name');
+if (info) {
+
+    fetch('/Home/GetUserInfo')
+        .then(response => response.json())
+        .then(data => {
+            info.innerHTML = data.Result[0].fullName;
+          /*  console.log(data.Result[0])*/
+        });
+}
 
 
 
@@ -95,6 +105,8 @@ let listCartt = JSON.parse(window.localStorage.getItem('cart'));
 let ttMoney = document.querySelector('.payment-total');
 
 
+$('.cart-count').html(listCartt.length)
+
 function renderIconCart(dataList) {
     $(document).ready(() => {
         let str = ''
@@ -111,7 +123,7 @@ function renderIconCart(dataList) {
                                         <div class="item-cart-info">
                                             <div class="cart-info-item">
                                                 <p class="info-item-title">${el['title']}</p>
-                                                <div class="info-item-delete">X</div>
+                                                
                                             </div>
                                             <div class="cart-info-size">${el['size']}</div>
                                             <div class="cart-info-item">

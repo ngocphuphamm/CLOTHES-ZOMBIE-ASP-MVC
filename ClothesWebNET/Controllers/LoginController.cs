@@ -56,28 +56,19 @@ namespace ClothesWebNET.Controllers
 
         }
         //thêm hàm lưu hết thông tin trong cookies
-        public void SaveInfoInCookies(string idUser,string username, string fullName,string email, string phone)
+        public void SaveInfoInCookies(string idUser,string username)
         {
             HttpCookie us = new HttpCookie("username");
-            HttpCookie fn = new HttpCookie("fullName");
-            HttpCookie em = new HttpCookie("email");
-            HttpCookie p = new HttpCookie("phone");
+     
             HttpCookie user = new HttpCookie("user");
             us.Value = username;
-            fn.Value = fullName;
-            em.Value = email;
-            p.Value = phone;
             user.Value = idUser;
 
             us.Expires = DateTime.Now.AddDays(1);
-            fn.Expires = DateTime.Now.AddDays(1);
-            em.Expires = DateTime.Now.AddDays(1);
-            p.Expires = DateTime.Now.AddDays(1);
+       
             user.Expires = DateTime.Now.AddDays(1);
             Response.Cookies.Add(us);
-            Response.Cookies.Add(fn);
-            Response.Cookies.Add(em);
-            Response.Cookies.Add(p);
+      
             Response.Cookies.Add(user);
         }
 
@@ -130,16 +121,16 @@ namespace ClothesWebNET.Controllers
                     // namePermission
                     Session.Add("SESSION_GROUP_ADMIN", listGroups);
                     Session.Add("USER_SESSION", userSession);
-                    //lưu hết thông tin người dùng vào cookies trừ password
-                    SaveInfoInCookies(idUser,username, fullName, email, phone.ToString());
+                
+                    SaveInfoInCookies(idUser,username);
                     return Redirect("~/Admin/Dashboard/Index");
                 }
                 else
                 {
                     Session.Add("SESSION_GROUP", listGroups);
                     Session.Add("USER_SESSION", userSession);
-                    //lưu hết thông tin người dùng vào cookies trừ password
-                    SaveInfoInCookies(idUser,username, fullName, email, phone.ToString());
+          
+                    SaveInfoInCookies(idUser,username);
                     return Redirect("~/Home");
                 }
 
@@ -198,22 +189,18 @@ namespace ClothesWebNET.Controllers
             Session.Clear();
 
             HttpCookie us = Request.Cookies["username"];
-            HttpCookie fn = Request.Cookies["fullName"];
-            HttpCookie em = Request.Cookies["email"];
-            HttpCookie p = Request.Cookies["phone"];
+       
             HttpCookie user = Request.Cookies["user"];
 
 
-            fn.Expires = DateTime.Now.AddDays(-1);
+          
             us.Expires = DateTime.Now.AddDays(-1);
-            em.Expires = DateTime.Now.AddDays(-1);
-            p.Expires = DateTime.Now.AddDays(-1);
+         
             user.Expires = DateTime.Now.AddDays(-1);
 
-            Response.Cookies.Add(fn);
             Response.Cookies.Add(us);
-            Response.Cookies.Add(p);
-            Response.Cookies.Add(em);
+     
+        
             Response.Cookies.Add(user);
         }
         public ActionResult SignOut()
@@ -221,8 +208,7 @@ namespace ClothesWebNET.Controllers
 
             Session["USER_SESSION"] = null;
             Session["SESSION_GROUP"] = null;
-/*            Session.Abandon();
-            Response.Cookies.Add(new HttpCookie("ASP.NET_SessionId", ""));*/
+
              if(Request.Cookies["ASP.NET_SessionId"]!=null)
             {
                 HttpCookie asp = Request.Cookies["ASP.NET_SessionId"];
@@ -242,6 +228,9 @@ namespace ClothesWebNET.Controllers
             
             return Redirect("/Home");
         }
+
+
+       
 
     }
 

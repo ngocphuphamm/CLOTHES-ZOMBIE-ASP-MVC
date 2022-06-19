@@ -122,8 +122,7 @@
                     <div class="col-md-12">
                         <label for="validationDefault04" class="form-label">Quyền user</label>
                         <select class="form-select uup" name="idPermission" id="validationDefault04" required>
-                            <option value="R01">Admin</option>
-                            <option value="R02">User</option>
+                           
                         </select>
                     </div>
                     <!-- fullname -->
@@ -236,7 +235,27 @@
         $('.uid').val(data[0])
 
         $('.uun').val(data[4])
-        $('.uup').val(data[1])
+      
+   
+
+        if (data[1] == "Admin") {
+            $('.uup').html(` <option selected value="R01">Admin</option>
+                            <option value="R02">User</option>`)
+        }
+        else {
+            $('.uup').html(` <option selected value="R02">User</option>
+                            <option value="R01">Admin</option>`)
+        }
+        if (data[3] == "Nam") {
+            $('.ugd').html(` <option selected value="true">Nam</option>
+                            <option value="false">Nữ</option>`)
+        }
+        else {
+            $('.ugd').html(` <option selected value="false">Nữ</option>
+                            <option value="true">Nam</option>`)
+        }
+
+        
         $('.ufn').val(data[2])
 
         $('.upass').val(data[5])

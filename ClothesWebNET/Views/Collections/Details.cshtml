@@ -1,4 +1,5 @@
 ﻿
+@model IEnumerable<ClothesWebNET.Models.Product>
 @{
     ViewBag.Title = "Detail";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -26,12 +27,12 @@
 </style>
 <div class="container">
     @{
-        foreach (var item in ViewBag.List)
+        foreach (var item in Model)
         {
             <div class="breadcrumb">
                 <div class="grid">
                     <a href="/">Trang chủ / </a>
-                    <span style="font-size:1.3rem"> @item.type / </span>
+                    <span style="font-size:1.3rem"> @item.Type.nameType / </span>
                     <span style="font-size:1.2rem" class="br-main"> @item.nameProduct </span>
                 </div>
             </div>
@@ -43,7 +44,7 @@
     <div class="detail">
 
         @{
-            foreach (var item in ViewBag.List)
+            foreach (var item in Model)
             {
                 <div class="grid">
                     <div class="row">
@@ -51,13 +52,13 @@
                             <div class="slider-detail">
                                 <div class="product-detail">
                                     <img class="img-detail"
-                                         src="@item.URLImage"
+                                         src="@item.ImageProducts.First().URLImage"
                                          alt=""
                                          onclick="clickme(this)" />
-                                    <!--<img class="img-detail"
-                                         src="https://product.hstatic.net/200000321771/product/271541735_634953457746867_7566922806359762025_n_bbabb788919c43d193a79576e58f739d_compact.jpg"
+                                    <img class="img-detail"
+                                        src="@item.ImageProducts.Last().URLImage"
                                          alt=""
-                                         onclick="clickme(this)" />-->
+                                         onclick="clickme(this)" />
                                     <!-- cái hình này khó chịu quá -->
                                     <!--<img class="img-detail"
                                          src="https://product.hstatic.net/200000321771/product/269829084_354055683202680_6749155750206382252_n_9c2f4d6b48824a00ae29f456d9f05570_compact.jpg"
@@ -69,7 +70,7 @@
                                          onclick="clickme(this)" />-->
                                 </div>
                                 <div class="preview">
-                                    <img src="@item.URLImage" id="imagebox" alt="" />
+                                    <img   src="@item.ImageProducts.First().URLImage" id="imagebox" alt="" />
                                 </div>
                             </div>
                         </div>

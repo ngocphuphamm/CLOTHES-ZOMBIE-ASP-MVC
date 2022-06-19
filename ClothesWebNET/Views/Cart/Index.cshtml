@@ -254,6 +254,7 @@
         })
         window.localStorage.setItem('cart', JSON.stringify(cartNew));
 
+        location.reload();
         //render car
         renderTable(cartNew);
         //render cart icon

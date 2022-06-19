@@ -329,6 +329,9 @@
     <Content Include="Views\Bill\Index.cshtml" />
     <Content Include="Views\Bill\PostBill.cshtml" />
     <Content Include="Views\Register\Index.cshtml" />
+    <Content Include="Views\Home\MyInfo.cshtml" />
+    <Content Include="Views\Home\MyBill.cshtml" />
+    <Content Include="Views\Home\Address.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

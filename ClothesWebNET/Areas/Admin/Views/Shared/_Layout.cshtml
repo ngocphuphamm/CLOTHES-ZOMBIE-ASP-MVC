@@ -93,7 +93,7 @@
             <div class="icon-user">
                 <img src="https://colorlib.com/polygon/cooladmin/images/icon/avatar-01.jpg"
                      alt="" />
-                <div class="icon-user-fullname">@Request.Cookies["fullname"].Value</div>
+                <div class="icon-user-fullname">Hello Admin</div>
                 <div class="icon-user-dropdown">
                     <span class="box-triangle">
                         <svg viewBox="0 0 20 9" role="presentation">
@@ -106,12 +106,12 @@
                              src="https://colorlib.com/polygon/cooladmin/images/icon/avatar-01.jpg"
                              alt="" />
                         <div class="info-user-login">
-                            <div class="info-fullName">@Request.Cookies["fullname"].Value</div>
-                            <div class="info-email">@Request.Cookies["email"].Value</div>
+                            <div class="info-fullName">tên</div>
+                            <div class="info-email">email</div>
                         </div>
                     </div>
                     <div class="user-logout">
-                        <a href="/info"><i class="bx bxs-user"></i> Thông tin</a>
+                        <a href="/home/myinfo"><i class="bx bxs-user"></i> Thông tin</a>
                         <a href="/login/signout">
                             <i class="bx bxs-log-out"></i> Đăng xuất
                         </a>
@@ -134,7 +134,16 @@
     @Scripts.Render("~/bundles/admin/main")
     @Scripts.Render("~/bundles/admin/header")
 
-
+    <script>
+        fetch('/Home/GetUserInfo')
+            .then(response => response.json())
+            .then(data => {
+                $('.info-fullName').html(data.Result[0].fullName)
+                $('.info-email').html(data.Result[0].email)
+                
+                /*  console.log(data.Result[0])*/
+            });
+    </script>
 
     @RenderSection("scripts", required: false)
 </body>
