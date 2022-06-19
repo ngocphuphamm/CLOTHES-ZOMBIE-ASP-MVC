@@ -181,20 +181,25 @@
                                         <div class="info-box">
                                             <p class="info-name"></p>
 
-                                            <p class="info-logout info-detail"><a href="/home/MyInfo">Thông tin tài khoản</a></p>
-                                            <p class=" info-logout info-detail"><a href="/home/MyBill">Đơn hàng của tôi</a></p>
-                                            <p class="info-logout"><a href="/login/SignOut">Đăng xuất</a></p>
+
+                                            <p class="info-logout info-detail"><a href="/home/MyInfo"> Thông tin tài khoản</a></p>
+                                            <p class=" info-logout info-detail"><a href="/home/MyBill"> Đơn hàng của tôi</a></p>
+                                            @if (Session["SESSION_GROUP_ADMIN"] != null)
+                                            {
+                                                <p class="info-logout info-detail"><a href="/Admin/Dashboard/Index"> Quản lý cửa hàng</a></p>
+                                            }
+                                            <p class="info-logout"><a href="/login/SignOut"> Đăng xuất</a></p>
 
                                         </div>
 
-                                    </div>
-                                }
-                                else
-                                {
-                                    <span class="header-top-link">
-                                        <a style="color: #050505" href="/login"><i class='bx bx-user'></i></a>
-                                    </span>
-                                }
+                                                                </div>
+                                            }
+                                            else
+                                            {
+                                            <span class="header-top-link">
+                                                <a style="color: #050505" href="/login"><i class='bx bx-user'></i></a>
+                                            </span>
+                                            }
 
 
 
@@ -204,7 +209,7 @@
 
 
 
-                            </li>
+</li>
                             <!-- Login -->
                             <!-- Login -->
 
