@@ -9,7 +9,8 @@ namespace ClothesWebNET.Models
     {
         public Product _shopping_product { get; set; }
         public int _shopping_qty { get; set; }
-        public String _shopping_size { get; set; }
+        public String _shopping_size { get; set; 
+        }
     }
     public class Cart
     {

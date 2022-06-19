@@ -18,6 +18,6 @@ namespace ClothesWebNET.Models
         public string idProduct { get; set; }
         public string URLImage { get; set; }
     
-        public virtual Product Product { get; set; }
+        public virtual Product Product { get; set;  }
     }
 }

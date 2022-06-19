@@ -14,7 +14,7 @@ namespace ClothesWebNET.Models
     
     public partial class Voucher
     {
-        public string idVoucher { get; set; }
+        public string idVoucher { get; set;  }
         public string percent { get; set; }
         public System.DateTime dateStart { get; set; }
         public System.DateTime dateEnd { get; set; }

@@ -11,7 +11,7 @@ namespace ClothesWebNET.Models
         public string URLImage { get; set; }
         public int sizeM { get; set; }
         public int sizeL { get; set; }
-        public int sizeXL { get; set; }
+        public int sizeXL { get; set;  }
 
     }
 

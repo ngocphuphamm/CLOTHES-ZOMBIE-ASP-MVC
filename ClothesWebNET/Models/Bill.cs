@@ -15,7 +15,7 @@ namespace ClothesWebNET.Models
         public string PTTT { get; set; }
         public bool status { get; set; }
         public System.DateTime createdAt { get; set; }
-        public int Qty { get; set; }
+        public int Qty { get; set;  }
 
     }
 

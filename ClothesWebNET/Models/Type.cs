@@ -20,7 +20,7 @@ namespace ClothesWebNET.Models
             this.Products = new HashSet<Product>();
         }
     
-        public string idType { get; set; }
+        public string idType { get; set;  }
         public string nameType { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

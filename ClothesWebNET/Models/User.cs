@@ -29,7 +29,7 @@ namespace ClothesWebNET.Models
         public int identityCard { get; set; }
         public string address { get; set; }
         public string email { get; set; }
-        public string URLAvatar { get; set; }
+        public string URLAvatar { get; set;  }
         public int phone { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
