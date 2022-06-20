@@ -374,7 +374,7 @@ header-top-search-box .heading::after {
 }
 
 .item-icon-cart .header-top-cart-box {
-    width: 550px;
+    width: 400px;
 }
 
 .box-cart-empty {
@@ -401,7 +401,7 @@ header-top-search-box .heading::after {
 .box-item-cart {
     line-height: initial;
     width: 100%;
-    height: 340px;
+    height: 300px;
     margin: 0 auto;
     font-size: 4.2rem;
     overflow-y: scroll;
