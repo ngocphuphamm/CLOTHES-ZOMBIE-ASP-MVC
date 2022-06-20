@@ -159,9 +159,9 @@
       firstDayOfWeek.setHours(00, 00, 00);
     const weekend = endOfWeek(currentDay);
     weekend.setHours(23,59,59)
-    console.log("thứ 2 tuần này:" + firstDayOfWeek);
+ @*   console.log("thứ 2 tuần này:" + firstDayOfWeek);
     console.log("chủ nhật: "+weekend);
-
+*@
     $('.tq').addClass('active');
     let data;
     fetch('/Admin/Bills/GetAllBill')
@@ -179,7 +179,10 @@
                 let d = item.createdAt;
                 let t = parseInt(d.replace(/[^0-9]/g, ''))
                 const day = new Date(t);
-                if (day >= firstDayOfWeek && day <= weekend) {
+                console.log(weekend)
+            
+                if (day >firstDayOfWeek && day < weekend) {
+                 
                     let dayOfWeek = day.getDay();
                     //số đơn trong tuần
                     dayArr[dayOfWeek]++;

@@ -27,7 +27,7 @@ namespace ClothesWebNET.Controllers
             if (ModelState.IsValid)
             {
                 int count = db.Users.Count() + 1;
-
+                user.idPermission = "R02";
                 var id = 'U' + count.ToString();
                 user.idUser = id;
 
