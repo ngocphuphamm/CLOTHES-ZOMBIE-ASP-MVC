@@ -73,6 +73,7 @@ namespace ClothesWebNET.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult kiemtradangnhap(string username, string password, string ghinho)
         {
             var idUser = "";

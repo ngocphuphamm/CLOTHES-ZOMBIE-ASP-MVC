@@ -36,18 +36,23 @@
 
                         <th style="overflow: hidden; font-size: 0"></th>
                         <th style="overflow: hidden; font-size: 0"></th>
+                        <th style="display: none; font-size: 0"></th>
+                        <th style="display: none; font-size: 0"></th>
+
                     </tr>
                 </thead>
                 <tbody id="renderData">
                     @{int stt = 1; }
                         @foreach (var item in Model)
                         {
-                         <tr>
+                    <tr>
                         <td>@stt</td>
-                             <td style="display:none">@item.idProduct</td>
+                        <td style="display:none">@item.idProduct</td>
                         <td>@item.nameProduct</td>
-                        <td><img src="@item.ImageProducts.First().URLImage"  width="70"
-                  height="70"  /></td>
+                        <td>
+                            <img src="@item.ImageProducts.First().URLImage" width="70"
+                                 height="70" />
+                        </td>
                         <td>@item.Type.nameType</td>
                         <td>
                             @item.price
@@ -71,6 +76,14 @@
                             <button type="button" class="btn btn-delete btn-w-80 btn-outline-danger">
                                 Xóa
                             </button>
+                        </td>
+                        <td style="display:none">
+                            <img src="@item.ImageProducts.First().URLImage" width="70"
+                                 height="70" />
+                        </td>
+                        <td style="display:none">
+                            <img src="@item.ImageProducts.Last().URLImage" width="70"
+                                 height="70" />
                         </td>
 
                     </tr>
@@ -172,7 +185,23 @@
                                id="validationDefault01"
                                required />
                     </div>
-                   
+                    <div class="col-md-6">
+                        <label for="validationDefault01" class="form-label">Hình ảnh 1</label>
+                        <input type="file"
+                               name="URLimg1"
+                               class="form-control URLimg1"
+                               id="validationDefault01"
+                               required />
+                    </div>
+                    <div class="col-md-6">
+                        <label for="validationDefault01" class="form-label">Hình ảnh 2</label>
+                        <input type="file"
+                               name="URLimg2"
+                               class="form-control URLimg2"
+                               id="validationDefault01"
+                               required />
+                    </div>
+
                     <!-- description -->
                     <div class="col-md-12">
                         <label for="validationDefault01" class="form-label">Mô tả</label>

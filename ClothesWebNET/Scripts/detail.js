@@ -84,9 +84,11 @@ btnAddCart.addEventListener("click", (e) => {
       }
       let cartList = JSON.parse(window.localStorage.getItem('cart'));
       renderIconCart(cartList)
-
-      location.reload();
-      /*ShowSucces();*/
+      $('.cart-count').html(cartList.length)
+      $('.header-top-cart-box').addClass('header-top-modal-show')
+     /* ShowSucces();*/
+    /*  location.reload();*/
+  
     
 
     
@@ -111,12 +113,12 @@ function renderIconCart(dataList) {
                                         <div class="item-cart-info">
                                             <div class="cart-info-item">
                                                 <p class="info-item-title">${el['title']}</p>
-                                                <div class="info-item-delete">X</div>
+                                               
                                             </div>
                                             <div class="cart-info-size">${el['size']}</div>
                                             <div class="cart-info-item">
                                                 <div class="info-item-amount">${el['amount']}</div>
-                                                <div class="info-item-pice">${el['price']},000?</div>
+                                                <div class="info-item-pice">${el['price']},000đ</div>
                                             </div>
                                         </div>
                                     </div>

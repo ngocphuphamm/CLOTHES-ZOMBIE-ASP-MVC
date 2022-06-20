@@ -45,7 +45,7 @@ function renderTable(dataList) {
         }
         else {
             totalMoney.innerHTML = "0 VND";
-            let emp = <div class="empty-cart">Ch?a có s?n ph?m nào trong gi? hàng</div>
+            let emp = <div class="empty-cart">Ch?a có s?n ph?m nào tron gi? hàng</div>
             $('#renderBody').html(emp);
 
         }
@@ -71,7 +71,7 @@ function renderIconCart(dataList) {
                                         <div class="item-cart-info">
                                             <div class="cart-info-item">
                                                 <p class="info-item-title">${el['title']}</p>
-                                                <div class="info-item-delete">X</div>
+                                                
                                             </div>
                                             <div class="cart-info-size">${el['size']}</div>
                                             <div class="cart-info-item">
@@ -92,7 +92,7 @@ function renderIconCart(dataList) {
         else {
             let emp = `<div class="box-cart-empty">
                   <svg width="81" height="70" viewBox="0 0 81 70"><g transform="translate(0 2)" stroke-width="4" stroke="#1e2d7d" fill="none" fill-rule="evenodd"><circle stroke-linecap="square" cx="34" cy="60" r="6"></circle><circle stroke-linecap="square" cx="67" cy="60" r="6"></circle><path d="M22.9360352 15h54.8070373l-4.3391876 30H30.3387146L19.6676025 0H.99560547"></path></g></svg>
-                 <div>Gi? hàng c?a b?n ?ang tr?ng</div>
+                 <div>Gi? hàng c?a b?n còn tr?ng</div>
                 </div>`
             $('.box-item-cart').addClass('box-cart-empty')
             $('.box-item-cart').removeClass('box-item-cart')

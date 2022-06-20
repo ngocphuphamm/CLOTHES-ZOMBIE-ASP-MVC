@@ -50,8 +50,6 @@ btnViewCheckout.addEventListener('click', (e) => {
 
 
 
-//ẩn hiện form register
-
 let info = document.querySelector('.info-name');
 if (info) {
 

@@ -1,4 +1,5 @@
 ﻿
+@model ClothesWebNET.Models.User
 
 
 @{
@@ -9,18 +10,20 @@
 @Styles.Render("~/Content/login")
 <div class="container">
     <form action="~/Login/kiemtradangnhap" method="post" class="form-login form-login-cus">
+        @Html.AntiForgeryToken()
         <div class="login-box-cus">
             <p class="heading">đăng nhập tài khoản</p>
             <div class="heading-login-with">Nhập tên đăng nhập và mật khẩu của bạn</div>
             <div class="header-box login-box">
                 <div class="form-control err">
                     <input type="text"
-                           value="@ViewBag.username"
+                           value=""
                            name="username"
                            id="email-cus"
                            placeholder="Username"
                            class="modal-form-input" />
                     <small></small>
+                    @Html.ValidationMessageFor(model => model.username, "", new { @class = "text-danger" })
 
                 </div>
                 <div class="form-control err">
@@ -28,9 +31,10 @@
                            id="password-cus"
                            placeholder="Password"
                            name="password"
-                           value="@ViewBag.password"
+                           value=""
                            class="modal-form-input" />
                     <small></small>
+                    @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
                 </div>
 
                 <div class="recapcha">
@@ -38,7 +42,7 @@
                     <a class="recapcha-link" href="">Privacy Policy</a> and
                     <a class="recapcha-link" href="">Terms of Service</a> apply.
                 </div>
-                <input type="checkbox" name="ghinho" /> Ghi nhớ tài khoản <br />
+              @*  <input type="checkbox" name="ghinho" /> Ghi nhớ tài khoản <br />*@
                 <button type="submit" class="button-login  button-hover">
                     ĐĂNG NHẬP
                 </button>
