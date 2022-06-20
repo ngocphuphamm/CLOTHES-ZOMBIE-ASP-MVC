@@ -123,6 +123,7 @@ namespace ClothesWebNET.Areas.Admin.Controllers
             return Redirect("~/Login");
         }
 
+     
         // GET: Admin/Products/Edit/5
         public ActionResult Edit(string id)
         {
@@ -148,7 +149,7 @@ namespace ClothesWebNET.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "nameProduct,idProduct,sizeM,sizeL,sizeXL,price,description,idType")] Product product)
+        public ActionResult Edit([Bind(Include = "nameProduct,idProduct,sizeM,sizeL,sizeXL,price,description,idType")] Product product ,HttpPostedFileBase img1, HttpPostedFileBase img2)
         {
             if (Session["SESSION_GROUP_ADMIN"] != null)
             {
@@ -156,6 +157,62 @@ namespace ClothesWebNET.Areas.Admin.Controllers
                 {
                     db.Entry(product).State = EntityState.Modified;
                     db.SaveChanges();
+
+                    var delImages = db.ImageProducts.Where(s => s.idProduct.Equals(product.idProduct));
+                    if (delImages != null)
+                    {
+                        foreach (var image in delImages)
+                        {
+                            db.ImageProducts.Remove(image);
+                        }
+                    }
+                    db.SaveChanges();
+
+                    var idImage = Guid.NewGuid().ToString();
+                    var idImage2 = Guid.NewGuid().ToString();
+                    string _FileName = "";
+                    string _FileName2 = "";
+
+                    int index = img1.FileName.IndexOf('.');
+                    int index2 = img2.FileName.IndexOf('.');
+                    _FileName = idImage.ToString() + "." + img1.FileName.Substring(index + 1);
+                    _FileName2 = idImage2.ToString() + "." + img2.FileName.Substring(index2 + 1);
+                    string _path = Path.Combine(Server.MapPath("~/images/"), _FileName);
+                    string _path2 = Path.Combine(Server.MapPath("~/images/"), _FileName2);
+                    img1.SaveAs(_path);
+                    img2.SaveAs(_path2);
+
+                    for (var i = 0; i < 2; i++)
+                    {
+                        if (i % 2 == 0)
+                        {
+                            var URLimg1 = $"/images/{_FileName}";
+                            var image = new ImageProduct()
+                            {
+                                idImage = idImage,
+                                idProduct = product.idProduct,
+                                URLImage = URLimg1
+
+                            };
+                            db.ImageProducts.Add(image);
+                        }
+                        else
+                        {
+                            var URLimg2 = $"/images/{_FileName2}";
+                            var image = new ImageProduct()
+                            {
+                                idImage = idImage2,
+                                idProduct = product.idProduct,
+                                URLImage = URLimg2
+
+                            };
+                            db.ImageProducts.Add(image);
+                        }
+
+                    }
+                    db.SaveChanges();
+
+
                     return RedirectToAction("Index");
                 }
                 ViewBag.idType = new SelectList(db.Types, "idType", "nameType", product.idType);
@@ -165,36 +222,34 @@ namespace ClothesWebNET.Areas.Admin.Controllers
         }
 
 
-        // GET: Admin/Products/Delete/5
+        
+        // POST: Admin/Products/Delete/5
+        [HttpPost]
         public ActionResult Delete(string id)
         {
+            
             if (Session["SESSION_GROUP_ADMIN"] != null)
             {
-                if (id == null)
+                try
                 {
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-                }
-                Product product = db.Products.Find(id);
-                if (product == null)
-                {
-                    return HttpNotFound();
-                }
-                return View(product);
-            }
-            return Redirect("~/login");
-        }
 
-        // POST: Admin/Products/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
-        {
-            if (Session["SESSION_GROUP_ADMIN"] != null)
-            {
-                Product product = db.Products.Find(id);
-                db.Products.Remove(product);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                    var delImages = db.ImageProducts.Where(s => s.idProduct.Equals(id));
+                    if (delImages != null)
+                    {
+                        foreach (var image in delImages)
+                        {
+                            db.ImageProducts.Remove(image);
+                        }
+                    }
+                    Product product = db.Products.Find(id);
+                    db.Products.Remove(product);
+                    db.SaveChanges();
+                    return Json(true);
+                }
+                catch
+                {
+                    return Content("Error");
+                }
             }
             return Redirect("~/login");
         }

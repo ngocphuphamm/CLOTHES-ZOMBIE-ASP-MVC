@@ -102,7 +102,7 @@
         <div class="modal__inner">
             <div class="cus-form">
                 <h2>Cập nhật sản phẩm </h2>
-                <form method="post" action="/Admin/Products/edit" class="row g-3">
+                <form method="post" action="/Admin/Products/edit"  enctype="multipart/form-data" class="row g-3">
                     @Html.AntiForgeryToken()
                     <!-- ID -->
                     <div style="display:none" class="col-md-12">
@@ -188,17 +188,19 @@
                     <div class="col-md-6">
                         <label for="validationDefault01" class="form-label">Hình ảnh 1</label>
                         <input type="file"
-                               name="URLimg1"
+                               name="img1"
                                class="form-control URLimg1"
                                id="validationDefault01"
+                               accept="image/png, image/gif, image/jpeg"
                                required />
                     </div>
                     <div class="col-md-6">
                         <label for="validationDefault01" class="form-label">Hình ảnh 2</label>
                         <input type="file"
-                               name="URLimg2"
+                               name="img2"
                                class="form-control URLimg2"
                                id="validationDefault01"
+                               accept="image/png, image/gif, image/jpeg"
                                required />
                     </div>
 

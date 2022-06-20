@@ -37,7 +37,21 @@
             var data = table.row(tr).data();
 
             let idProduct = data[1];
-            window.location.href = `/Admin/Products/Delete/${idProduct}`
+   
+
+
+            $.ajax(`/Admin/Products/Delete/${idProduct}`, {
+                data: idProduct,
+                dataType: 'json',
+                method: 'Post',
+                success: function (res) {
+                        alert("Xóa sản phẩm thành công");
+                        window.location.reload();
+                    
+                }
+
+            })
+
         });
 
 

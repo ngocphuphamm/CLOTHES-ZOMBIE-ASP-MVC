@@ -60,37 +60,7 @@ namespace ClothesWebNET.Controllers
 
         }
 
-        public JsonResult hello()
-        {
      
-            return Json("Response from Create");
-            /* try
-             {
-
-                 System.Diagnostics.Debug.WriteLine(form["fullName"]);
-                 bool email = isEmail(form["email"]);
-                 bool phone = IsValidVietNamPhoneNumber(form["phone"]);
-                 if (form["fullName"] == "" || form["fullName"] == " " || form["phone"] == " " || form["address"] == "")
-                 {
-
-                     return (RedirectToAction("Index", new { error = "Vui lòng nhập đầy đủ thông tin" }));
-                 }
-                 else if(email == false)
-                 {
-                     return (RedirectToAction("Index", new { error = "Vui lòng nhập email đúng định dạng " }));
-                 }
-                 else if(phone == false) 
-                 {
-                     return (RedirectToAction("Index", new { error = "Vui lòng nhập số điện thoại đúng định dạng " }));
-                 }
-
-                 return RedirectToAction("SuccessPayment", "Payment");
-             }
-             catch
-             {
-                 return Content("Error Checkout");
-             }*/
-        }
 
        
         public static bool isEmail(string inputEmail)
