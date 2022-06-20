@@ -25,6 +25,7 @@ namespace ClothesWebNET.Controllers
         }
 
         // GET: Collections/Details/5
+  
         public ActionResult Details(string id)
         {
             ProductDTODetail productDTO = new ProductDTODetail();
@@ -42,35 +43,22 @@ namespace ClothesWebNET.Controllers
             }
             else
             {
-                var listProduct = from p in product
-                                  join image in db.ImageProducts on p.idProduct equals image.idProduct
-                                  join type in db.Types on p.idType equals type.idType
-                                  select new ProductDTODetail()
-                                  {
-                                      idProduct = p.idProduct,
-                                      type = type.nameType,
-                                      nameProduct = p.nameProduct,
-                                      price = p.price,
-                                      URLImage = image.URLImage,
-                                      sizeL = p.sizeL,
-                                      sizeM = p.sizeM,
-                                      sizeXL = p.sizeXL,
-                                  };
 
                 var data = from p in product
                            select p;
-                data.Include("ImageProducts").Include("Type");
 
+                data.Include("ImageProducts").Include("Type");
+                var datarelateto = (from p in db.Products
+                                    join t in data on p.idType equals t.idType
+                                    select p);
+                datarelateto.Include("ImageProducts").Include("Type");
+                var subData = (datarelateto.ToList()).Skip(3).Take(4);
+                ViewBag.datarelateto = subData.ToList();
                 ViewBag.List = data;
                 return View(data.ToList());
             };
-
-
-
-
         }
 
-       
 
         // collections/ao
         public ActionResult ao(string id)

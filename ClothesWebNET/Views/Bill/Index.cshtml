@@ -46,7 +46,7 @@
             <div class="checkout">
                 <div class="checkout-info">
                     <div class="checkout-logo-text checkout-item">
-                        ZOMBIE® OFFICIAL STORE
+                        <a style="color:#000000" href="/"> ZOMBIE® OFFICIAL STORE</a>
                     </div>
                     <ul class="checkout-breadcrumb checkout-item">
                         <li class="breadcrumb-item">
@@ -57,14 +57,10 @@
                             <span class="text-link">Thông tin giao hàng</span>
                             <i class="icon-link bx bx-chevron-right"></i>
                         </li>
-                        <li class="breadcrumb-item">
-                            <a href="" class="cart text-link"> Phương thức thanh toán </a>
-                        </li>
+                       
                     </ul>
                     <div class="checkout-text checkout-item">Thông tin giao hàng</div>
-                    <div class="back-login checkout-item">
-                        Bạn đã có tài khoản? <a href="/login" class="login">Đăng nhập</a>
-                    </div>
+                  
                     <!-- <form  class="form-info checkout-item">-->
                     <div class="form-info checkout-item">
                         <div class="form-control form-item">
@@ -127,10 +123,7 @@
 
                     </div>
                     <div class="payment">
-                        <div class="voucher">
-                            <input type="text" placeholder="Mã giảm giá" />
-                            <button class="btnVoucher">Sử dụng</button>
-                        </div>
+                        
                         <div class="payment-money">
                             <div class="total">
                                 <div class="total-text">Tạm tính:</div>
@@ -222,7 +215,11 @@
                 str += bodyCart
             })
 
-            totalMoney.innerHTML = total.toLocaleString() + ",000VND";
+         
+
+            let m = parseInt(total.toLocaleString().split('.').join('')) + 50;
+           @* console.log(m)*@
+            totalMoney.innerHTML = m.toLocaleString() + ",000VND";
             tamTinh.innerHTML = total.toLocaleString() + ",000VND";
             render.innerHTML = str;
 

@@ -271,6 +271,7 @@
     <Content Include="Models\ClothesModels.edmx.diagram">
       <DependentUpon>ClothesModels.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\IISProfile.pubxml" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />
