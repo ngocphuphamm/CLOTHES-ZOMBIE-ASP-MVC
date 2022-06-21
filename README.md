@@ -1,8 +1,8 @@
 ---
 # CLOTHES-WEB-ASP-MVC
 ---
-** Member : Ngoc Phu , Duy Khang 
-** Description : Project use JQUERY,ASP-MVC 
+* **Member : Ngoc Phu , Duy Khang 
+* **Description : Project use JQUERY,ASP-MVC 
 ## CONFIG 
 *  1.IMPORT DATA SQL SERVER
 *  2.GO TO WEBCONFIG FIND CONNECT IN CONNECTSTTRING EDIT PASSWORD OF SQL SERVER
