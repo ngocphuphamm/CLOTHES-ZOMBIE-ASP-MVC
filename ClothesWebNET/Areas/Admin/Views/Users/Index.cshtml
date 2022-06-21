@@ -1,0 +1,273 @@
+﻿@model IEnumerable<ClothesWebNET.Models.User>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+<link rel="stylesheet"
+      type="text/css"
+      href="https://cdn.datatables.net/v/bs5/jq-3.6.0/jszip-2.5.0/dt-1.11.5/b-2.2.2/b-html5-2.2.2/b-print-2.2.2/datatables.min.css" />
+<style>
+    .btn-update {
+        font-size: 12px;
+        width: 80px;
+    }
+</style>
+<div id="content" class="">
+    <div class="content-main p-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">User</li>
+                <li class="breadcrumb-item active" aria-current="page">
+                    Tất cả User
+                </li>
+            </ol>
+        </nav>
+        <div class="tbw table-responsive-sm">
+            <div class="d-flex p-2 justify-content-end">
+                <button type="button"
+                        class="btn btn-w-100 btn-adduser btn-primary">
+                    Thêm User
+                </button>
+            </div>
+            <table id="table-user" class="table" style="width: 100%">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Quyền</th>
+                        <th>Họ tên</th>
+                        <th>Giới tính</th>
+
+                        <th>Username</th>
+                        <th>Password</th>
+                        <th>Địa chỉ</th>
+
+                        <th>Số điện thoại</th>
+                        <th style="display:none">CMND</th>
+                        <th style="display:none">Email</th>
+
+                        <th style="overflow: hidden; font-size: 0"></th>
+                    </tr>
+                </thead>
+                <tbody id="renderData">
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.idUser</td>
+                            <td>@item.Permission.namePermission</td>
+                            <td>@item.fullName</td>
+                            @if (item.gender == true)
+                            {
+                                <td>Nam</td>
+                            }
+                            else
+                            {
+                                <td>Nữ</td>
+                            }
+
+                            <td>@item.username</td>
+                            <td>@item.password</td>
+                            <td>@item.address</td>
+
+                            <td>@item.phone</td>
+                            <td style="display:none">@item.identityCard</td>
+                            <td style="display:none">@item.email</td>
+
+                            <td>
+                                <button type="button"
+                                        class="btn  btn-update btn-outline-primary">
+                                    Cập nhật
+                                </button>
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="modal-cus modal-update">
+    <div class="modal__overplay"></div>
+    <div class="modal__body">
+        <div class="modal__inner">
+            <div class="cus-form">
+                <h2>Cập nhật User </h2>
+                <form method="post" action="/Admin/Users/edit" class="row g-3">
+                    @Html.AntiForgeryToken()
+                    <!-- ID -->
+                    <div style="display:none" class="col-md-12">
+                        <label for="validationDefault01" class="form-label">ID</label>
+                        <input type="text"
+                               name="idUser"
+                               readonly
+                               class="form-control uid"
+                               id="validationDefault01"
+                               required />
+                    </div>
+                    <!-- username -->
+                    <div  style="display:none" class="col-md-12">
+                        <label for="validationDefault01" class="form-label">Username</label>
+                        <input type="text"
+                                 readonly
+                               name="username"
+                               class="form-control uun"
+                               id="validationDefault01"
+                               required />
+                    </div>
+                    <!-- quyền -->
+                    <div class="col-md-12">
+                        <label for="validationDefault04" class="form-label">Quyền user</label>
+                        <select class="form-select uup" name="idPermission" id="validationDefault04" required>
+                           
+                        </select>
+                    </div>
+                    <!-- fullname -->
+                    <div class="col-md-12">
+                        <label for="validationDefault01" class="form-label">Họ tên</label>
+                        <input type="text"
+                               name="fullname"
+                               class="form-control ufn"
+                               id="validationDefault01"
+                               required />
+                    </div>
+                    <!-- gender -->
+                    <div class="col-md-4">
+                        <label for="validationDefault01" class="form-label">Giới tính</label>
+                        <select class="form-select ugd" name="gender" id="validationDefault04" required>
+
+                            <option value="true">Nam</option>
+                            <option value="false">Nữ</option>
+                        </select>
+                    </div>
+                    <!-- address -->
+                    <div class="col-md-4">
+                        <label for="validationDefault01" class="form-label">Địa chỉ</label>
+                        <input type="text"
+                               name="address"
+                               class="form-control uad"
+                               id="validationDefault01"
+                               required />
+                    </div>
+                    <!-- identityCard -->
+                    <div class="col-md-4">
+                        <label for="validationDefault01" class="form-label">CMND</label>
+                        <input type="number"
+                               name="identityCard"
+                               class="form-control ucmnd"
+                               id="validationDefault01"
+                               required />
+                    </div>
+                    <!-- URLAvatar -->
+                    <div class="col-md-12">
+                        <label for="validationDefault01" class="form-label">Ảnh đại diện</label>
+                        <input type="text"
+                               name="URLAvatar"
+                               class="form-control uavt"
+                               id="validationDefault01"
+                               required />
+                    </div>
+
+                    <!-- password -->
+                    <div class="col-md-4">
+                        <label for="validationDefault01" class="form-label">Mật khẩu</label>
+                        <input type="password"
+                               name="password"
+                               class="form-control upass"
+                               id="validationDefault01"
+                               required />
+                    </div>
+                    <!-- email -->
+                    <div class="col-md-4">
+                        <label for="validationDefault01" class="form-label">Email</label>
+                        <input type="text"
+                               name="email"
+                               class="form-control umail"
+                               id="validationDefault01"
+                               required />
+                    </div>
+                    <!-- phone -->
+                    <div class="col-md-4">
+                        <label for="validationDefault01" class="form-label">Số điện thoại</label>
+                        <input type="text"
+                               name="phone"
+                               class="form-control uphone"
+                               id="validationDefault01"
+                               required />
+                    </div>
+
+
+
+                    <div class="col-12">
+                        <button class="btn btn-primary" type="submit">Cập nhật</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@Scripts.Render("~/bundles/admin/jquery")
+
+
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+<script type="text/javascript"
+        src="https://cdn.datatables.net/v/bs5/jq-3.6.0/jszip-2.5.0/dt-1.11.5/b-2.2.2/b-html5-2.2.2/b-print-2.2.2/datatables.min.js"></script>
+
+<script>
+    $('.btn-adduser').click(() => {
+        window.location.href ='/Admin/Users/Create'
+    })
+    var table = $('#table-user').DataTable();
+    $('.d-user').addClass('active');
+    $('#table-user tbody').on('click', 'tr .btn-update', function () {
+        let td = $(this).parent();
+        let tr = td.parent();
+        var data = table.row(tr).data();
+        //set data
+        $('.uid').val(data[0])
+
+        $('.uun').val(data[4])
+      
+   
+
+        if (data[1] == "Admin") {
+            $('.uup').html(` <option selected value="R01">Admin</option>
+                            <option value="R02">User</option>`)
+        }
+        else {
+            $('.uup').html(` <option selected value="R02">User</option>
+                            <option value="R01">Admin</option>`)
+        }
+        if (data[3] == "Nam") {
+            $('.ugd').html(` <option selected value="true">Nam</option>
+                            <option value="false">Nữ</option>`)
+        }
+        else {
+            $('.ugd').html(` <option selected value="false">Nữ</option>
+                            <option value="true">Nam</option>`)
+        }
+
+        
+        $('.ufn').val(data[2])
+
+        $('.upass').val(data[5])
+        $('.uad').val(data[6])
+        $('.uphone').val(data[7])
+        $('.ucmnd').val(data[8]) //cmdn
+        $('.umail').val(data[9]) //mail
+        $('.uavt').val("chưa cập nhật")
+        $('.modal-update').css('display', 'flex');
+
+    });
+    $('.modal__overplay').click(function () {
+        $('.modal-cus').toggle();
+    });
+</script>

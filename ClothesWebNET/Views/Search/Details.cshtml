@@ -1,0 +1,358 @@
+﻿
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Styles.Render("~/Content/main")
+@Styles.Render("~/Content/detail")
+@Styles.Render("~/Content/toastr")
+
+<style>
+
+    .detail-size .size-D {
+        width: 40px;
+        height: 40px;
+        background-color: #6c757d;
+        line-height: 40px;
+        text-align: center;
+        border: 1px solid #6c757d;
+        font-size: 12px;
+        font-weight: 500;
+        color: #050505;
+        cursor: not-allowed;
+        transition: all 0.2s ease-in-out;
+    }
+</style>
+<div class="container">
+    @{
+        foreach (var item in ViewBag.List)
+        {
+            <div class="breadcrumb">
+                <div class="grid">
+                    <a href="/">Trang chủ / </a>
+                    <span style="font-size:1.3rem"> @item.type / </span>
+                    <span style="font-size:1.2rem" class="br-main"> @item.nameProduct </span>
+                </div>
+            </div>
+            break;
+        }
+    }
+
+    <!-- detail -->
+    <div class="detail">
+
+        @{
+            foreach (var item in ViewBag.List)
+            {
+                <div class="grid">
+                    <div class="row">
+                        <div class="col">
+                            <div class="slider-detail">
+                                <div class="product-detail">
+                                    <img class="img-detail"
+                                         src="@item.URLImage"
+                                         alt=""
+                                         onclick="clickme(this)" />
+                                    <!--<img class="img-detail"
+                                         src="https://product.hstatic.net/200000321771/product/271541735_634953457746867_7566922806359762025_n_bbabb788919c43d193a79576e58f739d_compact.jpg"
+                                         alt=""
+                                         onclick="clickme(this)" />-->
+                                    <!-- cái hình này khó chịu quá -->
+                                    <!--<img class="img-detail"
+                                         src="https://product.hstatic.net/200000321771/product/269829084_354055683202680_6749155750206382252_n_9c2f4d6b48824a00ae29f456d9f05570_compact.jpg"
+                                         alt=""
+                                         onclick="clickme(this)" />
+                                    <img class="img-detail"
+                                         src="https://product.hstatic.net/200000321771/product/271493062_398113702111615_5709360159503487208_n_c086fdbf71204097bda383dd63239d95_compact.jpg"
+                                         alt=""
+                                         onclick="clickme(this)" />-->
+                                </div>
+                                <div class="preview">
+                                    <img src="@item.URLImage" id="imagebox" alt="" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col col-cus">
+                            <div class="content">
+                                <div style="font-size:1.8rem" class="detail-title">@item.nameProduct</div>
+                                <div style="display:none; font-size:1.8rem" class="idFood" >@item.idProduct</div>
+                                <div class="detail-price info-price total-money">@item.price,000₫</div>
+                                <div class="detail-size">
+
+                                    @{
+
+                                        if (@item.sizeM > 0)
+                                        {
+                                            <div class="size">M</div>
+                                        }
+                                        else
+                                        {
+                                            <div class="size-D ">M</div>
+                                        }
+                                        if (@item.sizeL > 0)
+                                        {
+                                            <div class="size">L</div>
+                                        }
+                                        else
+                                        {
+                                            <div class="size-D ">L</div>
+                                        }
+
+                                        if (@item.sizeXL > 0)
+                                        {
+                                            <div class="size">XL</div>
+                                        }
+                                        else
+                                        {
+                                            <div class="size-D ">XL</div>
+                                        }
+                                    }
+
+
+
+
+                                </div>
+
+                                <div class="detail-amount">
+                                    <button class="button-amount button-minus">-</button>
+                                    <input type="number" class="input-amout" readonly value="1" />
+                                    <button class="button-amount button-add">+</button>
+                                </div>
+
+                                <div class="detail-button-add-cart button-hover" id="add-to-cart">Thêm vào giỏ hàng</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                break;
+            }
+
+        }
+
+
+    </div>
+    <!-- detail end -->
+    <!-- mô tả sản phẩm -->
+    <div class="product-description">
+        <h2 class="des-heading">MÔ TẢ SẢN PHẨM</h2>
+        <div class="description">
+            <h4 class="des-title">◤mô tả</h4>
+            <ul class="list-des">
+                <li class="list-des-item">
+                    - Sản phẩm Unisex cho cả nam và nữ, 1 item không thể thiếu trong
+                    tủ quần áo của những anh chàng hay cô nàng năng động cá tính.
+                </li>
+                <li class="list-des-item">HÌNH THẬT GIỐNG MẪU</li>
+                <li class="list-des-item">
+                    - Hàng có sẵn 100%, không phải chờ đợi lâu.
+                </li>
+                <li class="list-des-item">
+                    - CHẤT LIỆU: Vải cotton hút ẩm tốt ,mịn mát,co giãn, dày vừa ko
+                    bí, mang đến cảm giác dễ chịu cho người sử dụng.
+                </li>
+                <li class="list-des-item">
+                    - Màu sắc có thể đậm hoặc nhạt 1-5% do hiệu ứng ánh sáng (có thể
+                    do bóng râm, đèn sáng hoặc tối, độ phân giải của máy ảnh)
+                </li>
+            </ul>
+        </div>
+        <div class="commitment">
+            <h4 class="des-title">◤CAM KẾT CỦA SHOP</h4>
+            <ul class="list-des">
+                <li class="list-des-item">
+                    - HÌNH THẬT GIỐNG MẪU 100%, TẤT CẢ HÌNH ẢNH ĐỀU DO SHOP TỰ CHỤP.
+                </li>
+                <li class="list-des-item">
+                    - Sản phẩm được kiểm tra kỹ càng trước khi giao hàng cho khách .
+                </li>
+                <li class="list-des-item">
+                    - Hỗ trợ đổi size nếu khách mặt không vừa, không ưng ý sản phẩm
+                    muốn đổi sang sản phẩm khác.
+                </li>
+                <li class="list-des-item">
+                    - Hỗ trợ đổi đối với các lỗi từ nhà sản xuất.
+                </li>
+                <li class="list-des-item">
+                    - Hỗ trợ đổi trong vòng 7 ngày kể từ ngày nhận hàng, sản phẩm mới
+                    và còn nguyên tem mác.
+                </li>
+            </ul>
+        </div>
+        <div class="choose-size">
+            <h4 class="des-title">◤THÔNG SỐ CHỌN SIZE:</h4>
+            <ul class="list-des">
+                <li class="list-des-item">
+                    - SIZE S/SIZE 28: 1m45 - 1m60 (45 - 53kg)
+                </li>
+                <li class="list-des-item">
+                    - SIZE M/SIZE 30: 1m5 - 1m65 (53 - 58kg)
+                </li>
+                <li class="list-des-item">
+                    - SIZE L/SIZE 32: 1m55 - 1m7 ( 58 - 68kg)
+                </li>
+                <li class="list-des-item">
+                    - SIZE XL/SIZE 34: 1m60 - 1m8 (68 - 75kg)
+                </li>
+                <li class="list-des-item">
+                    - SIZE XXL/SIZE 36: 1m75 - 1m85 (75 - 85kg)
+                </li>
+                <li class="list-des-item">
+                    - (Bảng size trên chỉ mang tính chất tham khảo, vui lòng xem thêm
+                    bảng size cho từng sản phẩm hoặc chat với nhân viên của shop để
+                    được hỗ trợ)
+                </li>
+            </ul>
+        </div>
+        <div class="usage">
+            <h4 class="des-title">◤hướng dẫn bảo quản:</h4>
+            <ul class="list-des">
+                <li class="list-des-item">
+                    - Giặt lần đầu tiên với nước lạnh và nước xả vải (không sử dụng
+                    bột giặt) để sản phẩm giữ màu được lâu.
+                </li>
+                <li class="list-des-item">
+                    - Giặt mặt trái, nhẹ tay, giặt xong phơi ngay, không ngâm sản phẩm
+                    trong nước quá lâu, không sử dụng các loại chất tẩy.
+                </li>
+                <li class="list-des-item">
+                    - Quần áo trắng - màu nên chia ra giặt riêng, không giặt chung.
+                </li>
+                <li class="list-des-item">
+                    - Không giặt chung với các sản phẩm dễ xước, tránh vướng mắc khi
+                    giặt và phơi.
+                </li>
+                <li class="list-des-item">
+                    - Với sản phẩm có in chỉ nên giặt ở chế độ giặt vải mềm để đảm bảo
+                    độ bền của sản phẩm.
+                </li>
+                <li class="list-des-item">
+                    - Tránh phơi sản phẩm dưới nắng trực tiếp, phơi nơi thoáng mát.
+                </li>
+            </ul>
+        </div>
+        <div class="ship">
+            <h4 class="des-title">◤GIAO HÀNG</h4>
+            <ul class="list-des">
+                <li class="list-des-item">
+                    - Freeship cho hoá đơn mua hàng trị giá trên 200.000 vnd
+                </li>
+                <li class="list-des-item">
+                    - Khách hàng đặt hàng , nhận hàng rồi mới thanh toán
+                </li>
+                <li class="list-des-item">
+                    - Khách được kiểm tra hàng trước để đảm bảo giao đúng mẫu trước
+                    khi thanh toán cho shipper
+                </li>
+                <li class="list-des-item">
+                    - Thời gian giao hàng: dao động từ 3 - 4 ngày kể từ khi xác nhận
+                    đơn (không tính thứ 7 và CN)
+                </li>
+                <li class="list-des-item">
+                    - Không freeship đối với các sản phẩm SALE.
+                </li>
+            </ul>
+        </div>
+        <div class="note">
+            <h4 class="des-title">lưu ý:</h4>
+            <ul class="list-des">
+                <li class="list-des-item">
+                    - ZOMBIE CÓ GỌI ĐỂ XÁC NHẬN ĐƠN, CÁC BẠN ĐỂ Ý GIÙM CHÚNG MÌNH
+                    NHEN!
+                </li>
+            </ul>
+        </div>
+        <div class="address">
+            <h4 class="des-title">◤HỆ THỐNG CỬA HÀNG ZOMBIE:</h4>
+            <ul class="list-des">
+                <li class="list-des-item">
+                    - CN 1: 96 Tôn Thất Tùng , P.Bến Thành ,Quận 1,HCM.
+                </li>
+                <li class="list-des-item">- Hotline :079 939 1168</li>
+            </ul>
+        </div>
+    </div>
+    <!-- mô tả sản phẩm -->
+    <!-- sản phẩm tương tự -->
+    <div class="similar-product">
+        <div class="products">
+            <div class="product-heading">SẢN PHẨM TƯƠNG TỰ</div>
+            <div class="grid">
+                <div class="grid__row">
+                    <div class="grid__col-3">
+                        <div class="product">
+                            <img src="https://product.hstatic.net/200000321771/product/2p6a9859_0b69d118a40b4207bfa4e22bc19454c6_master.jpg" alt="" class="product-img product-show">
+                            <img src="https://product.hstatic.net/200000321771/product/2p6a9860_c9fa74ab45404986abcb4b7942ebf7bf_grande.jpg" alt="" class="product-img product-img-hover">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-title">
+                                HOMO Tee In White
+                            </div>
+                            <div class="product-price">
+                                380,000₫
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid__col-3">
+                        <div class="product">
+                            <img src="https://product.hstatic.net/200000321771/product/271456888_233558595622847_148706376794218123_n_2a0da6a29d844c469d1f96a0c83a8f5b_master.jpg" alt="" class="product-img product-show">
+                            <img src="https://product.hstatic.net/200000321771/product/269670583_714518126161762_1892768403296979016_n_82173cd522a24355a3f483c3c06c0ce7_grande.jpg" alt="" class="product-img product-img-hover">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-title">
+                                HOMO Tee In White  HOMO Tee In White  HOMO Tee In White  HOMO Tee In White
+                            </div>
+                            <div class="product-price">
+                                380,000₫
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid__col-3">
+                        <div class="product">
+                            <img src="https://product.hstatic.net/200000321771/product/2p6a5735_a04687a3dcf94adb88dbe6441f5b922b_medium.jpg" alt="" class="product-img product-show">
+                            <img src="https://product.hstatic.net/200000321771/product/2p6a5737_b3213b065504466c8d9aa9da19795954_grande.jpg" alt="" class="product-img product-img-hover">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-title">
+                                HOMO Tee In White  HOMO Tee In White  HOMO Tee In White  HOMO Tee In White
+                            </div>
+                            <div class="product-price">
+                                380,000₫
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid__col-3">
+                        <div class="product">
+                            <img src="https://product.hstatic.net/200000321771/product/271739691_894884961076838_8135394162538589269_n_e814b41a580a4cb6b3d8e1963e0ef8db_medium.jpg" alt="" class="product-img product-show">
+                            <img src="https://product.hstatic.net/200000321771/product/271541735_634953457746867_7566922806359762025_n_bbabb788919c43d193a79576e58f739d_grande.jpg" alt="" class="product-img product-img-hover">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-title">
+                                HOMO Tee In White  HOMO Tee In White  HOMO Tee In White  HOMO Tee In White
+                            </div>
+                            <div class="product-price">
+                                380,000₫
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- sản phẩm tương tự -->
+</div>
+
+<script>
+    function clickme(smallImg) {
+        var fullImg = document.getElementById('imagebox');
+        fullImg.src = smallImg.src;
+    }
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+@Scripts.Render("~/bundles/product")
+@Scripts.Render("~/bundles/calculate")
+@Scripts.Render("~/bundles/detail")

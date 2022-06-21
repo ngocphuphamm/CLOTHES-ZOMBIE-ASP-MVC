@@ -1,0 +1,157 @@
+﻿﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="shortcut icon"
+          href="https://file.hstatic.net/200000321771/file/aaa_e9159f8bafd648bfa39e1436fdbacb9d.png"
+          type="image/png" />
+    <title>ADMIN – ZOMBIE® OFFICIAL STORE</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900"
+          rel="stylesheet" />
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <!-- Nhúng bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+          crossorigin="anonymous" />
+
+    <link rel="stylesheet"
+          href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css" />
+
+    @Styles.Render("~/Content/admin/index")
+
+    @Styles.Render("~/Content/admin/style.css")
+
+    @Styles.Render("~/Content/admin/custom.css")
+    @Styles.Render("~/Content/admin/base.css")
+</head>
+<body>
+    <div class="wrapper d-flex align-items-stretch">
+        <nav id="sidebar">
+            <div>
+                <div class="logo-header d-flex justify-content-center">
+                    <img src="https://file.hstatic.net/200000321771/file/aaa_52e8e5d6a6f244cfa0d459377098da08.png"
+                         alt=""
+                         class="logo" />
+                    <a href="/Admin/Dashboard/Index" class="logo-title">ZOMBIE® OFFICIAL STORE</a>
+                </div>
+                <div class="pl-4 pr-4">
+                    <ul class="list-unstyled components mb-5">
+                        <li class="tq">
+                            <a href="/Admin/Dashboard/Index" class="">Tổng quan</a>
+                        </li>
+                        <li class="sp">
+                            <a href="#SanPhamMenu"
+                               data-toggle="collapse"
+                               aria-expanded="false"
+                               class="dropdown-toggle">Sản phẩm</a>
+                            <ul class="collapse list-unstyled" id="SanPhamMenu">
+                                <li class="allsp">
+                                    <a href="/Admin/Products/Index">Tất cả sản phẩm</a>
+                                </li>
+                                <li class="addsp">
+                                    <a href="/Admin/Products/create">Thêm sản phẩm</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="d-bill">
+                            <a href="/Admin/Bills">Đơn hàng</a>
+                        </li>
+
+                       
+                        <li class="d-user">
+                            <a href="/Admin/Users">Người dùng</a>
+                        </li>
+                        <li class="d-xs">
+                            <a href="/home">Xem cửa hàng</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Page Content  -->
+    </div>
+    <div class="content-top">
+        <div class="header-left">
+            <h4 class="hello-user">
+                <span> QUẢN LÝ BÁN HÀNG</span>
+            </h4>
+
+            <div class="real-time">
+                <div id="MyClockDisplay" class="clock" onload="showTime()"></div>
+                <div id="today">29/05/2022</div>
+            </div>
+        </div>
+        <div class="header-right">
+            <div class="icon-user">
+                <img src="https://colorlib.com/polygon/cooladmin/images/icon/avatar-01.jpg"
+                     alt="" />
+                <div class="icon-user-fullname">Hello Admin</div>
+                <div class="icon-user-dropdown">
+                    <span class="box-triangle">
+                        <svg viewBox="0 0 20 9" role="presentation">
+                            <path d="M.47108938 9c.2694725-.26871321.57077721-.56867841.90388257-.89986354C3.12384116 6.36134886 5.74788116 3.76338565 9.2467995.30653888c.4145057-.4095171 1.0844277-.40860098 1.4977971.00205122L19.4935156 9H.47108938z"
+                                  fill="#ffffff"></path>
+                        </svg>
+                    </span>
+                    <div class="info-user">
+                        <img class="avt-user"
+                             src="https://colorlib.com/polygon/cooladmin/images/icon/avatar-01.jpg"
+                             alt="" />
+                        <div class="info-user-login">
+                            <div class="info-fullName">tên</div>
+                            <div class="info-email">email</div>
+                        </div>
+                    </div>
+                    <div class="user-logout">
+                        <a href="/home/myinfo"><i class="bx bxs-user"></i> Thông tin</a>
+                        <a href="/login/signout">
+                            <i class="bx bxs-log-out"></i> Đăng xuất
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    @RenderBody()
+    @Scripts.Render("~/bundles/admin/jquery")
+    @Scripts.Render("~/bundles/admin/popper")
+    @Scripts.Render("~/bundles/admin/bstr")
+
+    <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+            integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+            crossorigin="anonymous"></script>
+
+    @Scripts.Render("~/bundles/admin/main")
+    @Scripts.Render("~/bundles/admin/header")
+
+    <script>
+        fetch('/Home/GetUserInfo')
+            .then(response => response.json())
+            .then(data => {
+                $('.info-fullName').html(data.Result[0].fullName)
+                $('.info-email').html(data.Result[0].email)
+                
+                /*  console.log(data.Result[0])*/
+            });
+    </script>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+
+
+
+
+
+
+

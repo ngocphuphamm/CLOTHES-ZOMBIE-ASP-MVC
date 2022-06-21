@@ -1,0 +1,56 @@
+﻿
+@model IEnumerable<ClothesWebNET.Models.Product>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Styles.Render("~/Content/main")
+@Styles.Render("~/Content/product")
+
+<div class="container">
+    <div class="breadcrumb">
+        <div class="grid">
+            <a href="/">Trang chủ / </a>
+            <a href="/collections">Danh mục / </a>
+            <a class="br-main" href="/collections/phukien">Phụ kiện </a>
+        </div>
+    </div>
+    <div class="products">
+        <div class="product-heading">Tất cả sản phẩm</div>
+
+        <div class="grid">
+            <div class="grid__row">
+                @foreach (var item in Model)
+                {
+                    <div class="grid__col-3">
+                        <div class="product">
+                            <h1 style="display:none" id="idProduct">@item.idProduct</h1>
+                            <img src="@item.ImageProducts.First().URLImage"
+                                 alt=""
+                                 class="product-img product-show" />
+                            <img src="@item.ImageProducts.Last().URLImage"
+                                 alt=""
+                                 class="product-img product-img-hover" />
+                        </div>
+                        <div class="product-info">
+                            <div class="product-title">
+                                @item.nameProduct
+                            </div>
+                            <div class="product-price">@item.price,000₫</div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+
+        </div>
+    </div>
+  
+    <!-- Product end -->
+
+</div>
+
+
+
+@Scripts.Render("~/bundles/product")
+

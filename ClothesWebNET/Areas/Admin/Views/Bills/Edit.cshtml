@@ -1,0 +1,314 @@
+﻿
+@model ClothesWebNET.Models.Bill
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .title-detail {
+        color: black;
+    }
+
+    .text-sm {
+        font-size: 15px;
+        font-weight: bolder;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 10px 0;
+    }
+
+        .text-sm span {
+            font-weight: 500;
+        }
+
+    h5.text-right {
+        font-weight: 500;
+    }
+
+        h5.text-right span {
+            font-weight: normal;
+        }
+
+    h5.text-sm input, h5.text-sm select {
+        font-weight: 500;
+        margin: 5px 0;
+        color: #333;
+    }
+
+    .dln {
+        display: none;
+    }
+    .vl-err{
+        color:red;
+        padding:5px 5px;
+        font-size:13px;
+        display:none;
+    }
+
+   /* The Modal (background) */
+    .modal {
+        display: none; 
+        position: fixed; 
+        z-index: 2; 
+        left: 0;
+        top: 0;
+        width: 100%; 
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0,0,0); 
+        background-color: rgba(0,0,0,0.4); 
+    }
+
+  
+    .modal-content {
+        background-color: #fefefe;
+        margin: 10% auto; 
+        margin-left:520px;
+        padding:20px 20px;
+        border: 1px solid #888;
+        width: 400px;
+       
+    }
+
+   
+    .btnClose {
+        padding:0 20px;
+        color: #aaa;
+        font-size: 28px;
+        font-weight: bold;
+        text-align:right;
+    }
+
+        .btnClose:hover,
+        .btnClose:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    .modal-message{
+        text-align:center;
+        color:blue;
+        font-size:20px;
+    }
+</style>
+
+<div id="modalSuccess" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+        <p class="modal-message">Cập nhật thành công</p>
+    </div>
+
+</div>
+<div id="content" class="">
+    <div class="content-main p-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/Admin/Bills">Đơn hàng</a></li>
+                <li class="breadcrumb-item active" aria-current="page">
+                    Cập nhật đơn hàng
+                </li>
+            </ol>
+        </nav>
+        <div class="table-responsive-sm">
+            <h4 class="text-center title-detail">CẬP NHẬT THÔNG TIN ĐƠN HÀNG</h4>
+            <h5 class="text-sm">
+                Họ tên người mua hàng:
+                <input required class="form-control" type="text" id="fullname" />
+                <small class="vl-err errFullname"></small>
+
+            </h5>
+            <h5 class="text-sm">
+                Số điện thoại:
+                <input required type="number" class="form-control" id="phone" />
+                <small class="vl-err errPhone"></small>
+            </h5>
+            <h5 class="text-sm">
+                Địa chỉ:
+                <input required class="form-control" id="address" />
+                <small class="vl-err errAddress"></small>
+            </h5>
+            <h5 class="text-sm">Trạng thái: 
+                <select required class="form-control" id="status">
+                    <option value="false">Đang chờ</option>
+                    <option value="true">Thành công</option>
+                </select>
+            </h5>
+            <h5 class="text-sm">Mã hóa đơn: <span id="idBill"></span></h5>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">Tên sản phẩm</th>
+                        <th scope="col">Số lượng</th>
+                        <th scope="col">Giá bán</th>
+                        <th scope="col">Tổng tiền</th>
+
+                    </tr>
+                </thead>
+                <tbody id="renderItem">
+                </tbody>
+            </table>
+        </div>
+        <h5 class="text-right">Tổng cộng:<span class="fmt" id="Total"></span></h5>
+        <button type="button" class="btn btn-primary saveData">Cập nhật</button>
+    </div>
+</div>
+
+
+@Scripts.Render("~/bundles/admin/jquery")
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+    var pathname = window.location.pathname
+    let lastS = pathname.lastIndexOf('/');
+    let id = pathname.slice(lastS + 1).trim();
+
+
+
+    //get api
+    $.ajax('/Admin/Bills/GetDetailBill', {
+        data: {
+            idBill: id,
+        },
+        dataType: 'json',
+        method: 'Post',
+        success: function (res) {
+            console.log(res)
+            $('#fullname').val(res[0].nameBook)
+            $('#phone').val("0" + res[0].phone)
+            $('#address').val(res[0].address)
+            $('#idBill').html(res[0].idBill)
+
+
+            let html = '';
+            res.forEach(item => {
+                let intoM = parseInt(item.qty) * parseInt(item.price)
+                html += `<tr class="rowDt">
+             <td class="dln idDetailBill">${item.idDetailBill}</td>
+             <td class="dln idProduct">${item.idProduct}</td>
+                    <td class="nameProduct">${item.nameProduct}</td>
+                    <td > ${item.qty}</td>
+                    <td class="fmt price">${item.price}000</td>
+                    <td class="fmt intoMoney">${intoM}000</td>
+                       </tr>`
+            })
+            $('#renderItem').html(html)
+            $('#Total').html(res[0].Total+"000")
+            let fmt = document.querySelectorAll('.fmt');
+            fmt.forEach(item => {
+                item.textContent = commaSeparator(item.textContent);
+            })
+        }
+    })
+
+
+    //post data
+
+    function CheckRequire(input) {
+        if (input.val() == '') {
+            return false;
+        }
+        return true;
+    }
+
+    $('.saveData').click(() => {
+        let ibBill = id;
+        let nameBook = $('#fullname').val()
+        let phone = $('#phone').val().toString().slice(1);
+        let address = $('#address').val()
+        let status = $('#status').val()
+
+        if (!CheckRequire($('#fullname')))
+            $('.errFullname').css('display', 'block').html("Tên khách hàng không được để trống")
+        else $('.errFullname').css('display', 'none').html("")
+           
+        if (!CheckRequire($('#phone')))
+            $('.errPhone').css('display', 'block').html("Số điện thoại không được để trống")
+        else $('.errPhone').css('display', 'none').html("")
+
+        if (!CheckRequire($('#address')))
+            $('.errAddress').css('display', 'block').html("Địa chỉ giao hàng không được để trống")
+        else $('.errAddress').css('display', 'none').html("")
+
+
+        if (
+            CheckRequire($('#fullname')) &&
+            CheckRequire($('#phone')) &&
+            CheckRequire($('#address'))
+            ) {
+            axios.post('/Admin/Bills/UpdateBill', { ibBill, nameBook, phone, address, status: status.toLowerCase() == 'true' ? true : false })
+                .then(function (response) {
+                    console.log(response);
+                    if (response.data == "success") {
+                        ShowUpdateSuccess()
+                        
+                    }
+                    else {
+                        alert("Lỗi: Cập nhật không thành công")
+                    }
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+
+        }
+ 
+       
+
+   
+
+       
+
+    })
+
+    var modalSuccess = document.getElementById("modalSuccess");
+    var modal = document.querySelector(".modal")
+  
+    function ShowUpdateSuccess() {
+        modalSuccess.style.display = "block";
+    }
+
+ 
+
+    
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+            window.location.href = '/Admin/Bills'
+        }
+    }
+   
+
+   
+
+
+
+
+    const commaSeparator = (money) => {
+        let res = [...money];
+        let count = 0;
+        for (let i = res.length - 1; i >= 0; i--) {
+            count++;
+            if (count == 3) {
+                if (i != 0) {
+                    res[i] = ',' + res[i];
+                    count = 0;
+                }
+            }
+        }
+        return res.join('') + 'đ';
+    };
+    const removeComma = (money) => {
+        money = parseInt(money.slice(0, money.length - 1).replaceAll(',', ''));
+        // console.log(money);
+        return money;
+    };
+
+
+</script>
+
+
+
+

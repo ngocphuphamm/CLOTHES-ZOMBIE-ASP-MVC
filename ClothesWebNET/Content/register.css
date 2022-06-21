@@ -1,0 +1,144 @@
+﻿﻿.container {
+    width: 100%;
+    margin-top: 200px;
+}
+
+.container .form-login {
+    margin: 0 auto;
+    width: 400px;
+}
+
+.login-box {
+    width: 90%;
+    margin: 20px auto;
+    margin-bottom: 30px;
+}
+
+.container .login-box-cus {
+    z-index: 999;
+    display: block;
+    width: 100%;
+    outline: none;
+    border-radius: 3px;
+    color: #677279;
+    background: rgb(255, 255, 255);
+}
+
+.heading {
+    font-family: Quicksand;
+    font-size: 1.6rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    line-height: 21px;
+    padding: 0 10px;
+    text-align: center;
+    color: #050505;
+    text-transform: uppercase;
+}
+
+.heading-login-with {
+    font-size: 1.2rem;
+    font-weight: normal;
+    text-transform: none;
+    color: #677279;
+    text-align: center;
+    height: 10px;
+    line-height: 10px;
+}
+
+.heading {
+    padding-bottom: 5px;
+}
+
+.login-box-cus {
+    width: 90%;
+    margin: 20px auto;
+    margin-bottom: 30px;
+}
+
+.form-control {
+    line-height: initial;
+}
+
+.modal-form-input {
+    width: 100%;
+    display: block;
+    height: 42px;
+    background-color: #ffffff;
+    border: 1px solid #d4d6d8;
+    border-radius: 2px;
+    color: #1e2d7d;
+    font-family: Quicksand;
+    font-size: 12px;
+    padding: 0 10px;
+    overflow: hidden;
+    outline: none;
+}
+
+    .modal-form-input::placeholder {
+        font-weight: bolder;
+    }
+
+.recapcha {
+    margin-top: 10px;
+    height: 42px;
+    line-height: initial;
+    color: #9e9e9e;
+    font-size: 13px;
+    text-align: left;
+}
+
+    .recapcha .recapcha-link {
+        color: #2962ff;
+    }
+
+.button-login {
+    margin-top: 15px;
+    cursor: pointer;
+    width: 100%;
+    height: 42px;
+    background-color: #fc700b;
+    text-align: center;
+    border: 1px solid #fc700b;
+    border-radius: 2px;
+    color: #fff;
+    font-size: 1.3rem;
+    font-family: Quicksand;
+    text-transform: uppercase;
+    display: block;
+}
+
+    .button-login:hover {
+        color: black;
+    }
+
+.modal-help {
+    line-height: initial;
+    text-align: center;
+    margin-top: 15px;
+    font-size: 1.2rem;
+}
+
+.modal-link {
+    color: #fc700b;
+}
+
+.err, .text-danger {
+    color: #ff6d6d;
+    font-family: Helvetica;
+    padding: 5px 10px;
+    font-size: 1.2rem;
+    display: inline-block
+}
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
+}
+
+#gender option {
+    color: #050505;
+}

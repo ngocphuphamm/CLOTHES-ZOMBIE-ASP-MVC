@@ -1,0 +1,139 @@
+﻿@model IEnumerable<ClothesWebNET.Models.Product>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+@Styles.Render("~/Content/main")
+@Styles.Render("~/Content/product")
+<!-- ----------Slider---------- -->
+<div class="slider">
+    <a href="/" class="">
+        <img src="https://file.hstatic.net/200000321771/file/1_62c5898170ff40c2bd5606d64d0d8e09.jpg"
+             alt="" />
+    </a>
+</div>
+<!-- ----------Slider---------- -->
+<!-- ----------Banner---------- -->
+<div class="banner">
+    <div class="banner-item">
+        <img src="https://file.hstatic.net/200000321771/file/3_bdadae0d79ee4f4fa46338613e9a5b57.jpg"
+             alt="" />
+    </div>
+    <div class="banner-item">
+        <img src="https://file.hstatic.net/200000321771/file/2_e06d86f187de4e2f90c44e764fc47fe9.jpg"
+             alt="" />
+    </div>
+    <div class="banner-item ">
+        <img src="https://file.hstatic.net/200000321771/file/1_3381a57c5ef44c3b9c71762f40e9cd70.jpg"
+             alt="" />
+    </div>
+</div>
+
+<!-- ----------Banner---------- -->
+
+@{
+    int ctop = 0;
+    int cbot = 0;
+}
+<!-- Product -->
+<div class="products">
+    <div class="product-headingg">SẢN PHẨM MỚI - NEW PRODUCTS</div>
+    <div class="grid">
+        <div class="grid__row">
+
+
+
+            @foreach (var item in Model)
+            {
+                cbot++;
+                if (cbot > 7)
+                {
+                    <div class="grid__col-3">
+                        <div class="product">
+                            <h1 style="display:none" id="idProduct">@item.idProduct</h1>
+                            <img src="@item.ImageProducts.First().URLImage"
+                                 alt=""
+                                 class="product-img product-show" />
+                            <img src="@item.ImageProducts.Last().URLImage"
+                                 alt=""
+                                 class="product-img product-img-hover" />
+                        </div>
+                        <div class="product-info">
+                            <div class="product-title">
+                                @item.nameProduct
+                            </div>
+                            <div class="product-price">@item.price,000₫</div>
+                        </div>
+                    </div>
+                }
+
+
+                if (cbot == 15)
+                { break; }
+
+            }
+
+        </div>
+
+    </div>
+</div>
+<!-- Product -->
+<!-- ----------Banner---------- -->
+<div style="margin-top:30px" class="banner">
+    <div class="banner-item">
+        <img src="https://file.hstatic.net/200000321771/file/3_8eba5660cf4640e084dc27e9a47b1ece.jpg"
+             alt="" />
+    </div>
+    <div class="banner-item">
+        <img src="https://file.hstatic.net/200000321771/file/2_d975b4e8df8b45699fe5a805bb461ef5.jpg"
+             alt="" />
+    </div>
+    <div class="banner-item ">
+        <img src="https://file.hstatic.net/200000321771/file/1_dd82505428c9436291a8b2966f7bcb93.jpg"
+             alt="" />
+    </div>
+</div>
+<!-- ----------Banner---------- -->
+<!-- Product -->
+
+
+<div class="products">
+    <div style="text-transform:uppercase" class="product-headingg">Sweater - Hoodie  2022</div>
+    <div class="grid">
+        <div class="grid__row">
+            @foreach (var item in Model)
+            {
+                ctop++;
+                <div class="grid__col-3">
+                    <div class="product">
+                        <h1 style="display:none" id="idProduct">@item.idProduct</h1>
+                        <img src="@item.ImageProducts.First().URLImage"
+                             alt=""
+                             class="product-img product-show" />
+                        <img src="@item.ImageProducts.Last().URLImage"
+                             alt=""
+                             class="product-img product-img-hover" />
+                    </div>
+                    <div class="product-info">
+                        <div class="product-title">
+                            @item.nameProduct
+                        </div>
+                        <div class="product-price">@item.price,000₫</div>
+                    </div>
+                </div>
+
+                if (ctop == 8)
+                {
+                    break;
+                }
+            }
+
+        </div>
+
+    </div>
+</div>
+<!-- Product -->
+@Scripts.Render("~/bundles/product")
+
+
+

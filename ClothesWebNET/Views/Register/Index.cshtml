@@ -1,0 +1,138 @@
+﻿
+
+@model ClothesWebNET.Models.User
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .container{
+        margin-top:200px;
+    }
+</style>
+
+@Styles.Render("~/Content/register")
+<div class="container">
+    <div class="form-login form-login-cus">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <p class="heading">đăng ký tài khoản</p>
+            <div class="heading-login-with">Đăng ký để dễ dàng mua sắm hơn </div>
+            <div class="login-box-cus">
+                <div class="header-box login-box">
+                    <div style="display:none" class="form-control">
+
+
+                        <input style="display:none" type="text" readonly value="R02" name="idPermission" class="modal-form-input" />
+
+                    </div>
+
+                    <div class="form-control">
+
+
+                        @Html.EditorFor(model => model.fullName, new { htmlAttributes = new { @class = "modal-form-input", @placeholder = "Họ và tên", @required = "true" } })
+                        @Html.ValidationMessageFor(model => model.fullName, "", new { @class = "text-danger" })
+
+                    </div>
+
+                    <div class="form-control">
+                        @Html.EditorFor(model => model.username, new { htmlAttributes = new { @class = "modal-form-input", @placeholder = "Username" } })
+                        @Html.ValidationMessageFor(model => model.username, "", new { @class = "text-danger" })
+
+                    </div>
+
+                    <div class="form-control">
+                        @Html.EditorFor(model => model.password, new { htmlAttributes = new {@type="password", @class = "modal-form-input", @placeholder = "Password" } })
+                        @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+
+                    </div>
+
+                    <div style="display:none" class="form-control">
+
+
+                        <div class="checkbox">
+                            @Html.EditorFor(model => model.gender, new { htmlAttributes = new { @class = "modal-form-input", @placeholder = "Giới tính" } })
+                            @Html.ValidationMessageFor(model => model.gender, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+
+                    <div class="form-control">
+
+
+                        @Html.EditorFor(model => model.identityCard, new { htmlAttributes = new { @class = "modal-form-input", @placeholder = "CMND" } })
+                        @Html.ValidationMessageFor(model => model.identityCard, "", new { @class = "text-danger" })
+
+                    </div>
+
+                    <div class="form-control">
+
+
+                        @Html.EditorFor(model => model.address, new { htmlAttributes = new { @class = "modal-form-input", @placeholder = "Địa chỉ" } })
+                        @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
+
+                    </div>
+
+                    <div class="form-control">
+
+
+                        @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "modal-form-input", @placeholder = "Email" } })
+                        @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+
+                    </div>
+
+                    <div style="display:none" class="form-control">
+
+
+                        @Html.EditorFor(model => model.URLAvatar, new { htmlAttributes = new { @class = "modal-form-input", @placeholder = "AVT" } })
+                        @Html.ValidationMessageFor(model => model.URLAvatar, "", new { @class = "text-danger" })
+
+                    </div>
+
+                    <div class="form-control">
+
+
+                        @Html.EditorFor(model => model.phone, new { htmlAttributes = new { @class = "modal-form-input", @placeholder = "SĐT" } })
+                        @Html.ValidationMessageFor(model => model.phone, "", new { @class = "text-danger" })
+
+                    </div>
+
+                    <div class="recapcha">
+                        This site is protected by reCAPTCHA and the Google
+                        <a class="recapcha-link" href="">Privacy Policy</a> and
+                        <a class="recapcha-link" href="">Terms of Service</a> apply.
+                    </div>
+                    <button type="submit" class="button-register  button-hover">
+                        ĐĂNG KÝ
+                    </button>
+                    <div class="modal-help">
+                        Đã có tài khoản?
+                        <div style="display: inline; cursor: pointer"
+                             id="modal-login"
+                             class="modal-link">
+                            Đăng nhập
+                        </div>
+                    </div>
+                    <div class="modal-help">
+                        Quên mật khẩu?
+                        <div style="display: inline; cursor: pointer"
+                             id="modal-reset-password"
+                             class="modal-link">
+                            Khôi phục mật khẩu
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
+@Scripts.Render("~/bundles/admin/jquery")
+<script>
+    $('#modal-login').click(() => {
+        window.location.href = '/login'
+    })
+</script>

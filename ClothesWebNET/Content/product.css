@@ -1,0 +1,56 @@
+.container {
+  margin-top: 140px;
+}
+.product-heading {
+  text-align: left;
+  padding-left: 50px;
+  font-size: 20px;
+  font-weight: bold;
+}
+.product-heading:hover {
+  color: unset;
+}
+
+.nav-list .nav-list-main > .nav-list-link::after {
+  content: '';
+  display: block;
+  width: 120%;
+  height: 2px;
+  background: #5c5c5c;
+  transition: width 0.3s;
+}
+
+.pagination {
+  margin: 20px 0;
+  width: 100%;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+.pagination .prev {
+  transform: rotate(180deg);
+}
+.pagination a {
+  color: black;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.pagination a + a {
+  margin-left: 5px;
+}
+
+.pagination a.active {
+  background-color: var(--button-color);
+  color: white;
+  border-radius: 50%;
+}
+
+.pagination a:hover:not(.prev, .next, .active) {
+  background-color: rgb(185, 212, 121);
+  border-radius: 50%;
+}

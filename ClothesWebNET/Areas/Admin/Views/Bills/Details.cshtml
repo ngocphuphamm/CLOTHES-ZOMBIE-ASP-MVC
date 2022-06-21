@@ -1,0 +1,122 @@
+﻿
+@model IEnumerable<ClothesWebNET.Models.Bill>
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .title-detail{
+        color:black;
+    }
+    .text-sm {
+        font-size: 15px;
+     
+        font-weight: normal;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+        .text-sm span {
+            font-weight: 500;
+        }
+    h5.text-right{
+        font-weight:500;
+    }
+    h5.text-right span{
+        font-weight:normal;
+    }
+</style>
+<div id="content" class="">
+    <div class="content-main p-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/Admin/Bills">Đơn hàng</a></li>
+                <li class="breadcrumb-item active" aria-current="page">
+                    Chi tiết đơn hàng
+                </li>
+            </ol>
+        </nav>
+        <div class="table-responsive-sm">
+            <h4 class="text-center title-detail">CHI TIẾT ĐƠN HÀNG</h4>
+            <h5 class="text-sm">Họ tên người mua hàng: <span id="fullname">Nguyễn Duy Khang</span></h5>
+            <h5 class="text-sm">Số điện thoại: <span id="phone">0924989342</span></h5>
+            <h5 class="text-sm">Địa chỉ: <span id="address">AP 2 tan lap moc hoa long an</span></h5>
+            <h5 class="text-sm">Mã hóa đơn: <span id="idBill">DH1653146500192</span></h5>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">Tên sản phẩm</th>
+                        <th scope="col">Số lượng</th>
+                        <th scope="col">Giá bán</th>
+                        <th scope="col">Tổng tiền</th>
+                        
+                    </tr>
+                </thead>
+                <tbody id="renderItem">
+                    
+                </tbody>
+            </table>
+        </div>
+        <h5 class="text-right">Tổng cộng:<span class="fmt" id="Total"></span></h5>
+    </div>
+</div>
+@Scripts.Render("~/bundles/admin/jquery")
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"> </script>
+
+<script>
+    var pathname = window.location.pathname
+    let lastS = pathname.lastIndexOf('/');
+    let id = pathname.slice(lastS + 1).trim();
+
+    $.ajax('/Admin/Bills/GetDetailBill', {
+        data: {
+            idBill: id,
+        },
+        dataType: 'json',
+        method: 'Post',
+        success: function (res) {
+            console.log(res)
+            $('#fullname').html(res[0].nameBook)
+            $('#phone').html("0"+res[0].phone)
+            $('#address').html(res[0].address)
+            $('#idBill').html(res[0].idBill)
+
+            let html = '';
+            res.forEach(item => {
+                html += `<tr>
+                    <td>${item.nameProduct}</td>
+                    <td>${item.qty}</td>
+                    <td class="fmt">${item.price}000</td>
+                    <td class="fmt">${item.intoMoney}000</td>
+                       </tr>`
+            })
+            $('#renderItem').html(html)
+            $('#Total').html(res[0].Total + "000")
+
+            let fmt = document.querySelectorAll('.fmt');
+            fmt.forEach(item => {
+                item.textContent = commaSeparator(item.textContent);   
+            })
+        }
+    })
+
+    const commaSeparator = (money) => {
+        let res = [...money];
+        let count = 0;
+        for (let i = res.length - 1; i >= 0; i--) {
+            count++;
+            if (count == 3) {
+                if (i != 0) {
+                    res[i] = ',' + res[i];
+                    count = 0;
+                }
+            }
+        }
+        return res.join('') + 'đ';
+    };
+    
+   
+
+</script>
+
+
+

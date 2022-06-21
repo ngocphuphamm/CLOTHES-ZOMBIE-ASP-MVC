@@ -1,0 +1,124 @@
+﻿
+
+@model ClothesWebNET.Models.Product
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .acp-delete-title {
+        text-align: center;
+        color: chocolate;
+    }
+
+    .center-box-90 {
+        width: 90%;
+        margin: 0 auto;
+    }
+</style>
+<div id="content" class="">
+
+    <div class="content-main p-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">Sản phẩm</li>
+                <li class="breadcrumb-item active" aria-current="page">
+                    Xóa sản phẩm
+                </li>
+            </ol>
+        </nav>
+        <div class="table-responsive-sm">
+            <h3 class="acp-delete-title">Bạn có chắc muốn xóa sản phẩm này</h3>
+            <div>
+                <h4>Xem lại thông tin sản phẩm</h4>
+                <hr />
+                <div class="center-box-90">
+                    <form method="post" action="/Admin/Products/Delete/@Model.idProduct" class="row g-3">
+                        @Html.AntiForgeryToken()
+                        <!-- ID -->
+                        <div style="display:none" class="col-md-12">
+                            <label for="validationDefault01" class="form-label">Tên sản phẩm</label>
+                            <input type="text"
+                                   readonly
+                                   value="@Model.idProduct"
+                                   class="form-control"
+                                   id="validationDefault01" />
+                        </div>
+                        <!-- nameProduct -->
+                        <div class="col-md-12">
+                            <label for="validationDefault01" class="form-label">Tên sản phẩm</label>
+                            <input type="text"
+                                   readonly
+                                   value="@Model.nameProduct"
+                                   class="form-control"
+                                   id="validationDefault01" />
+                        </div>
+                        <!-- type -->
+                        <div class="col-md-12">
+                            <label for="validationDefault01" class="form-label">Danh mục</label>
+                            <input type="text"
+                                   readonly
+                                   value="@Model.Type.nameType"
+                                   class="form-control"
+                                   id="validationDefault01" />
+                        </div>
+                        <!-- sizeM -->
+                        <div class="col-md-4">
+                            <label for="validationDefault01" class="form-label">SizeM</label>
+                            <input type="text"
+                                   readonly
+                                   value="@Model.sizeM"
+                                   class="form-control"
+                                   id="validationDefault01" />
+                        </div>
+                        <!-- sizeL -->
+                        <div class="col-md-4">
+                            <label for="validationDefault01" class="form-label">SizeL</label>
+                            <input type="text"
+                                   readonly
+                                   value="@Model.sizeL"
+                                   class="form-control"
+                                   id="validationDefault01" />
+                        </div>
+                        <!-- sizeXl -->
+                        <div class="col-md-4">
+                            <label for="validationDefault01" class="form-label">SizeXL</label>
+                            <input type="text"
+                                   readonly
+                                   value="@Model.sizeXL"
+                                   class="form-control"
+                                   id="validationDefault01" />
+                        </div>
+                        <!-- price -->
+                        <div class="col-md-12">
+                            <label for="validationDefault01" class="form-label">Giá bán</label>
+                            <input type="text"
+                                   readonly
+                                   value="@Model.price"
+                                   class="form-control"
+                                   id="validationDefault01" />
+                        </div>
+                        <!-- description -->
+                        <div class="col-md-12">
+                            <label for="validationDefault01" class="form-label">Mô tả</label>
+                            <input type="text"
+                                   readonly
+                                   value="@Model.description"
+                                   class="form-control"
+                                   id="validationDefault01" />
+                        </div>
+
+                        <div class="col-12">
+                            <button class="btn btn-danger" type="submit">Xóa</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+

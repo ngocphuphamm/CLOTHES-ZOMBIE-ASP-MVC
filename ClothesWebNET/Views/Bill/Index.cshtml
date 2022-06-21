@@ -1,0 +1,233 @@
+﻿
+@{
+    Layout = null;
+}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="shortcut icon"
+          href="//theme.hstatic.net/200000321771/1000699946/14/favicon.png?v=302"
+          type="image/png" />
+    <!-- Icon -->
+    <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css"
+          rel="stylesheet" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+
+    <!-- Reset CSS -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css" />
+
+    <!-- Quicksand font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet" />
+    <title>ZOMBIE® OFFICIAL STORE - Thanh toán đơn hàng</title>
+    @Styles.Render("~/Content/base")
+    @Styles.Render("~/Content/checkout")
+    @Styles.Render("~/Content/footer")
+
+</head>
+<body>
+
+
+
+
+
+    <div class="main">
+        <div class="grid">
+            <div class="checkout">
+                <div class="checkout-info">
+                    <div class="checkout-logo-text checkout-item">
+                        <a style="color:#000000" href="/"> ZOMBIE® OFFICIAL STORE</a>
+                    </div>
+                    <ul class="checkout-breadcrumb checkout-item">
+                        <li class="breadcrumb-item">
+                            <a href="/cart.html" class="text-link cart">Giỏ hàng </a>
+                            <i class="icon-link bx bx-chevron-right"></i>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <span class="text-link">Thông tin giao hàng</span>
+                            <i class="icon-link bx bx-chevron-right"></i>
+                        </li>
+                       
+                    </ul>
+                    <div class="checkout-text checkout-item">Thông tin giao hàng</div>
+                  
+                    <!-- <form  class="form-info checkout-item">-->
+                    <div class="form-info checkout-item">
+                        <div class="form-control form-item">
+                            <input placeholder="Họ và tên" id="fullname" type="text" name="fullName" />
+                            <small></small>
+                        </div>
+                        <div class="form-inline form-item">
+                            <div class="form-control w-2">
+                                <input placeholder="Email" id="email" type="text" name="email" />
+                                <small></small>
+                            </div>
+                            <div class="form-control w-1">
+                                <input placeholder="Số điện thoại" id="phone" name="phone" />
+                                <small></small>
+                            </div>
+                        </div>
+                        <div class="form-control form-item">
+                            <input placeholder="Địa chỉ" id="address" type="text" name="address" />
+                            <small></small>
+                        </div>
+                        <div class="form-inline form-item">
+                            <div class="form-control w-1">
+                                <select placeholder="Tỉnh/Thành phố"
+                                        id="province"
+                                        type="text">
+                                    <option value="invalid">Tỉnh/Thành phố</option>
+
+                                </select>
+                                <small></small>
+                            </div>
+                            <div class="form-control w-1">
+                                <select placeholder="Quận/Huyện" id="district" type="text">
+                                    <option value="invalid">Quận/Huyện</option>
+
+                                </select>
+                                <small></small>
+                            </div>
+                            <div class="form-control w-1">
+                                <select placeholder="Phường/Xã" id="village" type="text">
+                                    <option value="invalid">Phường/Xã</option>
+
+                                </select>
+                                <small></small>
+                            </div>
+                        </div>
+
+                        <div class="pay form-item">
+                            <a href="/cart" class="cart">Giỏ hàng</a>
+                            <button type="button" class="btnPay" id="save_btn">
+                                THANH TOÁN
+                            </button>
+                        </div>
+                    </div>
+
+                    <!--     </form>  -->
+                </div>
+                <div class="checkout-bill">
+                    <div class="checkout-product" id="detailProduct">
+
+
+                    </div>
+                    <div class="payment">
+                        
+                        <div class="payment-money">
+                            <div class="total">
+                                <div class="total-text">Tạm tính:</div>
+                                <div class="total-text total-money" id="tamTinh">0₫</div>
+                            </div>
+                            <div class="total">
+                                <div class="total-text">Phí vận chuyển:</div>
+                                <div class="total-text total-money">50,000 VND</div>
+                            </div>
+                        </div>
+                        <div class="payment-total total">
+                            <div class="total-text">Tổng cộng:</div>
+                            <div class="total-text total-money" id="totalMoney">0₫</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="grid">
+                <div class="footer-news">
+                    <i class="footer-top-icon bx bx-mail-send"></i>Đăng kí nhận tin
+                </div>
+
+                <div class="footer-form-news">
+                    <input type="text"
+                           placeholder="Nhập email của bạn"
+                           class="send-mail" />
+                    <button type="submit" class="btn-sendmail">Đăng ký</button>
+                </div>
+                <div class="footer-contact">
+                    <i class="footer-top-icon bx bxs-phone"></i> Hỗ trợ / Mua hàng
+                    0924989342
+                </div>
+            </div>
+        </div>
+        <div class="footer-mid"></div>
+        <div class="footer-bot"></div>
+    </footer>
+
+    @Scripts.RenderFormat("<script src='{0}' type='module'></script>", "~/bundles/checkout")
+
+
+
+</body>
+</html>
+
+<script>
+    const listCart = JSON.parse(window.localStorage.getItem('cart'));
+    let totalMoney = document.getElementById('totalMoney');
+    let tamTinh = document.getElementById('tamTinh');
+    let render = document.getElementById('detailProduct');
+    let total = 0
+    function renderTableLeft(dataList) {
+        $(document).ready(() => {
+            let str = ''
+
+            let count = 0;
+            dataList.forEach((el, index) => {
+                count++
+                let intoMoney = Number(el['price']) * Number(el['amount'])
+
+
+
+                let bodyCart = `
+                    <div class="product-item">
+                                <div class="item-img">
+                                    <img src='${el['img']}'
+                                         alt=""
+                                         class="img-product" />
+                                    <span class="amount">${el['amount']}</span>
+                                </div>
+                                <div class="item-info">
+                                    <div class="info-left">
+                                        <div class="info-name-product">
+                                           ${el['title']}
+                                        </div>
+                                        <div class="info-size-product">${el['size']}</div>
+                                    </div>
+                                    <div class="info-right">
+                                        <div class="item-money">${intoMoney.toLocaleString()},000VND</div>
+                                    </div>
+                                </div>
+                            </div>
+                `
+                total += intoMoney
+                str += bodyCart
+            })
+
+         
+
+            let m = parseInt(total.toLocaleString().split('.').join('')) + 50;
+           @* console.log(m)*@
+            totalMoney.innerHTML = m.toLocaleString() + ",000VND";
+            tamTinh.innerHTML = total.toLocaleString() + ",000VND";
+            render.innerHTML = str;
+
+
+
+
+        })
+    }
+    renderTableLeft(listCart);
+</script>
+

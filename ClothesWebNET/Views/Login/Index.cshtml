@@ -1,0 +1,79 @@
+﻿
+@model ClothesWebNET.Models.User
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Styles.Render("~/Content/login")
+<div class="container">
+    <form action="~/Login/kiemtradangnhap" method="post" class="form-login form-login-cus">
+        @Html.AntiForgeryToken()
+        <div class="login-box-cus">
+            <p class="heading">đăng nhập tài khoản</p>
+            <div class="heading-login-with">Nhập tên đăng nhập và mật khẩu của bạn</div>
+            <div class="header-box login-box">
+                <div class="form-control err">
+                    <input type="text"
+                           value=""
+                           name="username"
+                           id="email-cus"
+                           placeholder="Username"
+                           class="modal-form-input" />
+                    <small></small>
+                    @Html.ValidationMessageFor(model => model.username, "", new { @class = "text-danger" })
+
+                </div>
+                <div class="form-control err">
+                    <input type="password"
+                           id="password-cus"
+                           placeholder="Password"
+                           name="password"
+                           value=""
+                           class="modal-form-input" />
+                    <small></small>
+                    @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="recapcha">
+                    This site is protected by reCAPTCHA and the Google
+                    <a class="recapcha-link" href="">Privacy Policy</a> and
+                    <a class="recapcha-link" href="">Terms of Service</a> apply.
+                </div>
+              @*  <input type="checkbox" name="ghinho" /> Ghi nhớ tài khoản <br />*@
+                <button type="submit" class="button-login  button-hover">
+                    ĐĂNG NHẬP
+                </button>
+                <div class="modal-help">
+                    Khách hàng mới?
+                    <div style="display: inline; cursor: pointer"
+                         id="modal-register"
+                         class="modal-link">
+                        Tạo tài khoản
+                    </div>
+                </div>
+                <div class="modal-help">
+                    Quên mật khẩu?
+                    <div style="display: inline; cursor: pointer"
+                         id="modal-reset-password"
+                         class="modal-link">
+                        Khôi phục mật khẩu
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+@Scripts.RenderFormat("<script src='{0}' type='module'></script>", "~/bundles/login")
+@Scripts.Render("~/bundles/admin/jquery")
+<script>
+    $('#modal-register').click(() => {
+        window.location.href = '/register'
+    })
+</script>
+
+

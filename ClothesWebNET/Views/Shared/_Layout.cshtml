@@ -1,0 +1,421 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+   
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon"
+          href="https://file.hstatic.net/200000321771/file/aaa_e9159f8bafd648bfa39e1436fdbacb9d.png"
+          type="image/png" />
+    <title>Trang chủ – ZOMBIE® OFFICIAL STORE</title>
+
+    <!-- Icon -->
+    <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css"
+          rel="stylesheet" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <!-- Reset CSS -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css" />
+
+
+    <!-- Quicksand font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet" />
+    <!-- Style -->
+    @Styles.Render("~/Content/layout")
+    @Styles.Render("~/Content/main")
+    <style>
+        #app {
+            position: relative;
+            height: 100%;
+        }
+
+        .header-box.search-box {
+            margin: 20px auto;
+        }
+
+        .footer {
+            position: relative;
+            width: 100%;
+            bottom: 0;
+        }
+        .item-icon-cart{
+            
+        }
+        .cart-count{
+            position:absolute;
+            width:20px;
+            height:20px;
+            border-radius:50%;
+            background-color:#ff6a00;
+            color:white;
+            text-align:center;
+            display:flex;
+            align-items:center;
+            justify-content:center; 
+            line-height:initial;
+            top:29%;
+            font-weight:bolder;
+            left:50%;
+            
+        }
+       
+    </style>
+
+</head>
+<body>
+    <div id="app">
+        <!-- ----------Header---------- -->
+        <header class="header">
+            <div class="gird">
+                <div class="header-top">
+                    <div class="header-top-empty"></div>
+                    <div class="header-top-logo">
+                        <a href="">
+                            <img src="https://file.hstatic.net/200000321771/file/aaa_52e8e5d6a6f244cfa0d459377098da08.png" alt="" class="logo-img" />
+                        </a>
+                    </div>
+                    <div class="header-top-action">
+                        <ul class="header-top-action-list">
+                            <li class="header-top-action-item">
+                                <a href="" class="header-top-link">
+                                    <i class="bx bxl-facebook"></i>
+                                </a>
+                            </li>
+                            <li class="header-top-action-item">
+                                <a href="" class="header-top-link">
+                                    <i class="bx bxl-instagram"></i>
+                                </a>
+                            </li>
+
+                            <!-- search -->
+                            <li class="header-top-action-item item-icon-search">
+                                <span href="" class="header-top-link">
+                                    <i class="bx bx-search"></i>
+                                </span>
+
+                                <!-- Search box -->
+                                <div class="header-top-search-box header-top-modal ">
+                                    <span class="box-triangle">
+                                        <svg viewBox="0 0 20 9" role="presentation">
+                                            <path d="M.47108938 9c.2694725-.26871321.57077721-.56867841.90388257-.89986354C3.12384116 6.36134886 5.74788116 3.76338565 9.2467995.30653888c.4145057-.4095171 1.0844277-.40860098 1.4977971.00205122L19.4935156 9H.47108938z"
+                                                  fill="#ffffff"></path>
+                                        </svg>
+                                    </span>
+                                    <p class="heading">tìm kiếm</p>
+                                    <div class="header-box search-box">
+                                        <input class="input-search-box" type="text" placeholder="Tìm kiếm sản phẩm..." />
+                                        <button type="button" class="btn-search">
+                                            <i class="bx bx-search"></i>
+                                        </button>
+                                    </div>
+
+
+                                </div>
+                                <!-- Search box -->
+
+                            </li>
+                            <!-- search -->
+                            <!-- giỏ hàng -->
+                            <li class="header-top-action-item item-icon-cart">
+                                <span href="" class="header-top-link">
+                                    <i class="bx bx-cart"></i>
+                                </span>
+                                <div class="header-top-cart-box header-top-modal  ">
+                                    <span class="box-triangle">
+                                        <svg viewBox="0 0 20 9" role="presentation">
+                                            <path d="M.47108938 9c.2694725-.26871321.57077721-.56867841.90388257-.89986354C3.12384116 6.36134886 5.74788116 3.76338565 9.2467995.30653888c.4145057-.4095171 1.0844277-.40860098 1.4977971.00205122L19.4935156 9H.47108938z"
+                                                  fill="#ffffff"></path>
+                                        </svg>
+                                    </span>
+                                    <div class="box-heading">giỏ hàng</div>
+                                    <!-- giỏ hàng trống -->
+                                    <!-- <div class="box-cart-empty">
+              <svg width="81" height="70" viewBox="0 0 81 70"><g transform="translate(0 2)" stroke-width="4" stroke="#1e2d7d" fill="none" fill-rule="evenodd"><circle stroke-linecap="square" cx="34" cy="60" r="6"></circle><circle stroke-linecap="square" cx="67" cy="60" r="6"></circle><path d="M22.9360352 15h54.8070373l-4.3391876 30H30.3387146L19.6676025 0H.99560547"></path></g></svg>
+             <div>Giỏ hàng của bạn đang trống</div>
+            </div> -->
+                                    <div class="box-item-cart">
+
+
+                                    </div>
+                                    <div class="box-payment">
+                                        <div class="box-payment-item">
+                                            <div class="payment-text payment-item-top">tổng tiền:</div>
+                                            <div class="payment-total payment-item-top">0đ</div>
+                                        </div>
+                                        <div class="box-payment-item">
+                                            <button type="button" class="button-hover box-view-cart box-payment-button">xem giỏ hàng</button>
+                                            <button type="button" class="button-hover box-make-payment  box-payment-button">thanh toán</button>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="cart-count">
+                                    0
+                                </div>
+                            </li>
+                            <!-- giỏ hàng -->
+                            <!-- Login -->
+                            <li class="header-top-action-item item-icon-user">
+
+                                @if (Session["USER_SESSION"] != null)
+                                {
+                                    <span class="header-top-link">
+                                        <i class="bx bx-user-check"></i>
+                                    </span>
+                                    <!-- đã đăng nhập -->
+                                    <div class="header-top-modal header-logged ">
+                                        <span class="box-triangle">
+                                            <svg viewBox="0 0 20 9" role="presentation">
+                                                <path d="M.47108938 9c.2694725-.26871321.57077721-.56867841.90388257-.89986354C3.12384116 6.36134886 5.74788116 3.76338565 9.2467995.30653888c.4145057-.4095171 1.0844277-.40860098 1.4977971.00205122L19.4935156 9H.47108938z"
+                                                      fill="#ffffff"></path>
+                                            </svg>
+                                        </span>
+                                        <p class="heading">tài khoản</p>
+                                        <div class="heading-login-with"></div>
+                                        <div class="info-box">
+                                            <p class="info-name"></p>
+
+
+                                            <p class="info-logout info-detail"><a href="/home/MyInfo"> Thông tin tài khoản</a></p>
+                                            <p class=" info-logout info-detail"><a href="/home/MyBill"> Đơn hàng của tôi</a></p>
+                                            @if (Session["SESSION_GROUP_ADMIN"] != null)
+                                            {
+                                                <p class="info-logout info-detail"><a href="/Admin/Dashboard/Index"> Quản lý cửa hàng</a></p>
+                                            }
+                                            <p class="info-logout"><a href="/login/SignOut"> Đăng xuất</a></p>
+
+                                        </div>
+
+                                                                </div>
+                                            }
+                                            else
+                                            {
+                                            <span class="header-top-link">
+                                                <a style="color: #050505" href="/login"><i class='bx bx-user'></i></a>
+                                            </span>
+                                            }
+
+
+
+
+
+
+
+
+
+</li>
+                            <!-- Login -->
+                            <!-- Login -->
+
+                        </ul>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <nav class="header-nav">
+                <ul class="nav-list">
+                    <li class="nav-list-item">
+                        <a href="/" class="nav-list-link">Trang chủ</a>
+                    </li>
+                    <li class="nav-list-item">
+                        <a href="/collections" class="nav-list-link">Sản phẩm</a>
+                        <i class="nav-icon-dropdown bx bx-chevron-down"></i>
+
+                        <!-- Submenu -->
+
+                        <ul class="nav-subnav">
+                            <li class="subnav-item">
+                                <a href="/collections" class="nav-list-link nav-list-sublink">
+                                    TẤT CẢ SẢN PHẨM︱ALL
+                                </a>
+                            </li>
+                            <li class="subnav-item">
+                                <a href="/collections/ao" class="nav-list-link nav-list-sublink">Áo | CLOTHES</a>
+                            </li>
+                            <li class="subnav-item">
+                                <a href="/collections/aothun" class="nav-list-link nav-list-sublink">
+                                    Áo thun - Sơ mi | Shirt - Tshirt
+                                </a>
+                            </li>
+                            <li class="subnav-item">
+                                <a href="/collections/sweater" class="nav-list-link nav-list-sublink">
+                                    Áo tay dài | Sweater
+                                </a>
+                            </li>
+                            @* <li class="subnav-item">
+                                    <a href="/collections/hoodie" class="nav-list-link nav-list-sublink">
+                                        Áo trùm đầu | Hoodie
+                                    </a>
+                                </li>*@
+                            <li class="subnav-item">
+                                <a href="/collections/quan" class="nav-list-link nav-list-sublink">
+                                    QUẦN | PANTS
+                                </a>
+                            </li>
+                            <li class="subnav-item">
+                                <a href="/collections/quandai" class="nav-list-link nav-list-sublink">
+                                    Quần dài | Pants
+                                </a>
+                            </li>
+                            <li class="subnav-item">
+                                <a href="/collections/quanngan" class="nav-list-link nav-list-sublink">
+                                    Quần ngắn | Short
+                                </a>
+                            </li>
+                            <li class="subnav-item">
+                                <a href="/collections/phukien" class="nav-list-link nav-list-sublink">
+                                    PHỤ KIỆN | ACCESSORIES
+                                </a>
+                            </li>
+                            <li class="subnav-item">
+                                <a href="" class="nav-list-link nav-list-sublink">
+                                    Wallet chain
+                                </a>
+                            </li>
+                            <li class="subnav-item">
+                                <a href="/collections/kinh" class="nav-list-link nav-list-sublink">
+                                    Kính | Glasses
+                                </a>
+                            </li>
+                            <li class="subnav-item">
+                                <a href="/collections/non" class="nav-list-link nav-list-sublink">
+                                    Nón | Cap
+                                </a>
+                            </li>
+                            <li class="subnav-item">
+                                <a href="/collections/nhan" class="nav-list-link nav-list-sublink">
+                                    Nhẫn | Ring
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-list-item">
+                        <a href="/Home/Address" class="nav-list-link">Địa chỉ cửa hàng</a>
+                        <i class="nav-icon-dropdown bx bx-chevron-down"></i>
+
+                        <!-- Submenu -->
+
+                        <ul class="nav-subnav">
+                            <li class="subnav-item">
+                                <a href="/" class="nav-list-link nav-list-sublink">
+                                    10 Trần Thiện Chánh, P12, Q10
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-list-item">
+                        <a href="" class="nav-list-link">Fanpage</a>
+                    </li>
+                    <li class="nav-list-item">
+                        <a href="" class="nav-list-link">Instagram</a>
+                    </li>
+                    <li class="nav-list-item">
+                        <a href="" class="nav-list-link">Shopee</a>
+                    </li>
+                    <li class="nav-list-item">
+                        <a href="" class="nav-list-link">Lazada </a>
+                    </li>
+                    <li class="nav-list-item">
+                        <a href="" class="nav-list-link">Tiki</a>
+                    </li>
+                </ul>
+            </nav>
+
+        </header>
+
+        @RenderBody()
+
+
+        <!-- ----------Header---------- -->
+        <footer class="footer">
+            <div class="footer-top">
+                <div class="grid">
+
+
+
+                    <div class="footer-news"><i class='footer-top-icon bx bx-mail-send'></i>Copyright © 2022 ZOMBIE® OFFICIAL STORE. Powered by PVK</div>
+
+
+
+
+
+
+@*
+                    <div class="footer-form-news">
+                        <input type="text" placeholder="Nhập email của bạn" class="send-mail">
+                        <button type="submit" class="btn-sendmail">Đăng ký</button>
+                    </div>
+                    <div class="footer-contact">
+                        <i class='footer-top-icon bx bxs-phone'></i>  Hỗ trợ / Mua hàng 0924989342
+                    </div>*@
+                </div>
+            </div>
+            <div class="footer-mid"></div>
+            <div class="footer-bot"></div>
+        </footer>
+        <!-- ----------Footer---------- -->
+    </div>
+
+    <div class="modal">
+        <div class="modal__overplay"></div>
+        <div class="modal__body">
+            <div class="modal__inner">
+                <div class="icon-close">
+                    <i class="fa-solid fa-xmark"></i>
+                </div>
+                <form class="form-register" action="">
+                    <div class="register-box">
+                        <p class="heading">đăng ký tài khoản</p>
+                        <div class="heading-register-with">Đăng ký thành viên Zombieclothingstore</div>
+                        <div class="register">
+                            <div class="form-control err ">
+                                <input type="text" id="reg-fullname" placeholder="Họ và tên" class="modal-form-input">
+                                <small></small>
+                            </div>
+                            <div class="form-control err ">
+                                <input type="text" id="reg-email" placeholder="Email" class="modal-form-input">
+                                <small></small>
+                            </div>
+                            <div class="form-control err ">
+                                <input type="text" id="reg-phone" placeholder="Số điện thoại" class="modal-form-input">
+                                <small></small>
+                            </div>
+                            <div class="form-control err">
+                                <input type="password" id="reg-password" placeholder="Mật khẩu" class="modal-form-input">
+                                <small></small>
+                            </div>
+                            <div class="form-control err">
+                                <input type="password" id="enter-password" placeholder="Nhập lại mật khẩu" class="modal-form-input">
+                                <small></small>
+                            </div>
+
+
+                            <button type="submit" class="button-register button-hover">ĐĂNG KÝ</button>
+                            <div class="modal-help">Đã có tài khoản? <div style="display: inline; cursor: pointer;" id="modal-login" class="modal-link">Đăng nhập</div></div>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/admin/jquery")
+  
+
+
+    @Scripts.RenderFormat("<script src='{0}' type='module'></script>", "~/bundles/index")
+    @RenderSection("scripts", required: false)
+
+
+</body>
+</html>

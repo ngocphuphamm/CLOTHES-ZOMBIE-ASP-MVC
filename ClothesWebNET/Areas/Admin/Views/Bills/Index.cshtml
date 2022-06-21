@@ -1,0 +1,181 @@
+﻿@model IEnumerable<ClothesWebNET.Models.Bill>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<!-- database jquery -->
+<link rel="stylesheet"
+      type="text/css"
+      href="https://cdn.datatables.net/v/bs5/jq-3.6.0/jszip-2.5.0/dt-1.11.5/b-2.2.2/b-html5-2.2.2/b-print-2.2.2/datatables.min.css" />
+<div id="content" class="">
+    <div class="content-main p-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/Admin/Bills">Đơn hàng</a></li>
+                <li class="breadcrumb-item active" aria-current="page">
+                    <a href="/Admin/Bills">Danh sách đơn hàng</a>
+                </li>
+            </ol>
+        </nav>
+        <div class="table-responsive-sm">
+            <table id="table-product" class="table" style="width: 100%;font-size:13px;">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Khách hàng</th>
+                        <th>SĐT</th>
+                        <th style="display:none">Địa chỉ</th>
+                        <th>Tổng tiền</th>
+                        <th>Thanh toán</th>
+                        <th>Trạng thái</th>
+                        <th style="overflow: hidden; font-size: 0"></th>
+                        <th style="overflow: hidden; font-size: 0"></th>
+                    </tr>
+                </thead>
+                <tbody id="renderData">
+
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td>@item.idBill</td>
+                        <td>@item.nameBook</td>
+                        <td><span>0</span>@item.phone</td>
+                        <td style="display:none">@item.address</td>
+                        <td>@item.Total</td>
+                        <td>@item.PTTT</td>
+
+
+                        @if (item.status == true)
+                        {
+                            <td>Thành công</td>
+                            <td>
+                                <a style="width: 80px; font-size: 12px"  class="btn  btn-success disabled" href="" role="button">Cập nhật</a>
+                            </td>
+
+                        }
+                        else
+                        {
+                            <td>Đang chờ</td>
+                            <td>
+                                <a style="width: 80px; font-size: 12px" class="btn btn-success" href="Bills/Edit/@item.idBill" role="button">Cập nhật</a>
+                            </td>
+
+                        }
+
+
+                        <td>
+                            <a style="width:80px;font-size:12px"  class="btn btn-info" href="Bills/Details/@item.idBill" role="button">Chi tiết</a>
+                        </td>
+
+
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="modal-cus modal-update">
+    <div class="modal__overplay mdu"></div>
+    <div class="modal__body">
+        <div class="modal__inner">
+            <div class="cus-form">
+                <h2>Cập nhật đơn hàng</h2>
+                <form method="post" action="/Admin/Bills/edit" class="row g-3">
+                    @Html.AntiForgeryToken()
+                    <!-- ID -->
+                    <div style="display:none" class="col-md-12">
+                        <label for="validationDefault01" class="form-label">ID</label>
+                        <input type="text"
+                               name="idBill"
+                               readonly
+                               class="form-control bid"
+                               id="validationDefault01"
+                               required />
+                    </div>
+                    <!-- tên khách hàng -->
+                    <div class="col-md-12">
+                        <label for="validationDefault01" class="form-label">Khách hàng</label>
+                        <input type="text"
+                               name="nameBook"
+                               class="form-control bname"
+                               id="validationDefault01"
+                               required />
+                    </div>
+                    <!-- sđt -->
+                    <div class="col-md-12">
+                        <label for="validationDefault01" class="form-label">SĐT</label>
+                        <input type="number"
+                               name="phone"
+                               class="form-control bphone"
+                               id="validationDefault01"
+                               required />
+                    </div>
+                    <!-- địa chỉ -->
+                    <div class="col-md-12">
+                        <label for="validationDefault01" class="form-label">Địa chỉ</label>
+                        <input type="text"
+                               name="address"
+                               class="form-control baddress"
+                               id="validationDefault01"
+                               required />
+                    </div>
+                    <!-- tổng tiền -->
+                    <div class="col-md-4">
+                        <label for="validationDefault01" class="form-label">Tổng tiền</label>
+                        <input type="number"
+                               name="Total"
+                               class="form-control btotal"
+                               id="validationDefault01"
+                               required />
+                    </div>
+                    <!-- PTTT -->
+                    <div class="col-md-4">
+                        <label for="validationDefault01" class="form-label">PTTT</label>
+                        <input type="text"
+                               name="PTTT"
+                               class="form-control bpttt"
+                               id="validationDefault01"
+                               required />
+                    </div>
+                    <!-- trạng thái -->
+                    <div class="col-md-12">
+                        <label for="validationDefault04" class="form-label">Trạng thái</label>
+                        <select class="form-select bstatus" name="status" id="validationDefault04" required>
+                            <option selected disabled value="">Chọn</option>
+                            <option value="False">Chưa xác nhận</option>
+                            <option value="True">Thành công</option>
+                        </select>
+                    </div>
+
+                    <div class="col-12">
+                        <button class="btn btn-primary" type="submit">Cập nhật</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@Scripts.Render("~/bundles/admin/jquery")
+
+<script>
+
+    $('.d-bill').addClass('active');
+</script>
+
+<!-- database jquery -->
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+<script type="text/javascript"
+        src="https://cdn.datatables.net/v/bs5/jq-3.6.0/jszip-2.5.0/dt-1.11.5/b-2.2.2/b-html5-2.2.2/b-print-2.2.2/datatables.min.js"></script>
+
+
+
+
+
+@Scripts.Render("~/bundles/admin/donhang")

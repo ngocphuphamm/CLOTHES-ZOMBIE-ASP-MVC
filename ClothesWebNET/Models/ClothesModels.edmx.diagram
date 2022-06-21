@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="94fc7c7461be429492482a3787d59aff" Name="Diagram1" ZoomLevel="132">
+        <EntityTypeShape EntityType="CLOTHESModel.Bill" Width="1.875" PointX="3.25" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CLOTHESModel.DetailBIll" Width="1.5" PointX="5.25" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CLOTHESModel.ImageProduct" Width="1.5" PointX="6.125" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CLOTHESModel.Permission" Width="1.5" PointX="1.5" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CLOTHESModel.Product" Width="1.5" PointX="3" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="CLOTHESModel.Type" Width="1.5" PointX="0.75" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CLOTHESModel.User" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CLOTHESModel.Voucher" Width="1.5" PointX="7.25" PointY="0.5" IsExpanded="true" />
+        <AssociationConnector Association="CLOTHESModel.FK__Bill__idUser__412EB0B6" ManuallyRouted="false" />
+        <AssociationConnector Association="CLOTHESModel.FK__DetailBIl__idBil__4316F928" ManuallyRouted="false" />
+        <AssociationConnector Association="CLOTHESModel.FK__DetailBIl__idPro__403A8C7D" ManuallyRouted="false" />
+        <AssociationConnector Association="CLOTHESModel.FK__ImageProd__idPro__3F466844" ManuallyRouted="false" />
+        <AssociationConnector Association="CLOTHESModel.FK__User__idPermissi__4222D4EF" ManuallyRouted="false" />
+        <AssociationConnector Association="CLOTHESModel.FK__Product__idType__440B1D61" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
