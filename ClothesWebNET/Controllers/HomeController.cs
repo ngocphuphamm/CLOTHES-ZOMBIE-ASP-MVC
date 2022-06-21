@@ -87,9 +87,20 @@ namespace ClothesWebNET.Controllers
                 {
                     string username = Request.Cookies["username"].Value;
                     string user = Request.Cookies["user"].Value;
+                    db.Users.Find(user).username = username + "1";
+                
+                    
+                    HttpCookie us = new HttpCookie("username");
+                    us.Value = username;
+                    us.Expires = DateTime.Now.AddDays(1);
+
+             
+                    Response.Cookies.Add(us);
+
+
                     db.Users.Find(user).fullName = fullName;
 
-                  
+
                     db.Users.Find(user).email = email;
 
 
@@ -98,6 +109,8 @@ namespace ClothesWebNET.Controllers
                     db.Users.Find(user).password = password;
 
 
+                    db.SaveChanges();
+                    db.Users.Find(user).username = username;
                     db.SaveChanges();
 
                     return Redirect("/home/myinfo");

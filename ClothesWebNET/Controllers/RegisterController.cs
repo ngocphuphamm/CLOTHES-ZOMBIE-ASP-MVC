@@ -33,7 +33,7 @@ namespace ClothesWebNET.Controllers
 
                 db.Users.Add(user);
                 db.SaveChanges();
-                return Redirect("~/Home");
+                return Redirect("~/login");
             }
             else
             {
